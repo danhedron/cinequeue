@@ -44,11 +44,12 @@ function playtop() {
 	}
 }
 
-function queueItem(uri) {
+function queueItem(uri, requester) {
 	queue.push({
-		'uri': uri
+		'uri': uri,
+		'requester': requester
 	});
-	console.log('queued %s', uri);
+	console.log('queued %s from %s', uri, requester);
 	playtop();
 }
 
@@ -65,7 +66,7 @@ app.get('/', function(req, res) {
 app.post('/queue', function(req, res) {
 	var uri = req.body.uri;
 	if(uri.length) {
-		queueItem(uri);
+		queueItem(uri, req.ip);
 	}
 	res.redirect('/');
 });
