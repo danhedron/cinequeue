@@ -1,0 +1,49 @@
+body {
+	font-family: sans-serif;
+	margin: 0 50px;
+	text-align: center;
+}
+
+table {
+	width: 100%;
+	border-collapse: collapse;
+	border-spacing: 0px;
+	text-align: left;
+}
+
+th {
+	background-color: #fafafa;
+	border: 1px solid #AAA;
+	padding: 8px;
+}
+
+td {
+	padding: 8px;
+}
+
+tbody tr:hover {
+	background: #66F;
+	color: #FFF;
+}
+
+form {
+	margin: 20px;
+	display: block;
+}
+
+input {
+	padding: 0.5em;
+	font-size: 1.5em;
+	border: 1px solid #DDD;
+}
+input[name="uri"] {
+	width: 60%;
+	border-radius: 15px 0 0 15px;
+}
+input[value="queue"] {
+	background: #5CB85C;
+	border-radius: 0 15px 15px 0;
+	border: 1px solid #4CAE4C;
+	color: #FFF;
+}
+

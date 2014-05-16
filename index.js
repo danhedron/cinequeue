@@ -9,10 +9,10 @@ app.use(express.static(__dirname + '/static'))
 app.use(bodyParser.urlencoded());
 
 var queue = [];
-
 var mplog = "";
-
 var currentplayer = false;
+var currentCommand = "";
+var playing = false;
 
 function spawnplayer(uri) {
 	if(currentplayer) {
@@ -20,10 +20,12 @@ function spawnplayer(uri) {
 	}
 	queue.splice(0, 1);
 	currentplayer = spawn('mplayer', [uri]);
+	currentCommand = "mplayer " + uri;
 
 	currentplayer.on('close', function(code) {
 		console.log('mplayer exited');
 		currentplayer = false;
+		currentCommand = '';
 		if(queue.length) {
 			spawnplayer(queue[0].uri);
 		}
@@ -36,27 +38,47 @@ function spawnplayer(uri) {
 	});
 }
 
+function playtop() {
+	if(! currentplayer && playing && queue.length > 0) {
+		spawnplayer(queue[0].uri);
+	}
+}
+
 function queueItem(uri) {
 	queue.push({
 		'uri': uri
 	});
 	console.log('queued %s', uri);
-	if(! currentplayer) {
-		spawnplayer(queue[0].uri);
-	}
+	playtop();
 }
 
 app.get('/', function(req, res) {
 	res.render('index',
 		{
 			'queue': queue,
+			'currentCommand': currentCommand,
+			'playing': playing,
 			'pretty': true
 		});
 });
 
 app.post('/queue', function(req, res) {
 	var uri = req.body.uri;
-	queueItem(uri);
+	if(uri.length) {
+		queueItem(uri);
+	}
+	res.redirect('/');
+});
+
+app.post('/command', function(req, res) {
+	var cmd = req.body.command;
+	if( cmd == 'pause' ) {
+		playing = false;
+	}
+	else if( cmd == 'play' ) {
+		playing = true;
+		playtop();
+	}
 	res.redirect('/');
 });
 

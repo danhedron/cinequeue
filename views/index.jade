@@ -5,12 +5,26 @@ html
 		link(rel='stylesheet', href='/style.css')
 	body
 		header
-			h1 Mplayer the queue
+			h1 die Kinowartelist
+		p Currently: #{currentCommand},
 		form(action="/queue", method="post")
-			input(type="text", name="uri")
+			input(type="url", name="uri")
 			input(type="submit", value="queue")
-		ol
-			for item in queue
-				li #{item.uri}
+		form(action="/command", method="post")
+			if playing
+				button(type="submit", name="command", value="pause") Pause
+			else
+				button(type="submit", name="command", value="play") Play
+		table
+			thead
+				tr
+					th File
+					th Requester
+			tbody
+				for item in queue
+					tr
+						td
+							a(href="#{item.uri}") #{item.uri}
+						td n/a
 		footer
 			p auf nodejs
