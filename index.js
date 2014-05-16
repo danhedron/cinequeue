@@ -41,7 +41,9 @@ function queueItem(uri) {
 		'uri': uri
 	});
 	console.log('queued %s', uri);
-	spawnplayer(queue[0].uri);
+	if(! currentplayer) {
+		spawnplayer(queue[0].uri);
+	}
 }
 
 app.get('/', function(req, res) {
