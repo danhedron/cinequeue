@@ -1,6 +1,7 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var spawn = require('child_process').spawn;
+var os = require('os');
 var app = express();
 
 app.set('views', __dirname + '/views')
@@ -19,7 +20,7 @@ function spawnplayer(uri) {
 		console.warn('Warning: mplayer still running?');
 	}
 	queue.splice(0, 1);
-	currentplayer = spawn('mplayer', [uri]);
+	currentplayer = spawn('mplayer', [uri, '-quiet']);
 	currentCommand = "mplayer " + uri;
 
 	currentplayer.on('close', function(code) {
@@ -59,6 +60,7 @@ app.get('/', function(req, res) {
 			'queue': queue,
 			'currentCommand': currentCommand,
 			'playing': playing,
+			'host': os.hostname(),
 			'pretty': true
 		});
 });
