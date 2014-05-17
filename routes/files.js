@@ -1,7 +1,7 @@
 var app = require( '../server.js' );
 var child_process = require('child_process');
 var fs = require( 'fs' );
-app.get( '/fs/*', function ( req, res ) {
+app.get( '/fs*', function ( req, res ) {
 	var path = '/home/share/media/' + req.params[0];
 	fs.stat( path, function ( err, stats ) {
 		if ( err ) {
