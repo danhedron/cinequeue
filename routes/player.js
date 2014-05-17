@@ -22,7 +22,7 @@ function spawnplayer(uri) {
 	queue.splice(0, 1);
 	currentplayer = spawn('mplayer', [uri, '-nomsgcolor', '-really-quiet', '-identify']);
 	currentCommand.url = uri;
-	sendUdp( 'NP: ' currentCommand.url );
+	sendUdp( 'NP: ' + currentCommand.url );
 
 	currentplayer.on('close', function(code) {
 		console.log('mplayer exited');
