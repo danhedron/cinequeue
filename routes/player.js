@@ -66,8 +66,8 @@ function queueItem(uri, requester) {
 	playtop();
 }
 
-app.get('/', function(req, res) {
-	res.render('index',
+app.get('/queue', function(req, res) {
+	res.render('queue',
 		{
 			'queue': queue,
 			'currentCommand': currentCommand,
@@ -81,7 +81,7 @@ app.post('/queue', function(req, res) {
 	if(uri.length) {
 		queueItem(uri, req.ip);
 	}
-	res.redirect('/');
+	res.redirect('/queue');
 });
 
 app.post('/command', function(req, res) {

@@ -29,6 +29,7 @@ var server = app.listen(9000, function() {
 });
 
 // routes (etc): TODO: load this dynamically
+var index = require('./routes/index');
 var players = require('./routes/player');
 var languages = require('./routes/langselect');
 var errors = require('./routes/errors');
