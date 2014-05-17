@@ -21,7 +21,7 @@ function spawnplayer(uri) {
 	}
 	queue.splice(0, 1);
 	currentplayer = spawn('mplayer', [uri, '-quiet']);
-	currentCommand = "mplayer " + uri;
+	currentCommand = uri;
 
 	currentplayer.on('close', function(code) {
 		console.log('mplayer exited');
@@ -81,6 +81,15 @@ app.post('/command', function(req, res) {
 	else if( cmd == 'play' ) {
 		playing = true;
 		playtop();
+	}
+	else if( cmd == 'skip' ) {
+		if( currentplayer ) {
+			currentplayer.kill();
+		}
+	}
+	else if( cmd == 'die' ) {
+		res.redirect('/');
+		process.exit(0);
 	}
 	res.redirect('/');
 });
