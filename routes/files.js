@@ -1,11 +1,12 @@
 var app = require( '../server.js' );
 var child_process = require('child_process');
+var humanize = require( 'humanize' );
 var fs = require( 'fs' );
 /*app.get( '/fs', function ( req, res ) {
 	res.send('x');
 });*/
 app.get( /\/fs.+/, function ( req, res ) {
-	var slug = req.url.substr( 3 );
+	var slug = decodeURI( req.url.substr( 3 ) );
 	var path = '/home/share/media' + slug;
 	fs.stat( path, function ( err, stats ) {
 		if ( err ) {
@@ -24,7 +25,7 @@ app.get( /\/fs.+/, function ( req, res ) {
 						res.render('error',{err:err});
 					}
 					res.render( 'fs', {
-						path: req.params[0],
+						path: slug,
 						files: files,
 						output: stats
 					} );
@@ -62,9 +63,15 @@ app.get( /\/fs.+/, function ( req, res ) {
 								tmp = null;
 							}
 						}
+						var output = {
+							'size': humanize.filesize( stats.size ),
+							'mtime': humanize.relativeTime( stats.mtime ),
+							'atime': humanize.relativeTime( stats.atime ),
+							'ctime': humanize.relativeTime( stats.ctime )
+						}
 						res.render( 'fs', {
-							path: req.params[0],
-							output: stats,
+							path: slug,
+							output: output,
 							filetype: data,
 							mplayer: info
 						} );
