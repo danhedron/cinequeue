@@ -22,7 +22,7 @@ function spawnplayer(uri) {
 	queue.splice(0, 1);
 	currentplayer = spawn('mplayer', [uri, '-nomsgcolor', '-really-quiet', '-identify']);
 	currentCommand.url = uri;
-	sendUdp( 'NP: ' + currentCommand.url );
+	sendUdp( 'NP: ' + currentCommand.url + ' on ' + os.hostname() );
 
 	currentplayer.on('close', function(code) {
 		console.log('mplayer exited');
@@ -116,5 +116,5 @@ app.post('/command', function(req, res) {
 function sendUdp( msg ) {
 	var message = new Buffer( msg );
 	var client = dgram.createSocket( 'udp4' );
-	client.send( message, 0, message.length, 41337, 'saraneth.local' );
+	client.send( message, 0, message.length, 41337, 'saraneth.chippy.ch' );
 }
