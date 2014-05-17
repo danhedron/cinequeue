@@ -2,6 +2,7 @@ var app = require('../server.js');
 
 var os = require('os');
 var spawn = require('child_process').spawn;
+var dgram = require('dgram');
 
 var queue = [];
 var mplog = "";
@@ -21,12 +22,14 @@ function spawnplayer(uri) {
 	queue.splice(0, 1);
 	currentplayer = spawn('mplayer', [uri, '-nomsgcolor', '-really-quiet', '-identify']);
 	currentCommand.url = uri;
+	sendUdp( 'NP: ' currentCommand.url );
 
 	currentplayer.on('close', function(code) {
 		console.log('mplayer exited');
 		currentplayer = false;
 		currentCommand.url = '';
 		currentCommand.output = { err: [], out: [] };
+
 		if(queue.length) {
 			spawnplayer(queue[0].uri);
 		}
@@ -109,3 +112,9 @@ app.post('/command', function(req, res) {
 	}
 	res.redirect('/');
 });
+
+function sendUdp( msg ) {
+	var message = new Buffer( msg );
+	var client = dgram.createSocket( 'udp4' );
+	client.send( message, 0, message.length, 41337, 'saraneth.local' );
+}
