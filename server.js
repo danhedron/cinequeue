@@ -24,7 +24,7 @@ i18n.configure({
 
 app.use(i18n.init);
 
-var server = app.listen(1010, function() {
+var server = app.listen(9000, function() {
 	console.log('Listening on port %d', server.address().port);
 });
 
