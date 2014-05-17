@@ -15,5 +15,9 @@
 	"file": "File",
 	"requester": "Requester",
 	"currentlyplaying": "Currently playing: %s",
-	"pause": "pause"
+	"pause": "pause",
+	"file-count": {
+		"one": "%d file queued",
+		"other": "%d files queued"
+	}
 }

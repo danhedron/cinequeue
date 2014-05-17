@@ -28,3 +28,4 @@ block content
 					td
 						a(href="#{item.uri}")= decodeURI(item.uri)
 					td #{item.requester}
+		p.summary= __n('file-count', null, queue.length)

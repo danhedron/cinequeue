@@ -64,7 +64,7 @@ input[name="queue"] {
 	content:")";
 }
 
-footer {
+footer, .summary {
 	font-size: 0.8em;
 	text-align:center;
 }
