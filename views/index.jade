@@ -6,7 +6,8 @@ html
 	body
 		header
 			h1 die Kinowartelist
-		p Currently: #{currentCommand},
+		if currentCommand
+			p Currently playing #{currentCommand}
 		form(action="/queue", method="post")
 			input(type="url", name="uri")
 			input(type="submit", value="queue")
