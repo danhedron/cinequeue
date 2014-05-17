@@ -19,5 +19,10 @@
 	"file-count": {
 		"one": "%d file queued",
 		"other": "%d files queued"
-	}
+	},
+	"property": "property",
+	"key": "key",
+	"value": "value",
+	"oldmetadata": "oldmetadata",
+	"metadata": "show metadata"
 }

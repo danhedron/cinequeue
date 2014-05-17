@@ -2,8 +2,8 @@ extends skeleton
 block content
 	header
 		h1= __('playlist')
-	if currentCommand
-		p= __('currentlyplaying', currentCommand)
+	if currentCommand.url
+		p= __('currentlyplaying', currentCommand.url)
 	form(action="/queue", method="post").addnew
 		input(type="url", name="uri")
 		input(type="submit", name="queue" value= __('queue'))
@@ -14,10 +14,26 @@ block content
 			button(type="submit", name="command", value="play")= __('play')
 		button(type="submit", name="command", value="skip")= __('skip')
 		button(type="submit", name="command", value="die")= __('die')
+	if currentCommand.output.err
+		for err in currentCommand.output.err
+			p.stderr #{err}
+	if (currentCommand.props && currentCommand.url)
+		if currentCommand.props['ID_FILENAME'] !== currentCommand.url
+			p.oldmeta= __('oldmetadata')
+		else
+			table.stdin
+				thead
+					tr
+						th(colspan="2")= __('metadata')
+				tbody
+					- for (prop in currentCommand.props)
+						tr
+							th= prop
+							td= currentCommand.props[prop]
 	if queue.length == 0
 		p.empty= __('empty')
 	else
-		table
+		table.queue
 			thead
 				tr
 					th= __('file')

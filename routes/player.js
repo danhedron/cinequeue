@@ -6,7 +6,7 @@ var spawn = require('child_process').spawn;
 var queue = [];
 var mplog = "";
 var currentplayer = false;
-var currentCommand = "";
+var currentCommand = {url:'',output:{err:[],out:[]}}
 var playing = false;
 
 function spawnplayer(uri) {
@@ -14,22 +14,40 @@ function spawnplayer(uri) {
 		console.warn('Warning: mplayer still running?');
 	}
 	queue.splice(0, 1);
-	currentplayer = spawn('mplayer', [uri, '-quiet']);
-	currentCommand = uri;
+	currentplayer = spawn('mplayer', [uri, '-nomsgcolor', '-really-quiet', '-identify']);
+	currentCommand.url = uri;
 
 	currentplayer.on('close', function(code) {
 		console.log('mplayer exited');
 		currentplayer = false;
-		currentCommand = '';
+		currentCommand.url = '';
+		currentCommand.output = { err: [], out: [] };
 		if(queue.length) {
 			spawnplayer(queue[0].uri);
 		}
 	});
 	currentplayer.stderr.on('data', function(d) {
+		d = '' + d;
+		d = d.split('\n');
+		currentCommand.output.err = currentCommand.output.err.concat(d);
 		console.error('' + d);
 	});
 	currentplayer.stdout.on('data', function(d) {
+		d = '' + d;
+		d = d.split('\n');
+		currentCommand.output.out= currentCommand.output.out.concat(d);
 		console.log('' + d);
+		for (out in currentCommand.output.out) {
+			out = currentCommand.output.out[out];
+			if (out) {
+				var curr = out.split('=');
+				if (!currentCommand.props) {
+					currentCommand.props = {};
+				}
+				currentCommand.props[curr[0]] = curr[1];
+			}
+		}
+		console.log(currentCommand.props);
 	});
 }
 
@@ -52,7 +70,7 @@ app.get('/', function(req, res) {
 	res.render('index',
 		{
 			'queue': queue,
-			'currentCommand': decodeURI(currentCommand),
+			'currentCommand': currentCommand,
 			'playing': playing,
 			'host': os.hostname(),
 		});
