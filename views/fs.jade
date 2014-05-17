@@ -8,8 +8,7 @@ block content
 		ul
 			for file in files
 				li
-					- url = './' + file
-					a(href=url)= file
+					a(href=file)= file
 	else
 		form(action="/queue",method="post")
 			- fullurl = 'http://10.10.10.10/' + path
@@ -20,12 +19,13 @@ block content
 		span.ctime= output.ctime
 		span.mtime= output.mtime
 		span.atime= output.atime
-	if mplayer
-		table.small
-			tr
-				th= __( 'key' )
-				th= __( 'value' )
-			- for ( item in mplayer)
+	else
+		if mplayer
+			table.small
 				tr
-					td= item
-					td= mplayer[item]
+					th= __( 'key' )
+					th= __( 'value' )
+				- for ( item in mplayer)
+					tr
+						td= item
+						td= mplayer[item]

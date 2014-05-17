@@ -1,8 +1,12 @@
 var app = require( '../server.js' );
 var child_process = require('child_process');
 var fs = require( 'fs' );
-app.get( '/fs*', function ( req, res ) {
-	var path = '/home/share/media/' + req.params[0];
+/*app.get( '/fs', function ( req, res ) {
+	res.send('x');
+});*/
+app.get( /\/fs.+/, function ( req, res ) {
+	var slug = req.url.substr( 3 );
+	var path = '/home/share/media' + slug;
 	fs.stat( path, function ( err, stats ) {
 		if ( err ) {
 			res.render( 'error', {
@@ -12,7 +16,7 @@ app.get( '/fs*', function ( req, res ) {
 		} else {
 			if ( stats.isDirectory() ) {
                 if ( path.substr( path.length - 1 ) !== '/' ) {
-                    res.redirect('/fs/' + req.params[0] + '/');
+                    res.redirect('/fs/' + slug + '/');
                     return;
                 }
 				fs.readdir( path, function ( err, files ) {
