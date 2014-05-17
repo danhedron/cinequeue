@@ -4,25 +4,24 @@ block content
 		h1= path
 		if filetype
 			pre.filetype= filetype
-	ul
-		if files
+	if files
+		ul
 			for file in files
 				li
 					- url = './' + file
 					a(href=url)= file
+	else
+		form(action="/queue",method="post")
+			- fullurl = 'http://10.10.10.10/' + path
+			input(type="hidden",name="uri",value=fullurl)
+			input(type="submit",value=__('queue'))
 	if output
-		h2 File stats
-		table
-			tr
-				th= __( 'key' )
-				th= __( 'value' )
-			- for ( item in output )
-				tr
-					td= item
-					td= output[item]
+		span.filesize= output.size
+		span.ctime= output.ctime
+		span.mtime= output.mtime
+		span.atime= output.atime
 	if mplayer
-		h2 Mplayer info
-		table
+		table.small
 			tr
 				th= __( 'key' )
 				th= __( 'value' )

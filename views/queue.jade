@@ -14,6 +14,8 @@ block content
 			button(type="submit", name="command", value="play")= __('play')
 		button(type="submit", name="command", value="skip")= __('skip')
 		button(type="submit", name="command", value="die")= __('die')
+		div
+			a(href="/fs/")= __('findfile')
 	if currentCommand.output.err
 		for err in currentCommand.output.err
 			p.stderr #{err}

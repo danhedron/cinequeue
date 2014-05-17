@@ -87,7 +87,7 @@ h1 {
 	font-size:0.6em;
 	color:#bbb;
 }
-.stdin, .stdin tbody {
+.stdin, table.small, .stdin tbody {
 	font-size:0.8em;
 	padding: 0.2em;
 	word-wrap:break-word;

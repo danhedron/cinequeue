@@ -23,10 +23,10 @@
 	"property": "property",
 	"key": "key",
 	"value": "value",
-	"oldmetadata": "oldmetadata",
+	"oldmetadata": "Refresh the page to view metadata for the current file.",
 	"metadata": "show metadata",
-	"fs-nostats": "fs-nostats",
-	"fs-nostats-ENOENT": "fs-nostats-ENOENT",
-	"fs-nostats-enoent": "fs-nostats-enoent",
-	"fs-nostats-enotdir": "fs-nostats-enotdir"
+	"fs-nostats": "Unable to get information about that file.",
+	"fs-nostats-enoent": "No such directory entry.",
+	"fs-nostats-enotdir": "Not a directory.",
+	"findfile": "Find files to play"
 }

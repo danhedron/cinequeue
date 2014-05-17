@@ -14,5 +14,8 @@
 	"lang-de": "Deutsch",
 	"requester": "Anforderer",
 	"currentlyplaying": "Currently playing: %s",
-	"file": "Datei"
+	"file": "Datei",
+	"pause": "pause",
+	"findfile": "findfile",
+	"metadata": "metadata"
 }

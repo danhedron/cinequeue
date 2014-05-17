@@ -9,6 +9,11 @@ var currentplayer = false;
 var currentCommand = {url:'',output:{err:[],out:[]}}
 var playing = false;
 
+if(!process.env['DISPLAY']) {
+	console.error('No display set!');
+	process.exit(0);
+}
+
 function spawnplayer(uri) {
 	if(currentplayer) {
 		console.warn('Warning: mplayer still running?');
