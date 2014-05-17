@@ -1,0 +1,12 @@
+extends skeleton
+block content
+	h1= __('langselect')
+	p= __('langselect-intro')
+	ul.langs
+		- langs = ['en','de']
+		for lang in langs
+			if lang == currLang
+				li.curr= __('lang-' + lang)
+			else
+				li
+					a(href="lang/"+lang)= __('lang-' + lang)

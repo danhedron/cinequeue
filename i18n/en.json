@@ -1,0 +1,19 @@
+{
+	"langselect": "Language selection",
+	"langselect-intro": "Select the language you wish to use, below.",
+	"lang-de": "German",
+	"lang-en": "English",
+	"playlist": "Playlist",
+	"play": "play queue",
+	"skip": "skip track",
+	"die": "kill program",
+	"empty": "empty",
+	"poweredby": "Powered by node.js",
+	"hostname": "Hosted by %s",
+	"i18n": "change language",
+	"queue": "Queue",
+	"file": "File",
+	"requester": "Requester",
+	"currentlyplaying": "Currently playing: %s",
+	"pause": "pause"
+}

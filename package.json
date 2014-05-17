@@ -2,11 +2,13 @@
   "name": "cinequeue",
   "version": "1.1.1",
   "description": "Makes movies",
-  "main": "index.js",
+  "main": "server.js",
   "dependencies": {
     "express": "~4.2.0",
     "jade": "*",
-    "body-parser": "~1.2.0"
+    "body-parser": "~1.2.0",
+    "i18n": "~0.4.1",
+    "cookie-parser": "~1.1.0"
   },
   "devDependencies": {},
   "scripts": {

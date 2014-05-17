@@ -1,13 +1,7 @@
-var express = require('express');
-var bodyParser = require('body-parser');
-var spawn = require('child_process').spawn;
-var os = require('os');
-var app = express();
+var app = require('../server.js');
 
-app.set('views', __dirname + '/views')
-app.set('view engine', 'jade')
-app.use(express.static(__dirname + '/static'))
-app.use(bodyParser.urlencoded());
+var os = require('os');
+var spawn = require('child_process').spawn;
 
 var queue = [];
 var mplog = "";
@@ -58,10 +52,9 @@ app.get('/', function(req, res) {
 	res.render('index',
 		{
 			'queue': queue,
-			'currentCommand': currentCommand,
+			'currentCommand': decodeURI(currentCommand),
 			'playing': playing,
 			'host': os.hostname(),
-			'pretty': true
 		});
 });
 
@@ -92,13 +85,4 @@ app.post('/command', function(req, res) {
 		process.exit(0);
 	}
 	res.redirect('/');
-});
-
-app.use(function(err, req, res, next){
-	console.error(err.stack);
-	res.send(500, 'Something broke!');
-});
-
-var server = app.listen(9000, function() {
-	console.log('Listening on port %d', server.address().port);
 });
