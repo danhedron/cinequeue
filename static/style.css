@@ -47,3 +47,16 @@ input[value="queue"] {
 	color: #FFF;
 }
 
+.empty {
+	color: #bbb;
+	padding:1em;
+	font-size:1.3em;
+	letter-spacing:0.2em;
+	font-style:italic;
+}
+.empty::before {
+	content:"(";
+}
+.empty::after {
+	content:")";
+}

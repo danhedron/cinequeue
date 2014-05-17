@@ -15,19 +15,22 @@ html
 			if playing
 				button(type="submit", name="command", value="pause") Pause
 			else
-				button(type="submit", name="command", value="play") Play
-			button(type="submit", name="command", value="skip") Skip
-			button(type="submit", name="command", value="die") Emergency Stop
-		table
-			thead
-				tr
-					th File
-					th Requester
-			tbody
-				for item in queue
+				button(type="submit", name="command", value="play") Spiel
+			button(type="submit", name="command", value="skip") Weglass
+			button(type="submit", name="command", value="die") Notabschalt
+		if queue.length == 0
+			p.empty Leer
+		else
+			table
+				thead
 					tr
-						td
-							a(href="#{item.uri}") #{item.uri}
-						td #{item.requester}
+						th File
+						th Requester
+					tbody
+					for item in queue
+						tr
+							td
+								a(href="#{item.uri}") #{item.uri}
+							td #{item.requester}
 		footer
 			p auf nodejs - #{host}
