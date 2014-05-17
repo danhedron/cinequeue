@@ -25,7 +25,7 @@ i18n.configure({
 app.use(i18n.init);
 
 var server = app.listen(9000, function() {
-	console.log('Listening on port %d', server.address().port);
+	console.info('Listening on port %d', server.address().port);
 });
 
 // routes (etc): TODO: load this dynamically

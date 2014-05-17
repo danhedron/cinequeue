@@ -3,7 +3,6 @@ var child_process = require('child_process');
 var fs = require( 'fs' );
 app.get( '/fs/*', function ( req, res ) {
 	var path = '/home/share/media/' + req.params[0];
-	console.log(path);
 	fs.stat( path, function ( err, stats ) {
 		if ( err ) {
 			res.render( 'error', {
@@ -51,7 +50,6 @@ app.get( '/fs/*', function ( req, res ) {
 					} );
 					mplayer.on( 'close', function ( code ) {
 						metadata = metadata.split( '\n' );
-						console.log(metadata);
 						var info = {};
 						for ( entry in metadata ) {
 							if ( entry ) { // suppress empties

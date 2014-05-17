@@ -8,7 +8,7 @@ block content
 		if files
 			for file in files
 				li
-					- url = './' + file 
+					- url = './' + file
 					a(href=url)= file
 	if output
 		h2 File stats
@@ -29,4 +29,4 @@ block content
 			- for ( item in mplayer)
 				tr
 					td= item
-					td= output[item]
+					td= mplayer[item]
