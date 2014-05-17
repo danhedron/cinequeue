@@ -64,7 +64,7 @@ input[name="queue"] {
 	content:")";
 }
 
-footer {
+footer, .summary {
 	font-size: 0.8em;
 	text-align:center;
 }
@@ -75,4 +75,38 @@ footer p {
 
 h1 {
 	text-align:center;
+}
+.stderr {
+	font-size:0.6em;
+	color:#E61D64;
+	font-family:monospace;
+	display:none;
+}
+.oldmeta {
+	text-align:center;
+	font-size:0.6em;
+	color:#bbb;
+}
+.stdin, table.small, .stdin tbody {
+	font-size:0.8em;
+	padding: 0.2em;
+	word-wrap:break-word;
+	width:100px;
+}
+.stdin tbody {
+	display:none;
+}
+.stdin:hover tbody  {
+	display:block;
+}
+.stdin th:hover {
+	color:black;
+}
+.stdin thead tr th {
+	background-color:transparent;
+	border:0;
+	text-align:center;
+}
+.stdin tbody tr td {
+	overflow:hidden;
 }

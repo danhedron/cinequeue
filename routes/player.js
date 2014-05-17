@@ -2,34 +2,60 @@ var app = require('../server.js');
 
 var os = require('os');
 var spawn = require('child_process').spawn;
+var dgram = require('dgram');
 
 var queue = [];
 var mplog = "";
 var currentplayer = false;
-var currentCommand = "";
+var currentCommand = {url:'',output:{err:[],out:[]}}
 var playing = false;
+
+if(!process.env['DISPLAY']) {
+	console.error('No display set!');
+	process.exit(0);
+}
 
 function spawnplayer(uri) {
 	if(currentplayer) {
 		console.warn('Warning: mplayer still running?');
 	}
 	queue.splice(0, 1);
-	currentplayer = spawn('mplayer', [uri, '-quiet']);
-	currentCommand = uri;
+	currentplayer = spawn('mplayer', [uri, '-nomsgcolor', '-really-quiet', '-identify']);
+	currentCommand.url = uri;
+	sendUdp( 'NP: ' + currentCommand.url + ' on ' + os.hostname() );
 
 	currentplayer.on('close', function(code) {
 		console.log('mplayer exited');
 		currentplayer = false;
-		currentCommand = '';
+		currentCommand.url = '';
+		currentCommand.output = { err: [], out: [] };
+
 		if(queue.length) {
 			spawnplayer(queue[0].uri);
 		}
 	});
 	currentplayer.stderr.on('data', function(d) {
+		d = '' + d;
+		d = d.split('\n');
+		currentCommand.output.err = currentCommand.output.err.concat(d);
 		console.error('' + d);
 	});
 	currentplayer.stdout.on('data', function(d) {
+		d = '' + d;
+		d = d.split('\n');
+		currentCommand.output.out= currentCommand.output.out.concat(d);
 		console.log('' + d);
+		for (out in currentCommand.output.out) {
+			out = currentCommand.output.out[out];
+			if (out) {
+				var curr = out.split('=');
+				if (!currentCommand.props) {
+					currentCommand.props = {};
+				}
+				currentCommand.props[curr[0]] = curr[1];
+			}
+		}
+		console.log(currentCommand.props);
 	});
 }
 
@@ -48,11 +74,11 @@ function queueItem(uri, requester) {
 	playtop();
 }
 
-app.get('/', function(req, res) {
-	res.render('index',
+app.get('/queue', function(req, res) {
+	res.render('queue',
 		{
 			'queue': queue,
-			'currentCommand': decodeURI(currentCommand),
+			'currentCommand': currentCommand,
 			'playing': playing,
 			'host': os.hostname(),
 		});
@@ -63,7 +89,7 @@ app.post('/queue', function(req, res) {
 	if(uri.length) {
 		queueItem(uri, req.ip);
 	}
-	res.redirect('/');
+	res.redirect('/queue');
 });
 
 app.post('/command', function(req, res) {
@@ -86,3 +112,9 @@ app.post('/command', function(req, res) {
 	}
 	res.redirect('/');
 });
+
+function sendUdp( msg ) {
+	var message = new Buffer( msg );
+	var client = dgram.createSocket( 'udp4' );
+	client.send( message, 0, message.length, 41337, 'saraneth.chippy.ch' );
+}

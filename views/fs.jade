@@ -1,0 +1,30 @@
+extends skeleton
+block content
+	header
+		h1= path
+		if filetype
+			pre.filetype= filetype
+	if files
+		ul
+			for file in files
+				li
+					a(href=file)= file
+	else
+		form(action="/queue",method="post")
+			- fullurl = 'http://10.10.10.10/' + path
+			input(type="hidden",name="uri",value=fullurl)
+			input(type="submit",value=__('queue'))
+		table
+			tr
+				th= __( 'key' )
+				th= __( 'value' )
+			if output
+				- for ( outpu in output )
+					tr
+						td= __( 'stat-' + outpu )
+						td= output[outpu]
+			if mplayer && mplayer.length > 1
+				- for ( item in mplayer)
+					tr
+						td= item
+						td= mplayer[item]

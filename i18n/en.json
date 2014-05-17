@@ -15,5 +15,22 @@
 	"file": "File",
 	"requester": "Requester",
 	"currentlyplaying": "Currently playing: %s",
-	"pause": "pause"
+	"pause": "pause",
+	"file-count": {
+		"one": "%d file queued",
+		"other": "%d files queued"
+	},
+	"property": "Property",
+	"key": "Key",
+	"value": "Value",
+	"oldmetadata": "Refresh the page to view metadata for the current file.",
+	"metadata": "show metadata",
+	"fs-nostats": "Unable to get information about that file.",
+	"fs-nostats-enoent": "No such directory entry.",
+	"fs-nostats-enotdir": "Not a directory.",
+	"findfile": "Find files to play",
+	"stat-size": "File size",
+	"stat-mtime": "Last modification",
+	"stat-ctime": "Last status change",
+	"stat-atime": "Last access"
 }

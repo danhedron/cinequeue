@@ -8,7 +8,8 @@
     "jade": "*",
     "body-parser": "~1.2.0",
     "i18n": "~0.4.1",
-    "cookie-parser": "~1.1.0"
+    "cookie-parser": "~1.1.0",
+    "humanize": "0.0.9"
   },
   "devDependencies": {},
   "scripts": {
