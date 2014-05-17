@@ -7,8 +7,10 @@ var dgram = require('dgram');
 var queue = [];
 var mplog = "";
 var currentplayer = false;
-var currentCommand = {url:'',output:{err:[],out:[]}}
+var currentCommand = {url:'',output:{err:[],out:[]}, host:''}
 var playing = false;
+var playRemote = false;
+var remoteHost = 'localhost' // e.g. media@viewbox
 
 if(!process.env['DISPLAY']) {
 	console.error('No display set!');
@@ -20,9 +22,18 @@ function spawnplayer(uri) {
 		console.warn('Warning: mplayer still running?');
 	}
 	queue.splice(0, 1);
-	currentplayer = spawn('mplayer', [uri, '-nomsgcolor', '-really-quiet', '-identify']);
+	if(playRemote) {
+		var cmd = ['DISPLAY='+process.env['DISPLAY'], 'mplayer', uri, '-nomsgcolor', '-really-quiet', '-identify'].join(' ');
+		currentplayer = spawn('ssh', [remoteHost, cmd]);
+		currentCommand.host = remoteHost;
+		console.log("Spawning %s on %s", cmd, currentCommand.host);
+	}
+	else {
+		currentplayer = spawn('mplayer', [uri, '-nomsgcolor', '-really-quiet', '-identify']);
+		currentCommand.host = os.hostname();
+	}
 	currentCommand.url = uri;
-	sendUdp( 'NP: ' + currentCommand.url + ' on ' + os.hostname() );
+	sendUdp( 'NP: ' + currentCommand.url + ' on ' + currentCommand.host );
 
 	currentplayer.on('close', function(code) {
 		console.log('mplayer exited');
@@ -103,7 +114,8 @@ app.post('/command', function(req, res) {
 	}
 	else if( cmd == 'skip' ) {
 		if( currentplayer ) {
-			currentplayer.kill();
+			currentplayer.stdin.write('q');
+			//currentplayer.kill();
 		}
 	}
 	else if( cmd == 'die' ) {
