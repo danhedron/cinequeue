@@ -1,0 +1,13 @@
+doctype html
+html
+	head
+		title mplayer queue
+		link(rel='stylesheet', href='/style.css')
+	body
+		block content
+		footer
+			p= __('poweredby')
+			if host
+				p= __('hostname', host)
+			p
+				a(href="/lang")= __('i18n')

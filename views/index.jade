@@ -1,36 +1,30 @@
-doctype html
-html
-	head
-		title mplayer queue
-		link(rel='stylesheet', href='/style.css')
-	body
-		header
-			h1 die Kinowartelist
-		if currentCommand
-			p Currently playing #{currentCommand}
-		form(action="/queue", method="post")
-			input(type="url", name="uri")
-			input(type="submit", value="queue")
-		form(action="/command", method="post")
-			if playing
-				button(type="submit", name="command", value="pause") Pause
-			else
-				button(type="submit", name="command", value="play") Spiel
-			button(type="submit", name="command", value="skip") Weglass
-			button(type="submit", name="command", value="die") Notabschalt
-		if queue.length == 0
-			p.empty Leer
+extends skeleton
+block content
+	header
+		h1= __('playlist')
+	if currentCommand
+		p= __('currentlyplaying', currentCommand)
+	form(action="/queue", method="post").addnew
+		input(type="url", name="uri")
+		input(type="submit", name="queue" value= __('queue'))
+	form(action="/command", method="post").controls
+		if playing
+			button(type="submit", name="command", value="pause")= __('pause')
 		else
-			table
-				thead
-					tr
-						th File
-						th Requester
-					tbody
-					for item in queue
-						tr
-							td
-								a(href="#{item.uri}") #{item.uri}
-							td #{item.requester}
-		footer
-			p auf nodejs - #{host}
+			button(type="submit", name="command", value="play")= __('play')
+		button(type="submit", name="command", value="skip")= __('skip')
+		button(type="submit", name="command", value="die")= __('die')
+	if queue.length == 0
+		p.empty= __('empty')
+	else
+		table
+			thead
+				tr
+					th= __('file')
+					th= __('requester')
+			tbody
+			for item in queue
+				tr
+					td
+						a(href="#{item.uri}")= decodeURI(item.uri)
+					td #{item.requester}
