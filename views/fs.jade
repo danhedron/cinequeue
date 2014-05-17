@@ -8,7 +8,7 @@ block content
 		if files
 			for file in files
 				li
-					- url =  '/fs' +  path + file
+					- url = './' + file 
 					a(href=url)= file
 	if output
 		h2 File stats

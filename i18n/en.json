@@ -27,5 +27,6 @@
 	"metadata": "show metadata",
 	"fs-nostats": "fs-nostats",
 	"fs-nostats-ENOENT": "fs-nostats-ENOENT",
-	"fs-nostats-enoent": "fs-nostats-enoent"
+	"fs-nostats-enoent": "fs-nostats-enoent",
+	"fs-nostats-enotdir": "fs-nostats-enotdir"
 }

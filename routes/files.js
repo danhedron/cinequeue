@@ -12,12 +12,16 @@ app.get( '/fs/*', function ( req, res ) {
 			} );
 		} else {
 			if ( stats.isDirectory() ) {
+                if ( path.substr( path.length - 1 ) !== '/' ) {
+                    res.redirect('/fs/' + req.params[0] + '/');
+                    return;
+                }
 				fs.readdir( path, function ( err, files ) {
 					if ( err ) {
 						res.render('error',{err:err});
 					}
 					res.render( 'fs', {
-						path: path,
+						path: req.params[0],
 						files: files,
 						output: stats
 					} );
