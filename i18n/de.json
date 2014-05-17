@@ -16,6 +16,6 @@
 	"currentlyplaying": "Currently playing: %s",
 	"file": "Datei",
 	"pause": "pause",
-	"findfile": "findfile",
+	"findfile": "Holen Dateien",
 	"metadata": "metadata"
 }
