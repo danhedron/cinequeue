@@ -24,5 +24,8 @@
 	"key": "key",
 	"value": "value",
 	"oldmetadata": "oldmetadata",
-	"metadata": "show metadata"
+	"metadata": "show metadata",
+	"fs-nostats": "fs-nostats",
+	"fs-nostats-ENOENT": "fs-nostats-ENOENT",
+	"fs-nostats-enoent": "fs-nostats-enoent"
 }

@@ -24,12 +24,13 @@ i18n.configure({
 
 app.use(i18n.init);
 
-var server = app.listen(9000, function() {
+var server = app.listen(1010, function() {
 	console.log('Listening on port %d', server.address().port);
 });
 
 // routes (etc): TODO: load this dynamically
 var index = require('./routes/index');
+var files = require('./routes/files');
 var players = require('./routes/player');
 var languages = require('./routes/langselect');
 var errors = require('./routes/errors');

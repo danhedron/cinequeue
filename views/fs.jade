@@ -1,0 +1,32 @@
+extends skeleton
+block content
+	header
+		h1= path
+		if filetype
+			pre.filetype= filetype
+	ul
+		if files
+			for file in files
+				li
+					- url =  '/fs' +  path + '/' + file
+					a(href=url)= file
+	if output
+		h2 File stats
+		table
+			tr
+				th= __( 'key' )
+				th= __( 'value' )
+			- for ( item in output )
+				tr
+					td= item
+					td= output[item]
+	if mplayer
+		h2 Mplayer info
+		table
+			tr
+				th= __( 'key' )
+				th= __( 'value' )
+			- for ( item in mplayer)
+				tr
+					td= item
+					td= output[item]
