@@ -57,7 +57,7 @@ app.get( '/fs/*', function ( req, res ) {
 							}
 						}
 						res.render( 'fs', {
-							path: path,
+							path: req.params[0],
 							output: stats,
 							filetype: data,
 							mplayer: info
