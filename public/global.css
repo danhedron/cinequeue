@@ -1,0 +1,94 @@
+@import url(http://fonts.googleapis.com/css?family=Open+Sans);
+body {
+	font-family: 'Open Sans',sans-serif;
+	background-color: #b6b6b6;
+	margin:0;padding:0;
+
+}
+.container {
+	background-color: white;
+	max-width:800px;
+	margin:1em auto;
+	border-radius:5px;
+}
+.top {
+	background-color:black;
+	color:white;
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	text-align:center;
+	padding:0.2em;
+}
+.top h1 {
+	padding:inherit; margin:inherit;
+}
+.footer {
+	background-color: #c6c6c6;
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+	font-size:70%;
+	text-align:center;
+	color: #666;
+}
+.footer p {
+	display:inline-block;
+	padding:0.2em 2em;
+}
+.footer a {
+	color: inherit;
+}
+
+pre {
+	overflow: auto;
+	margin:1em;
+	border:1px solid gray;
+	padding:0.5em;
+	border-radius:5px;
+	color:gray;
+	font-size:80%;
+}
+
+.flash {
+	margin-top:0;
+	padding:0.5em;
+	text-align:center;
+	border-bottom: 2px solid black;
+}
+/* colors stolen from bootstrap */
+.success {
+	background-color: #DFF0D8;
+	color: #47A447;
+	border-color: #47A447;
+}
+.err {
+	background-color: #F2DEDE;
+	color: #D2322D;
+	border-color: #D2322D;
+}
+.warn {
+	background-color: #FCF8E3;
+	border-color: #ED9C28;
+	color: #ED9C28;
+}
+.info {
+	color: #39B3D7;
+	background-color: #D9EDF7;
+	border-color: #39B3D7;
+}
+.content {
+	padding: 0.2em 1em;
+}
+.langselect {
+	-moz-column-count: 3;
+	-webkit-column-count: 3;
+	column-count: 3;
+	text-align:center;
+	list-style-type:none;
+}
+
+table {
+	width: 100%;
+}
+table td {
+	background-color: #eee;
+}

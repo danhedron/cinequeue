@@ -1,38 +1,53 @@
-var express = require('express');
-var bodyParser = require('body-parser');
-var cookieParser = require('cookie-parser');
+var config = require( './config' );
+var colog = require( 'colog' );
+var i18n = require( 'i18n' );
+
+var flash = require( 'express-flash' );
+var cookieParser = require( 'cookie-parser' );
+var session = require( 'express-session' );
+var bodyParser = require( 'body-parser' );
+
+var express = require( 'express' );
 var app = module.exports = express();
 
-var os = require('os');
-var spawn = require('child_process').spawn;
-var i18n = require('i18n');
+app.use( express.static( __dirname + '/public' ) );
+app.set( 'views', __dirname + '/views' );
+app.set( 'view engine', 'jade' );
 
-app.set('views', __dirname + '/views')
-app.set('view engine', 'jade')
-app.use(express.static(__dirname + '/static'))
-app.use(bodyParser.urlencoded());
-app.use(cookieParser());
+i18n.configure( {
+	locales: [ 'en' ],
+	directory: __dirname + '/messages',
+	defaultLocale:'en',
+	cookie: config.get( 'i18n-cookie' )
+} );
 
-app.locals.pretty = true; // set jade to pretty-print globally
+app.use( i18n.init );
 
-i18n.configure({
-	locales: ['en', 'de' ],
-	directory: __dirname + '/i18n',
-	defaultLocale: 'en',
-	cookie: 'cinequeue-locale'
+app.use( cookieParser( config.get( 'secret' ) ) );
+app.use( bodyParser.urlencoded() );
+app.use( session( {
+	cookie: {
+		maxAge: 60000
+	}
+} ) );
+
+app.use( flash() );
+
+app.set( 'strict routing', true );
+
+// http://stackoverflow.com/a/13443359
+app.use( function ( req, res, next ) {
+	if( req.url.substr(-1) !== '/' ) {
+	   res.redirect(301, req.url + '/' );
+	} else {
+		next();
+	}
 });
 
-app.use(i18n.init);
+app.locals.pretty = true;
 
-var server = app.listen(9000, function() {
-	console.info('Listening on port %d', server.address().port);
-});
+var routes = require( './routes' );
 
-// routes (etc): TODO: load this dynamically
-var index = require('./routes/index');
-var files = require('./routes/files');
-var players = require('./routes/player');
-var languages = require('./routes/langselect');
-var errors = require('./routes/errors');
-
+app.listen( config.get( 'port' ) );
+colog.success( i18n.__( 'Listening on port %d', config.get( 'port' ) ) );
 

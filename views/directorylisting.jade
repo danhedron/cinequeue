@@ -1,0 +1,7 @@
+extends listing
+block content
+	p= __( '%s is a directory with the following contents:', path )
+	ul.files
+		for file in files
+			li
+				a(href=file)= file
