@@ -55,6 +55,12 @@ var conf = convict( {
 		format: String, // regex should be here
 		default: 'en',
 		env: 'NATURALLANG'
+	},
+	fsurl: {
+		doc: 'The base URL for the file system.',
+		format: 'url',
+		default: 'http://127.0.0.1',
+		env: 'URL'
 	}
 } );
 

@@ -4,7 +4,7 @@ block content
 		input(type="url", name="uri")
 		input(type="submit", name="queue", value=__( 'Queue' ))
 	p.addfs
-		a(href="fs")= __( 'Add file from filesystem' )
+		a(href="/fs")= __( 'Add file from filesystem' )
 	ul.controls
 		- controls = [ 'play', 'pause', 'skip', 'die' ]
 		for control in controls
@@ -23,7 +23,7 @@ block content
 						form(command='add/', method="POST").repeat
 							button(type="submit", value=item.uri, name="uri") ↺
 					td
-						a(href=item.uri) = decodeURI( item.uri )
+						a(href=item.uri)= decodeURI( item.uri )
 					td= item.requester
 			if currentCommand.url
 				tr.nowplaying

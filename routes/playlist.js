@@ -13,6 +13,7 @@ var currentCommand = {
 	host: ''
 };
 var previous = [];
+var previousCount = 2;
 
 app.get( '/playlist/', function ( req, res ) {
 	if ( !config.get( 'allowplaylist' ) ) {
