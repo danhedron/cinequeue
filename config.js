@@ -54,7 +54,7 @@ var conf = convict( {
 		doc: 'The default language. Should be an ISO 639 code.',
 		format: String, // regex should be here
 		default: 'en',
-		env: 'NATURALLANG'
+		env: 'LANG'
 	},
 	fsurl: {
 		doc: 'The base URL for the file system.',

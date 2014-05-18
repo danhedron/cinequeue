@@ -48,5 +48,6 @@
 	"File": "File",
 	"Requester": "Requester",
 	"That command must be sent as a POST request.": "That command must be sent as a POST request.",
-	"Unable to queue that!": "Unable to queue that!"
+	"Unable to queue that!": "Unable to queue that!",
+	"Using %s as default interface language.": "Using %s as default interface language."
 }

@@ -28,10 +28,15 @@ app.use( session( {
 i18n.configure( {
 	locales: [ 'en', 'de' ],
 	directory: __dirname + '/messages',
-	cookie: config.get( 'i18n-cookie' )
+	defaultLocale: config.get( 'language' ),
+	cookie: config.get( 'i18n-cookie' ),
+	updateFiles: false
 } );
 
 app.use( i18n.init );
+colog.info( i18n.__( 'Using %s as default interface language.', i18n.getLocale() ) );
+console.log(config.get('language'));
+
 app.use( flash() );
 
 app.set( 'strict routing', true );
