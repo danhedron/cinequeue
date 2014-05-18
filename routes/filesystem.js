@@ -41,7 +41,8 @@ app.get( '/fs/*', function ( req, res ) {
 			res.render( 'filelisting', {
 				path: slug,
 				stats: stats,
-				mime: mime.lookup( path )
+				mime: mime.lookup( path ),
+				url: config.get( 'fsurl') + slug
 			} );
 		}
 	} );

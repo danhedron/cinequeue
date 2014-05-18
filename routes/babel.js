@@ -29,10 +29,10 @@ app.get( '/babel/:code', function ( req, res ) {
 		} else {
 			req.flash( 'warn', res.__( '%s (%s) is currently unsupported.', lang.nativeName, lang.name ) );
 		}
-		res.cookie( config.get( 'i18n-cookie', code, {
+		res.cookie( config.get( 'i18n-cookie' ), code, {
 			maxAge: 90000,
 			httpOnly: true
-		} ) );
+		} );
 		res.redirect( '/' );
 	}
 } );

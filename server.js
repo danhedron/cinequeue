@@ -14,23 +14,24 @@ app.use( express.static( __dirname + '/public' ) );
 app.set( 'views', __dirname + '/views' );
 app.set( 'view engine', 'jade' );
 
+
+app.use( cookieParser( config.get( 'secret' ) ) );
+app.use( bodyParser.urlencoded() );
+
+app.use( session( {
+	cookie: {
+		maxAge: 90000
+	}
+} ) );
+
+
 i18n.configure( {
-	locales: [ 'en' ],
+	locales: [ 'en', 'de' ],
 	directory: __dirname + '/messages',
-	defaultLocale:'en',
 	cookie: config.get( 'i18n-cookie' )
 } );
 
 app.use( i18n.init );
-
-app.use( cookieParser( config.get( 'secret' ) ) );
-app.use( bodyParser.urlencoded() );
-app.use( session( {
-	cookie: {
-		maxAge: 60000
-	}
-} ) );
-
 app.use( flash() );
 
 app.set( 'strict routing', true );
@@ -50,4 +51,3 @@ var routes = require( './routes' );
 
 app.listen( config.get( 'port' ) );
 colog.success( i18n.__( 'Listening on port %d', config.get( 'port' ) ) );
-

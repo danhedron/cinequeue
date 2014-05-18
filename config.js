@@ -49,6 +49,12 @@ var conf = convict( {
 		format: Boolean,
 		default: false,
 		env: 'REMOTEPLAY'
+	},
+	language: {
+		doc: 'The default language. Should be an ISO 639 code.',
+		format: String, // regex should be here
+		default: 'en',
+		env: 'NATURALLANG'
 	}
 } );
 

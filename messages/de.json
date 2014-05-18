@@ -1,0 +1,12 @@
+{
+	"xxxxxxx": "This is all google translated, and needs fixing properly",
+	"Cinequeue": "Cinequeue",
+	"Language selection": "Sprachauswahl",
+	"You can select a language here.": "Wählen Sie eine Sprache aus.",
+	"%s (%s)": "%s (%s)",
+	"Powered by node.js": "Präsentiert von NodeJS",
+	"Successfully set language to %s (%s).": "Erfolgreich eingestellte Sprache zu %s (in Englisch, %s)",
+	"View filesystem": "Dateisystemansehen",
+	"View playlist": "Schau Playlist",
+	"Change language": "Sprache ändern"
+}
