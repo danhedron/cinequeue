@@ -2,8 +2,6 @@ extends skeleton
 block content
 	header
 		h1= __('playlist')
-	if currentCommand.url
-		p= __('currentlyplaying', currentCommand.url)
 	form(action="/queue", method="post").addnew
 		input(type="url", name="uri")
 		input(type="submit", name="queue" value= __('queue'))
@@ -32,17 +30,33 @@ block content
 						tr
 							th= prop
 							td= currentCommand.props[prop]
-	if queue.length == 0
+	if queue.length == 0 && !currentCommand.url && history.length == 0
 		p.empty= __('empty')
 	else
 		table.queue
 			thead
 				tr
+					th ℹ
 					th= __('file')
 					th= __('requester')
 			tbody
+			for item in history
+				tr.history
+					td
+						form(command="/queue", method="POST").repeat
+							button(type="submit", value="#{item.uri}", name="uri") ↺
+					td
+						a(href="#{item.uri}")= decodeURI(item.uri)
+					td #{item.requester}
+			if currentCommand.url
+				tr.nowplaying
+					td ▶
+					td
+						a(href="#{currentCommand.url}")= decodeURI(currentCommand.url)
+					td #{currentCommand.requester}
 			for item in queue
 				tr
+					td
 					td
 						a(href="#{item.uri}")= decodeURI(item.uri)
 					td #{item.requester}

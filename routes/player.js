@@ -5,6 +5,8 @@ var spawn = require('child_process').spawn;
 var dgram = require('dgram');
 
 var queue = [];
+var previous = [];
+var previousCount = 2;
 var mplog = "";
 var currentplayer = false;
 var currentCommand = {url:'',output:{err:[],out:[]}, host:''}
@@ -17,32 +19,37 @@ if(!process.env['DISPLAY']) {
 	process.exit(0);
 }
 
-function spawnplayer(uri) {
+function spawnplayer(data) {
 	if(currentplayer) {
 		console.warn('Warning: mplayer still running?');
 	}
-	queue.splice(0, 1);
 	if(playRemote) {
-		var cmd = ['DISPLAY='+process.env['DISPLAY'], 'mplayer', uri, '-nomsgcolor', '-really-quiet', '-identify'].join(' ');
+		var cmd = ['DISPLAY='+process.env['DISPLAY'], 'mplayer', data.uri, '-nomsgcolor', '-really-quiet', '-identify'].join(' ');
 		currentplayer = spawn('ssh', [remoteHost, cmd]);
 		currentCommand.host = remoteHost;
 		console.log("Spawning %s on %s", cmd, currentCommand.host);
 	}
 	else {
-		currentplayer = spawn('mplayer', [uri, '-nomsgcolor', '-really-quiet', '-identify']);
+		currentplayer = spawn('mplayer', [data.uri, '-nomsgcolor', '-really-quiet', '-identify']);
 		currentCommand.host = os.hostname();
 	}
-	currentCommand.url = uri;
+	currentCommand.url = data.uri;
+	currentCommand.requester = data.requester;
 	sendUdp( 'NP: ' + currentCommand.url + ' on ' + currentCommand.host );
 
 	currentplayer.on('close', function(code) {
 		console.log('mplayer exited');
 		currentplayer = false;
+		recordHistory({
+			'uri': currentCommand.url,
+			'requester': currentCommand.requester
+		});
 		currentCommand.url = '';
+		currentCommand.requester = '';
 		currentCommand.output = { err: [], out: [] };
 
 		if(queue.length) {
-			spawnplayer(queue[0].uri);
+			playtop();
 		}
 	});
 	currentplayer.stderr.on('data', function(d) {
@@ -70,9 +77,18 @@ function spawnplayer(uri) {
 	});
 }
 
+function recordHistory(entry) {
+	if(previous.length == previousCount) {
+		previous.splice(0, 1);
+	}
+	previous.push(entry);
+}
+
 function playtop() {
 	if(! currentplayer && playing && queue.length > 0) {
-		spawnplayer(queue[0].uri);
+		var nextUp = queue[0];
+		queue.splice(0, 1);
+		spawnplayer(nextUp);
 	}
 }
 
@@ -89,6 +105,7 @@ app.get('/queue', function(req, res) {
 	res.render('queue',
 		{
 			'queue': queue,
+			'history': previous,
 			'currentCommand': currentCommand,
 			'playing': playing,
 			'host': os.hostname(),

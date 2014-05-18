@@ -4,6 +4,10 @@ body {
 	/*text-align: center;*/
 }
 
+a:link {
+	text-decoration: none;
+}
+
 table {
 	width: 100%;
 	border-collapse: collapse;
@@ -13,7 +17,7 @@ table {
 
 th {
 	background-color: #fafafa;
-	border: 1px solid #AAA;
+	border-top: 1px solid #AAA;
 	padding: 8px;
 }
 
@@ -23,6 +27,9 @@ td {
 
 tbody tr:hover {
 	background: #66F;
+	color: #FFF;
+}
+tbody tr:hover a {
 	color: #FFF;
 }
 
@@ -44,7 +51,7 @@ input.addnew[name="uri"] {
 }
 input[name="queue"] {
 	background: #5CB85C;
-	border-radius: 0 15px 15px 0;
+	border-radius: 0;
 	border: 1px solid #4CAE4C;
 	color: #FFF;
 }
@@ -109,4 +116,27 @@ h1 {
 }
 .stdin tbody tr td {
 	overflow:hidden;
+}
+
+td:first-child, th:first-child {
+	width: 15px;
+	text-align: center;
+}
+.nowplaying {
+	background: #00BB00;
+	color: #FFF;
+}
+.nowplaying a:link, .nowplaying a:visited {
+	color: #FFF;
+}
+.history {
+	opacity: 0.5;
+}
+.repeat {
+	margin: 0;
+	padding: 0;
+}
+.repeat button {
+	margin: 0;
+	padding: 0;
 }
