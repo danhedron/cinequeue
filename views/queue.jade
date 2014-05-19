@@ -15,12 +15,12 @@ table.playlist
 				td
 					a(href=item.uri)= decodeURI( item.uri )
 				td.requester= item.requester
-		if currentCommand.url
+		if nowplaying
 			tr.nowplaying
 				td.icon(title=__( 'Now Playing' ) ) ▶
 				td
-					a(href=currentCommand.url)= decodeURI( currentCommand.url )
-				td.requester= currentCommand.requester
+					a(href=nowplaying.uri)= decodeURI( nowplaying.uri )
+				td.requester= nowplaying.requester
 		- counter = 0
 		for item in queue
 			- counter++

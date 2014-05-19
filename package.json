@@ -4,7 +4,7 @@
   "description": "Makes movies",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha tests/"
   },
   "license": "BSD-2-Clause",
   "private": true,
@@ -22,5 +22,8 @@
     "express-slash": "~1.0.0",
     "mime": "~1.2.11",
     "body-parser": "~1.2.0"
+  },
+  "devDependancies": {
+    "mocha": "~1.19.0"
   }
 }
