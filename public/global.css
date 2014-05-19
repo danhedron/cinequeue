@@ -194,3 +194,16 @@ ul.controls li:last-child {
 #messages.closed {
 	max-height: 0;
 }
+.empty {
+	color: gray;
+	text-align:center;
+	font-size:1.4em;
+	font-style: italic;
+	letter-spacing: 0.2em;
+}
+.empty::before {
+	content: '('
+}
+.empty::after {
+	content: ')'
+}

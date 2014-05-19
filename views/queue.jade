@@ -1,31 +1,32 @@
-table.playlist
-	thead
-		tr
-			th(title=__('Information'))= __( 'ℹ' )
-			th= __( 'File' )
-			th= __( 'Requester' )
-	tbody
-		if !history && !currentCommand.url && !queue
-			p.empty= __( 'empty' )
-		for item in history
-			tr.history
-				td.icon
-					form(action='add/', method="POST").repeat
-						button(type="submit", title= __( 'Replay' ) value=item.uri, name="uri") ↺
-				td
-					a(href=item.uri)= decodeURI( item.uri )
-				td.requester= item.requester
-		if currentCommand.url
-			tr.nowplaying
-				td.icon(title=__( 'Now Playing' ) ) ▶
-				td
-					a(href=currentCommand.url)= decodeURI( currentCommand.url )
-				td.requester= currentCommand.requester
-		- counter = 0
-		for item in queue
-			- counter++
-			tr.queue
-				td.icon.number(title= __( 'Tracks to go' ) )= counter
-				td
-					a(href=item.uri)= decodeURI( item.uri )
-				td.requester= item.requester
+if !( history.length || currentCommand.url || queue.length )
+	p.empty= __( 'empty' )
+else
+	table.playlist
+		thead
+			tr
+				th(title=__('Information'))= __( 'ℹ' )
+				th= __( 'File' )
+				th= __( 'Requester' )
+		tbody
+			for item in history
+					tr.history
+						td.icon
+							form(action='add/', method="POST").repeat
+								button(type="submit", title= __( 'Replay' ) value=item.uri, name="uri") ↺
+						td
+							a(href=item.uri)= decodeURI( item.uri )
+						td.requester= item.requester
+				if currentCommand.url
+					tr.nowplaying
+						td.icon(title=__( 'Now Playing' ) ) ▶
+						td
+							a(href=currentCommand.url)= decodeURI( currentCommand.url )
+						td.requester= currentCommand.requester
+				- counter = 0
+				for item in queue
+					- counter++
+					tr.queue
+						td.icon.number(title= __( 'Tracks to go' ) )= counter
+						td
+							a(href=item.uri)= decodeURI( item.uri )
+						td.requester= item.requester
