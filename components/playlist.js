@@ -20,7 +20,7 @@ var Playlist = function() {
 		}
 		return null;
 	}
-	
+
 	this.queue = function(item) {
 		this._queue.push(item);
 		if( _onQueue !== null ) {
