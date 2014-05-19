@@ -85,7 +85,17 @@ try {
 	colog.info( 'Create config.json to change from the defaults.' );
 }
 
+try {
+	conf.validate();
+	colog.success( 'Configuration validated.' );
+} catch ( e ) {
+	colog.headerError( 'Bad configuration loaded' )
+	colog.error( e );
+	process.exit( 1 );
+}
+
 if ( conf.get( 'secret' ) == conf.default( 'secret' ) ) {
 	colog.warning( 'Using default secret!' );
 }
+
 module.exports = conf;
