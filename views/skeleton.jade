@@ -1,13 +1,38 @@
 doctype html
 html
 	head
-		title mplayer queue
-		link(rel='stylesheet', href='/style.css')
+		block head
+			if title
+				title= title
+			else
+				title= __( 'Cinequeue' )
+			block scripts
+			block styles
+				link(rel="stylesheet",type="text/css",href="/global.css")
+			meta(charset="utf-8")
 	body
-		block content
-		footer
-			p= __('poweredby')
-			if host
-				p= __('hostname', host)
-			p
-				a(href="/lang")= __('i18n')
+		block body
+			div.container
+				div.top
+					block top
+						h1= __( 'Cinequeue' )
+				block flash
+					if messages
+						div#messages
+							if messages.err
+								p.flash.err= messages.err
+							if messages.warn
+								p.flash.warn= messages.warn
+							if messages.success
+								p.flash.success= messages.success
+							if messages.info
+								p.flash.info= messages.info
+				div.content
+					block content
+				block footer
+					div.footer
+						p
+							a(href='/')= __( 'Homepage' )
+						p= __( 'Powered by node.js' )
+						p
+							a(href='/babel')= __( 'Language selection' )

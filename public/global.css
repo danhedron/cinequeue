@@ -1,0 +1,196 @@
+@import url(http://fonts.googleapis.com/css?family=Open+Sans);
+body {
+	font-family: 'Open Sans',sans-serif;
+	background-color: #b6b6b6;
+	margin:0;padding:0;
+
+}
+.container {
+	background-color: white;
+	max-width:800px;
+	margin:1em auto;
+	border-radius:5px;
+}
+.top {
+	background-color:black;
+	color:white;
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	text-align:center;
+	padding:0.2em;
+}
+.top h1 {
+	padding:inherit; margin:inherit;
+}
+.footer {
+	background-color: #c6c6c6;
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+	font-size:70%;
+	text-align:center;
+	color: #666;
+}
+.footer p {
+	display:inline-block;
+	padding:0.2em 2em;
+}
+.footer a {
+	color: inherit;
+}
+
+pre {
+	overflow: auto;
+	margin:1em;
+	border:1px solid gray;
+	padding:0.5em;
+	border-radius:5px;
+	color:gray;
+	font-size:80%;
+}
+
+.flash {
+	margin-top:0;
+	padding:0.5em;
+	text-align:center;
+	border-bottom: 2px solid black;
+}
+/* colors stolen from bootstrap */
+.success {
+	background-color: #DFF0D8;
+	color: #47A447;
+	border-color: #47A447;
+}
+.err {
+	background-color: #F2DEDE;
+	color: #D2322D;
+	border-color: #D2322D;
+}
+.warn {
+	background-color: #FCF8E3;
+	border-color: #ED9C28;
+	color: #ED9C28;
+}
+.info {
+	color: #39B3D7;
+	background-color: #D9EDF7;
+	border-color: #39B3D7;
+}
+.content {
+	padding: 0.2em 1em;
+}
+.langselect {
+	-moz-column-count: 3;
+	-webkit-column-count: 3;
+	column-count: 3;
+	text-align:center;
+	list-style-type:none;
+}
+
+table {
+	width: 100%;
+	border-collapse: collapse;
+	border-spacing: 0px;
+	border-bottom: 1px solid #aaa;
+}
+th {
+	background-color: #fafafa;
+	border-top: 1px solid #aaa;
+	border-bottom: 1px solid #aaa;
+}
+
+tbody tr:hover {
+	background: #66f;
+}
+tbody tr:hover td, tbody tr:hover a {
+	color: #fff;
+}
+
+td {
+	padding:0.4em inherit;
+}
+
+.nowplaying {
+	background-color: #00bb00;
+	color: #fff;
+}
+.nowplaying:hover {
+	background-color: green;
+}
+.history {
+	opacity: 0.5;
+	padding:0.2em;
+}
+.repeat, .repeat button {
+	margin:0;
+	padding:0;
+}
+#queue {
+	padding: 1em;
+}
+.icon {
+	text-align:center;
+	font-size:80%;
+}
+form.addurl {
+	display:block;
+	text-align:center;
+	margin-top:1em;
+}
+.addurl input {
+	padding: 0.2em;
+	font-size: 1.4em;
+	border-style: solid;
+}
+input:focus {
+	border-color: orange;
+}
+.addurl input[name="uri"] {
+	width:60%;
+	border-radius: 15px 0 0 15px;
+	padding-left: 15px;
+}
+.addurl input[name="queue"] {
+	width:30%;
+	background: #00AF89;
+	border-color: #00af89;
+	color:white;
+	border-radius: 0 15px 15px 0;
+}
+p.addfs {
+	border-radius: 5px;
+}
+ul.controls {
+	display:inline;
+}
+ul.controls li, p.addfs {
+	display:inline;
+	list-style: none;
+	background-color: #ccc;
+	padding:0.4em;
+	margin:0;
+}
+ul.controls li:first-child {
+	border-radius: 5px 0 0 5px;
+}
+ul.controls li:last-child {
+	border-radius: 0 5px 5px 0;
+}
+.misc {
+	text-align:center;
+	padding:0.5em;
+	margin:1em;
+}
+.requester {
+	font-family:monospace;
+}
+
+#messages {
+	overflow-y: hidden;
+	max-height: 20em;
+	transition-property: all;
+	transition-duration: 2s;
+	transition-timing-function: ease;
+}
+#messages.closed {
+	max-height: 0;
+}

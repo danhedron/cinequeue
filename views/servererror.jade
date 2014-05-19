@@ -1,0 +1,12 @@
+extends message
+block top
+	h1= __( 'Internal Server Error' )
+block msg
+	p= __( 'We encountered a problem when trying to serve this page.' )
+	if err.stack
+		p= __( 'If you report this bug to the developers, please include the following:' )
+		p.errormessage= err.msg
+		pre.stacktrace= err.stack
+	else
+		p= __( "That's all we know." )
+
