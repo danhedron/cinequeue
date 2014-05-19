@@ -71,7 +71,7 @@ app.get( '/playlist/cmd/:command', function ( req, res ) {
 		case 'die':
 			if ( config.get( 'allowkill') ) {
 				req.flash( 'info', res.__( 'Killing process.' ) );
-				req.redirect( '/' );
+				res.redirect( '/' );
 				process.exit( 0 );
 			} else {
 				req.flash( 'err', res.__( 'Killing the process has been disallowed.' ) );
