@@ -61,6 +61,18 @@ var conf = convict( {
 		format: 'url',
 		default: 'http://127.0.0.1',
 		env: 'URL'
+	},
+	display: {
+		doc: 'The display to spawn the player on.',
+		format: String,
+		default: ':0',
+		env: 'DISPLAY'
+	},
+	remotehost: {
+		doc: 'If remote playing is on, the user/host string of the remote host.',
+		format: String,
+		default: 'media@localhost',
+		env: 'REMOTEHOST'
 	}
 } );
 
@@ -73,4 +85,7 @@ try {
 	colog.info( 'Create config.json to change from the defaults.' );
 }
 
+if ( conf.get( 'secret' ) == conf.default( 'secret' ) ) {
+	colog.warning( 'Using default secret!' );
+}
 module.exports = conf;
