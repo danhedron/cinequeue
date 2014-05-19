@@ -14,6 +14,7 @@ app.use( express.static( __dirname + '/public' ) );
 app.set( 'views', __dirname + '/views' );
 app.set( 'view engine', 'jade' );
 
+app.use( flash() );
 
 app.use( cookieParser( config.get( 'secret' ) ) );
 app.use( bodyParser.urlencoded() );
@@ -24,23 +25,9 @@ app.use( session( {
 	}
 } ) );
 
-
-i18n.configure( {
-	locales: [ 'en', 'de' ],
-	directory: __dirname + '/messages',
-	defaultLocale: config.get( 'language' ),
-	cookie: config.get( 'i18n-cookie' ),
-	updateFiles: false
-} );
-
-app.use( i18n.init );
-colog.info( i18n.__( 'Using %s as default interface language.', i18n.getLocale() ) );
-console.log(config.get('language'));
-
-app.use( flash() );
-
 app.set( 'strict routing', true );
 
+// add trailing slashes
 // http://stackoverflow.com/a/13443359
 app.use( function ( req, res, next ) {
 	if( req.url.substr(-1) !== '/' ) {
@@ -50,8 +37,10 @@ app.use( function ( req, res, next ) {
 	}
 });
 
+// pretty print jade
 app.locals.pretty = true;
 
+var messages = require( './messages' ); // load i18n
 var routes = require( './routes' );
 
 app.listen( config.get( 'port' ) );

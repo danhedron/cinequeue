@@ -15,6 +15,15 @@ var currentCommand = {
 var previous = [];
 var previousCount = 2;
 
+app.get( '/playlist/queue/', function ( req, res ) {
+	res.render( 'queue', {
+		queue: queue,
+		history: previous,
+		currentCommand: currentCommand,
+		host: os.hostname()
+	} );
+} );
+
 app.get( '/playlist/', function ( req, res ) {
 	if ( !config.get( 'allowplaylist' ) ) {
 		res.render( 'forbidden', {
@@ -165,9 +174,8 @@ app.get( '/playlist/cmd/:command', function ( req, res ) {
 				req.redirect( '/' );
 				process.exit( 0 );
 			} else {
-				req.flash( 'err', res.__( 'Killing the process has been disallowed.' ) )
+				req.flash( 'err', res.__( 'Killing the process has been disallowed.' ) );
 			}
 	}
 	res.redirect( '/playlist' );
 } );
-
