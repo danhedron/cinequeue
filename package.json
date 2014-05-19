@@ -23,7 +23,7 @@
     "mime": "~1.2.11",
     "body-parser": "~1.2.0"
   },
-  "devDependancies": {
+  "devDependencies": {
     "mocha": "~1.19.0"
   }
 }
