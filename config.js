@@ -79,6 +79,12 @@ var conf = convict( {
 		format: Boolean,
 		default: true,
 		env: 'ALLOWSERV'
+	},
+	histsize: {
+		doc: 'The number of past files to display in the playlist.',
+		format: Number,
+		default: 5,
+		env: 'PLAYLISTSIZE'
 	}
 } );
 
