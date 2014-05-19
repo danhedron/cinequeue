@@ -43,7 +43,7 @@ var Player = function(playlist, remoteHost) {
 			var cmd = [
 				'DISPLAY=' + config.get( 'display' ),
 				'mplayer',
-				encodeURI( _nowplaying.uri ),
+				'"' +  _nowplaying.uri + '"', // dirty hack
 				'-nomsgcolor',
 				'-quiet'
 			].join( ' ' );
