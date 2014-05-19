@@ -73,6 +73,12 @@ var conf = convict( {
 		format: String,
 		default: 'media@localhost',
 		env: 'REMOTEHOST'
+	},
+	allowfsdl: {
+		doc: 'Whether to allow serving of files directly through the node.js app.',
+		format: Boolean,
+		default: true,
+		env: 'ALLOWSERV'
 	}
 } );
 
