@@ -1,16 +1,19 @@
 function start() {
 	updateQueue();
-	setTimeout( start, 1000 );
+	setTimeout( toggleFlash, 2000 );
 }
-
+window.onload = start;
 
 function updateQueue() {
 	var req = new XMLHttpRequest();
 	req.onload = function () {
 		document.getElementById( 'queue' ).innerHTML = this.response;
 	}
-	console.log( 3 );
 	req.open( 'GET', 'queue' );
 	req.send();
+	setTimeout( updateQueue, 1000 );
 }
-window.onload = start;
+
+function toggleFlash() { // might be worth doing this on every page?
+	document.getElementById( 'messages' ).classList.toggle( 'closed' );
+}

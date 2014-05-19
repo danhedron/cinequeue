@@ -18,14 +18,15 @@ html
 						h1= __( 'Cinequeue' )
 				block flash
 					if messages
-						if messages.err
-							p.flash.err= messages.err
-						if messages.warn
-							p.flash.warn= messages.warn
-						if messages.success
-							p.flash.success= messages.success
-						if messages.info
-							p.flash.info= messages.info
+						div#messages
+							if messages.err
+								p.flash.err= messages.err
+							if messages.warn
+								p.flash.warn= messages.warn
+							if messages.success
+								p.flash.success= messages.success
+							if messages.info
+								p.flash.info= messages.info
 				div.content
 					block content
 				block footer

@@ -135,7 +135,7 @@ app.post( '/playlist/add/', function ( req, res ) {
 	var uri = req.body.uri;
 	if ( uri.length ) {
 		queueItem( uri, req.ip );
-		req.flash( 'success', res.__( 'Successfully queued %s', uri ) );
+		req.flash( 'success', res.__( 'Successfully queued %s', decodeURI( uri ) ) );
 	} else {
 		req.flash( 'err', res.__( 'Unable to queue that!' ) );
 	}

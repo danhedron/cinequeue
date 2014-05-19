@@ -183,3 +183,14 @@ ul.controls li:last-child {
 .requester {
 	font-family:monospace;
 }
+
+#messages {
+	overflow-y: hidden;
+	max-height: 20em;
+	transition-property: all;
+	transition-duration: 2s;
+	transition-timing-function: ease;
+}
+#messages.closed {
+	max-height: 0;
+}
