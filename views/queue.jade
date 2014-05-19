@@ -1,4 +1,4 @@
-if !history && !currentCommand.url && !queue
+if !( history.length || nowPlaying || queue.length )
 	p.empty= __( 'empty' )
 else
 	table.playlist
