@@ -114,7 +114,7 @@ try {
 	process.exit( 1 );
 }
 
-if ( conf.get( 'web.secret' ) == conf.default( 'web.secret' ) ) {
+if ( conf.get( 'web.secret' ) === conf.default( 'web.secret' ) ) {
 	colog.warning( 'Using default secret!' );
 }
 

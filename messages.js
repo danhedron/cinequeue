@@ -3,6 +3,9 @@ var colog = require( 'colog' );
 var i18n = require( 'i18n' );
 var app = require( './server.js' );
 
+var langcode = [ config.get( 'web.language' ) ];
+langcode[1] = langcode[0].split( '_' )[0];
+
 i18n.configure( {
 	locales: [ 'en' ],
 	directory: __dirname + '/messages',
@@ -12,10 +15,7 @@ i18n.configure( {
 } );
 app.use( i18n.init );
 
-var langcode = [ config.get( 'web.language' ) ];
-langcode[1] = langcode[0].split( '_' )[0];
-
-if ( langcode[0] != langcode[1] ) {
+if ( langcode[0] !== langcode[1] ) {
 	colog.info( i18n.__( 'Simplifying %s to %s', langcode[0], langcode[1] ) ) ;
 }
 
