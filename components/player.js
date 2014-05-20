@@ -39,12 +39,12 @@ var Player = function ( playlist, remoteHost ) {
 		}
 	};
 
-	this.play = function( item ) {
+	this.play = function ( item ) {
 		_nowplaying = item;
 
-		Object.keys(this._stdout).forEach( function( i ) {
+		Object.keys( this._stdout ).forEach( function ( i ) {
 			this._stdout[i] = [];
-		}.bind(this) );
+		}.bind( this ) );
 		this._statusline = "";
 
 		if ( config.get( 'player.remote' ) ) {
@@ -100,8 +100,8 @@ var Player = function ( playlist, remoteHost ) {
 						this._stdout[match[1]].push( match[2] );
 					}
 				}
-			}.bind(this) );
-		}.bind(this) );
+			}.bind( this ) );
+		}.bind( this ) );
 	};
 
 	this.stop = function () {
