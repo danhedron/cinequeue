@@ -4,8 +4,12 @@
   "description": "Makes movies",
   "main": "server.js",
   "scripts": {
-    "test": "mocha tests/"
+    "test": "mocha tests/",
+	"lint": "nodejs scripts/lint.js"
   },
+  "precommit": [
+	  "lint"
+  ],
   "license": "BSD-2-Clause",
   "private": true,
   "dependencies": {
@@ -24,6 +28,8 @@
     "body-parser": "~1.2.0"
   },
   "devDependencies": {
-    "mocha": "~1.19.0"
+    "mocha": "~1.19.0",
+    "execSync": "^1.0.1-pre",
+    "precommit-hook": "^1.0.2"
   }
 }
