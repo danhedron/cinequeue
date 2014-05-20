@@ -89,4 +89,33 @@ describe( 'Player', function () {
 			player.playNext();
 		} );
 	} );
+	describe( 'metadata()', function() {
+		// TODO write this test, and functionality
+		it.skip( 'should return correct data', function( done ) {
+			var p = new Playlist();
+			var player = new Player( p );
+			player.play( {
+				'uri': 'test'
+			} );
+			setTimeout( function () {
+				done();
+			}, 500 );
+		} );
+	} );
+	describe( 'status()', function() {
+		it( 'should return progress', function( done ) {
+			var p = new Playlist();
+			var player = new Player( p );
+			player.play( {
+				'uri': 'note.ogg'
+			} );
+
+			assert.equal( 0, player.status().position );
+
+			setTimeout( function () {
+				assert.ok( player.status().position >= 1.0 );
+				done();
+			}, 1100 );
+		} );
+	} );
 } );

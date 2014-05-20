@@ -141,6 +141,33 @@ var Player = function ( playlist, remoteHost ) {
 		return _autoplaying;
 	};
 
+	this.status = function () {
+		var status = {
+			'position': 0
+		};
+
+		var audioexp = /A:\s+(\d\.\d)/;
+		var videoexp = /V:\s+(\d\.\d)/;
+		
+		var audiomatch = audioexp.exec( this._statusline )
+		var videomatch = videoexp.exec( this._statusline )
+		if ( audiomatch ) {
+			status.position_audio = parseFloat( audiomatch[1] );
+		}
+		else {
+			status.position_audio = 0;
+		}
+		if( videomatch ) {
+			status.position_video = parseFloat( videomatch[1] );
+		}
+		else {
+			status.position_video = 0;
+		}
+		status.position = Math.max( status.position_audio, status.position_video );
+
+		return status;
+	};
+
 	this.onPlay = function ( cb ) {
 		_onPlay = cb;
 	};
