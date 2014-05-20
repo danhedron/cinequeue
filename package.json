@@ -8,7 +8,7 @@
 	"lint": "nodejs scripts/lint.js"
   },
   "precommit": [
-	  "lint"
+    "lint"
   ],
   "license": "BSD-2-Clause",
   "private": true,
