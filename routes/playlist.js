@@ -14,6 +14,7 @@ app.get( '/playlist/queue/', function ( req, res ) {
 	res.render( 'queue', {
 		queue: playlist._queue,
 		history: playlist._history,
+		identify: player._stdout.IDENTIFY,
 		nowplaying: player.nowPlaying(),
 		host: os.hostname()
 	} );
@@ -29,6 +30,7 @@ app.get( '/playlist/', function ( req, res ) {
 	res.render( 'playlist', {
 		queue: playlist._queue,
 		history: playlist._history,
+		identify: player._stdout.IDENTIFY,
 		nowplaying: player.nowPlaying(),
 		host: os.hostname()
 	} );
