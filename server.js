@@ -16,7 +16,7 @@ app.set( 'view engine', 'jade' );
 
 app.use( flash() );
 
-app.use( cookieParser( config.get( 'secret' ) ) );
+app.use( cookieParser( config.get( 'web.secret' ) ) );
 app.use( bodyParser.urlencoded() );
 
 app.use( session( {
@@ -43,5 +43,5 @@ app.locals.pretty = true;
 var messages = require( './messages' ); // load i18n
 var routes = require( './routes' );
 
-app.listen( config.get( 'port' ) );
-colog.success( i18n.__( 'Listening on port %d', config.get( 'port' ) ) );
+app.listen( config.get( 'web.port' ) );
+colog.success( i18n.__( 'Listening on port %d', config.get( 'web.port' ) ) );

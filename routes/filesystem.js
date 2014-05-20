@@ -6,7 +6,7 @@ var mime = require( 'mime' );
 
 app.get( '/fs/*', function ( req, res ) {
 
-	if ( !config.get( 'allowfs' ) ) {
+	if ( !config.get( 'fs.allow' ) ) {
 		res.render( 'forbidden', {
 			msg: res.__( 'File system browsing has been disabled.' )
 		} );
@@ -14,7 +14,7 @@ app.get( '/fs/*', function ( req, res ) {
 	}
 	var slug = '/' + decodeURI( req.params[0] );
 	slug = slug.substr( 0, slug.length - 1 ); // rm trailing slash
-	var path = config.get( 'fspath' ) + slug;
+	var path = config.get( 'fs.path' ) + slug;
 	log.answer( path );
 
 	fs.stat( path, function ( err, stats ) {
@@ -39,11 +39,11 @@ app.get( '/fs/*', function ( req, res ) {
 		} else {
 			// is a file
 			var url = '';
-			if ( config.get( 'allowfsdl' ) ) {
+			if ( config.get( 'fs.allow' ) ) {
 				url = req.connection.encrypted ? 'https://' : 'http://';
 				url += req.headers.host + '/raw';
 			} else {
-				url = config.get( 'fsurl' );
+				url = config.get( 'fs.url' );
 			}
 			res.render( 'filelisting', {
 				path: slug,
@@ -56,13 +56,13 @@ app.get( '/fs/*', function ( req, res ) {
 } );
 
 app.get( '/raw/*', function ( req, res ) {
-	if ( !config.get( 'allowfs' ) ) {
+	if ( !config.get( 'fs.allow' ) ) {
 		res.render( 'forbidden', {
 			msg: res.__( 'File system browsing has been disabled.' )
 		} );
 		return;
 	}
-	if ( !config.get( 'allowfsdl' ) ) {
+	if ( !config.get( 'fs.serve' ) ) {
 		res.render( 'forbidden', {
 			msg: res.__( 'Direct file system download has been disabled.' )
 		} );
@@ -70,6 +70,6 @@ app.get( '/raw/*', function ( req, res ) {
 	}
 	var slug = '/' + decodeURI( req.params[0] );
 	slug = slug.substr( 0, slug.length - 1 );
-	var path = config.get( 'fspath' ) + slug;
+	var path = config.get( 'fs.path' ) + slug;
 	res.sendfile( path );
 } );

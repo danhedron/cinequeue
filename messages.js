@@ -7,12 +7,12 @@ i18n.configure( {
 	locales: [ 'en' ],
 	directory: __dirname + '/messages',
 	defaultLocale: langcode,
-	cookie: config.get( 'i18n-cookie' ),
+	cookie: config.get( 'web.i18n-cookie' ),
 	updateFiles: false
 } );
 app.use( i18n.init );
 
-var langcode = [ config.get( 'language' ) ];
+var langcode = [ config.get( 'web.language' ) ];
 langcode[1] = langcode[0].split( '_' )[0];
 
 if ( langcode[0] != langcode[1] ) {

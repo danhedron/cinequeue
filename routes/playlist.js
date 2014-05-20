@@ -20,7 +20,7 @@ app.get( '/playlist/queue/', function ( req, res ) {
 } );
 
 app.get( '/playlist/', function ( req, res ) {
-	if ( !config.get( 'allowplaylist' ) ) {
+	if ( !config.get( 'playlist.allow' ) ) {
 		res.render( 'forbidden', {
 			msg: res.__( 'Playlist interaction has been disabled.' )
 		} );
@@ -69,7 +69,7 @@ app.get( '/playlist/cmd/:command', function ( req, res ) {
 			req.flash( 'success', res.__( 'Skipped to next file.' ) );
 			break;
 		case 'die':
-			if ( config.get( 'allowkill') ) {
+			if ( config.get( 'player.kill') ) {
 				req.flash( 'info', res.__( 'Killing process.' ) );
 				res.redirect( '/' );
 				process.exit( 0 );

@@ -3,7 +3,7 @@ var Playlist = function () {
 	this._queue = [];
 	this._history = [];
 
-	this.historySize = config.get( 'histsize' );
+	this.historySize = config.get( 'playlist.histsize' );
 
 	var _onQueue = null;
 

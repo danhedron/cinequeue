@@ -38,16 +38,16 @@ var Player = function ( playlist, remoteHost ) {
 		this._stderr = [];
 		this._stdout = [];
 
-		if ( config.get( 'playremote' ) ) {
+		if ( config.get( 'player.remote' ) ) {
 			var cmd = [
-				'DISPLAY=' + config.get( 'display' ),
+				'DISPLAY=' + config.get( 'player.display' ),
 				'mplayer',
 				'"' +  _nowplaying.uri + '"', // dirty hack
 				'-nomsgcolor',
 				'-quiet'
 			].join( ' ' );
 
-			_nowplaying.host = config.get( 'remotehost' );
+			_nowplaying.host = config.get( 'player.remotehost' );
 
 			_process = spawn( 'ssh', [
 				_nowplaying.host,
