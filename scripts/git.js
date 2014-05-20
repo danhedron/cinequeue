@@ -1,13 +1,11 @@
-var exec = require( 'execSync' ).exec;
+var exec = require( 'child_process' ).exec;
 
 module.exports = {
-	getStaged: function () {
+	getStaged: function ( cb ) {
 		var git = 'git diff-index --name-only --cached HEAD --';
-		git = exec( git );
-		if ( !git.code ) {
-			return git.stdout.split( '\n' );
-		} else {
-			return null;
-		}
+		exec( git,
+				function ( error, stdout ) {
+					cb( error, stdout.split( '\n' ) );
+				} );
 	}
 };
