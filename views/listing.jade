@@ -1,3 +1,6 @@
 extends skeleton
 block top
-	h1= path
+	- path = path.split('/');
+	h1
+		for dir in path
+			span.breadcrumb= dir + '/'
