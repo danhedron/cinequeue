@@ -11,8 +11,15 @@ var Player = function ( playlist, remoteHost ) {
 	var _process = null;
 	var _currentPID = 0;
 
-	var _stderr = [];
-	var _stdout = [];
+	/*
+	 * Only modules listed in this object will be recorded,
+	 * everything else is printed to stdout.
+	 */
+	this._stdout = {
+		'IDENTIFY': []
+	};
+	this._statusline = "";
+
 
 	playlist.onQueue( function ( item ) {
 		if( this.autoPlaying() && this.nowPlaying() === null ) {
@@ -35,8 +42,10 @@ var Player = function ( playlist, remoteHost ) {
 	this.play = function( item ) {
 		_nowplaying = item;
 
-		this._stderr = [];
-		this._stdout = [];
+		Object.keys(this._stdout).forEach( function( i ) {
+			this._stdout[i] = [];
+		}.bind(this) );
+		this._statusline = "";
 
 		if ( config.get( 'player.remote' ) ) {
 			var cmd = [
@@ -59,7 +68,9 @@ var Player = function ( playlist, remoteHost ) {
 			_process = spawn( 'mplayer', [
 				_nowplaying.uri,
 				'-nomsgcolor',
-				'-really-quiet'
+				'-identify',
+				'-msgmodule',
+				'-nomsgcolor'
 			] );
 		}
 
@@ -76,10 +87,21 @@ var Player = function ( playlist, remoteHost ) {
 			//this._stderr.push( d.toString() );
 			log.error( d.toString() );
 		} );
-		_process.stdout.on( 'data', function( d ) {
-			//this._stdout.push( d.toString() );
-			log.info( d.toString() );
-		} );
+		_process.stdout.on( 'data', function ( d ) {
+			var lines = d.toString().split( "\n" );
+			var modexp = /([^\s]*?):(.*)/;
+			lines.forEach( function ( l ) {
+				var match = modexp.exec( l );
+				if ( match ) {
+					if ( match[1] == 'STATUSLINE' ) {
+						this._statusline = match[2];
+					}
+					else if ( this._stdout[match[1]] ) {
+						this._stdout[match[1]].push( match[2] );
+					}
+				}
+			}.bind(this) );
+		}.bind(this) );
 	};
 
 	this.stop = function () {
