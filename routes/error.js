@@ -4,6 +4,7 @@ var i18n = require( 'i18n' ); // needed for console messages
 app.use( function ( req, res, next ) {
 	res.status( 404 );
 	res.render( 'notfound' );
+	next();
 } );
 
 app.use( function ( err, req, res, next ) {
@@ -14,4 +15,5 @@ app.use( function ( err, req, res, next ) {
 	res.render( 'servererror', {
 		err: err
 	} );
+	next();
 } );

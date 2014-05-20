@@ -40,8 +40,8 @@ app.use( function ( req, res, next ) {
 // pretty print jade
 app.locals.pretty = true;
 
-var messages = require( './messages' ); // load i18n
-var routes = require( './routes' );
+require( './messages' ); // load i18n
+require( './routes' );
 
 app.listen( config.get( 'web.port' ) );
 colog.success( i18n.__( 'Listening on port %d', config.get( 'web.port' ) ) );
