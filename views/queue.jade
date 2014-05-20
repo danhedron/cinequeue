@@ -22,13 +22,14 @@ else
 					td
 						a(href=nowplaying.uri)= decodeURI( nowplaying.uri )
 					td.requester= nowplaying.requester
-				tr.nowplaying
-					td
-					td
-						ul
-							for item in identify
-								li #{item}
-					td
+				if identify.count
+					tr.nowplaying
+						td
+						td
+							ul
+								for item in identify
+									li #{item}
+						td
 			- counter = 0
 			for item in queue
 				- counter++
