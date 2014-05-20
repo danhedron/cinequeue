@@ -47,6 +47,9 @@ describe( 'Playlist', function () {
 			p.addHistory( {'uri':'test0'} );
 			p.addHistory( {'uri':'test1'} );
 			p.addHistory( {'uri':'test2'} );
+			p.addHistory( {'uri':'test3'} );
+			p.addHistory( {'uri':'test4'} );
+			p.addHistory( {'uri':'test5'} );
 			assert.equal( 'test1', p._history[0].uri );
 		} );
 	} );
