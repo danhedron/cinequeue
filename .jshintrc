@@ -4,7 +4,7 @@
   "curly": true,
   "latedef": true,
   "quotmark": true,
-  "undef": true,
+  "undef": false,
   "unused": true,
   "trailing": true
 }
