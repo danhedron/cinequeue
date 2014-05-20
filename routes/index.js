@@ -1,4 +1,3 @@
-var app = require( '..' );
 var rd = require( 'fs' ).readdirSync;
 
 var blacklist = [
@@ -7,7 +6,7 @@ var blacklist = [
 ];
 
 rd( __dirname + '/' ).forEach( function ( file ) {
-	if ( file.match('.js$') !== null && blacklist.indexOf( file ) == -1 ) {
+	if ( file.match('.js$') !== null && blacklist.indexOf( file ) === -1 ) {
 		var name = file.replace( '.js', '' );
 		exports[name] = require( './' + file );
 	}
