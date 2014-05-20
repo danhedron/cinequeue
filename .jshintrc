@@ -13,7 +13,7 @@
   "noarg": true,
   "noempty": true,
   "nonbsp": true,
-  "nonew": true
+  "nonew": true,
   "quotmark": "single",
   "maxlen": 120
 }
