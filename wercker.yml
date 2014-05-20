@@ -1,0 +1,10 @@
+box: wercker/nodejs@0.0.10
+build:
+    steps:
+        - script:
+            name: installing packages
+            code: |-
+                sudo apt-get update
+                sudo apt-get install mplayer
+        - npm-install
+        - npm-test
