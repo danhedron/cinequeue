@@ -14,4 +14,4 @@ rd( __dirname + '/' ).forEach( function ( file ) {
 });
 
 // needs to be loaded last
-exports['error'] = require( './error.js' );
+exports.error = require( './error.js' );

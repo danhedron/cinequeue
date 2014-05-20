@@ -101,7 +101,7 @@ try {
 	conf.validate();
 	colog.success( 'Configuration validated.' );
 } catch ( e ) {
-	colog.headerError( 'Bad configuration loaded' )
+	colog.headerError( 'Bad configuration loaded' );
 	colog.error( e );
 	process.exit( 1 );
 }

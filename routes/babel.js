@@ -6,7 +6,7 @@ var i18n = require( 'i18n' );
 app.get( '/babel/', function ( req, res ) {
 	var catalog = i18n.getCatalog();
 	var langs = [];
-	for ( lang in catalog ) {
+	for ( var lang in catalog ) {
 		var curr = languages.getLanguageInfo( lang );
 		curr.code = lang;
 		langs.push( curr );
@@ -15,7 +15,7 @@ app.get( '/babel/', function ( req, res ) {
 		currentLang: res.getLocale(),
 		langs: langs
 	} );
-} )
+} );
 
 app.get( '/babel/:code', function ( req, res ) {
 	var code = req.params.code;

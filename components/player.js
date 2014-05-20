@@ -3,7 +3,7 @@ var config = require('../config');
 var i18n = require( 'i18n' );
 var log = require( 'colog' );
 
-var Player = function(playlist, remoteHost) {
+var Player = function ( playlist, remoteHost ) {
 	var _autoplaying = false;
 	var _nowplaying = null;
 	var _onPlay = null;
@@ -14,26 +14,25 @@ var Player = function(playlist, remoteHost) {
 	var _stderr = [];
 	var _stdout = [];
 
-	playlist.onQueue(function(item) {
-		if( this.autoPlaying() &&
-			this.nowPlaying() == null ) {
+	playlist.onQueue( function ( item ) {
+		if( this.autoPlaying() && this.nowPlaying() === null ) {
 			this.playNext();
 		}
-	}.bind( this ));
+	}.bind( this ) );
 
-	this.playNext = function() {
-		if( _process != null ) {
+	this.playNext = function () {
+		if( _process !== null ) {
 			this.stop();
 		}
 
 		var n = playlist.next();
 		if( n !== null ) {
 			playlist.popNext();
-			this.play(n);
+			this.play( n );
 		}
-	}
+	};
 
-	this.play = function(item) {
+	this.play = function( item ) {
 		_nowplaying = item;
 
 		this._stderr = [];
@@ -64,16 +63,16 @@ var Player = function(playlist, remoteHost) {
 			] );
 		}
 
-		if( _onPlay ) _onPlay.call(this, _nowplaying);
+		if( _onPlay ) _onPlay.call( this, _nowplaying );
 
 		_currentPID = _process.pid;
 
-		_process.on( 'close', function( code ) {
+		_process.on( 'close', function ( code ) {
 			_process = null;
 			this._notifyStop();
-		}.bind(this));
+		}.bind( this ) );
 
-		_process.stderr.on( 'data', function( d ) {
+		_process.stderr.on( 'data', function ( d ) {
 			//this._stderr.push( d.toString() );
 			log.error( d.toString() );
 		} );
@@ -81,51 +80,52 @@ var Player = function(playlist, remoteHost) {
 			//this._stdout.push( d.toString() );
 			log.info( d.toString() );
 		} );
-	}
+	};
 
-	this.stop = function() {
+	this.stop = function () {
 		if( _process ) {
-			_process.removeAllListeners('close');
+			_process.removeAllListeners( 'close' );
 			_process.kill();
 			_process = null;
 		}
 		this._notifyStop();
-	}
+	};
 
-	this._notifyStop = function() {
-		if( _nowplaying != null ) {
-			playlist.addHistory(_nowplaying);
+	this._notifyStop = function () {
+		if( _nowplaying !== null ) {
+			playlist.addHistory( _nowplaying );
 		}
 
-		if( _onStop ) _onStop.call(this, _nowplaying);
+		if( _onStop ) _onStop.call( this, _nowplaying );
 		_nowplaying = null;
 
 		if( this.autoPlaying() ) {
 			this.playNext();
 		}
-	}
+	};
 
-	this.nowPlaying = function() {
+	this.nowPlaying = function () {
 		return _nowplaying;
-	}
-	
-	this.setAutoPlaying = function(playing) {
+	};
+
+	this.setAutoPlaying = function ( playing ) {
 		_autoplaying = playing;
-		if( this.autoPlaying() &&
-			this.nowPlaying() === null ) {
+		if( this.autoPlaying() && this.nowPlaying() === null ) {
 			this.playNext();
 		}
-	}
+	};
 
-	this.autoPlaying = function() { return _autoplaying; }
-	
-	this.onPlay = function(cb) {
+	this.autoPlaying = function () {
+		return _autoplaying;
+	};
+
+	this.onPlay = function ( cb ) {
 		_onPlay = cb;
-	}
-	
-	this.onStop = function(cb) {
+	};
+
+	this.onStop = function ( cb ) {
 		_onStop = cb;
-	}
-}
+	};
+};
 
 module.exports = Player;

@@ -4,11 +4,11 @@ var i18n = require( 'i18n' );
 var log = require( 'colog' );
 var os = require( 'os' );
 
-var Playlist = require('../components/playlist'),
-	Player = require('../components/player');
+var Playlist = require( '../components/playlist' ),
+	Player = require( '../components/player' );
 
 var playlist = new Playlist();
-var player = new Player(playlist);
+var player = new Player( playlist );
 
 app.get( '/playlist/queue/', function ( req, res ) {
 	res.render( 'queue', {

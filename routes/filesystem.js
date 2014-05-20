@@ -13,7 +13,7 @@ app.get( '/fs/*', function ( req, res ) {
 		return;
 	}
 	var slug = '/' + decodeURI( req.params[0] );
-	var slug = slug.substr( 0, slug.length - 1 ); // rm trailing slash
+	slug = slug.substr( 0, slug.length - 1 ); // rm trailing slash
 	var path = config.get( 'fspath' ) + slug;
 	log.answer( path );
 
@@ -69,7 +69,7 @@ app.get( '/raw/*', function ( req, res ) {
 		return;
 	}
 	var slug = '/' + decodeURI( req.params[0] );
-	var slug = slug.substr( 0, slug.length - 1 );
+	slug = slug.substr( 0, slug.length - 1 );
 	var path = config.get( 'fspath' ) + slug;
 	res.sendfile( path );
 } );
