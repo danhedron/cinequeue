@@ -5,10 +5,12 @@
   "main": "server.js",
   "scripts": {
     "test": "mocha tests/",
-	"lint": "nodejs scripts/lint.js"
+	"lint": "nodejs scripts/lint.js",
+	"style": "nodejs scripts/style.js"
   },
   "precommit": [
-    "lint"
+    "lint",
+	"style"
   ],
   "license": "BSD-2-Clause",
   "private": true,
