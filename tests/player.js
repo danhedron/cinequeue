@@ -1,6 +1,18 @@
 var assert = require( 'assert' );
 var Playlist = require( '../components/playlist.js' );
 var Player = require( '../components/player.js' );
+var i18n = require( 'i18n' );
+
+before( function () {
+	console.log('before');
+	i18n.configure( {
+		locales: [ 'en' ],
+		directory: __dirname + '/messages',
+		defaultLocale: 'en',
+		cookie: 'test',
+		updateFiles: false
+	} );
+} );
 
 /*
  * It doesn't matter that the file 'test' doesn't exist;
