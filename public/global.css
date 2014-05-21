@@ -256,3 +256,15 @@ ul.files {
 	-webkit-column-count: 2;
 	column-count: 2;
 }
+
+@media ( max-width: 1279px ) {
+	.sidebar {
+		float: none;
+	}
+	.sidebar ul {
+		width: auto;
+	}
+	.content {
+		margin-left: 0;
+	}
+}
