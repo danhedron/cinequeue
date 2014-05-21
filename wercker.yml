@@ -13,6 +13,9 @@ build:
             name: installing mplayer
             code: |-
                 sudo apt-get -q install mplayer alsa-base
+                mkdir ~/.mplayer
+                echo "vo=null" >> ~/.mplayer/config
+                echo "ao=null" >> ~/.mplayer/config
         - script:
             name: installing node.js dependencies
             code: |-
