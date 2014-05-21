@@ -21,8 +21,8 @@ a:hover {
 	text-align:center;
 	padding:0.2em;
 }
-.top h1 {
-	padding:inherit; margin:inherit;
+h1 {
+	margin:0;
 }
 .sidebar {
 	float: left;
@@ -257,7 +257,17 @@ ul.files {
 	column-count: 2;
 }
 
-@media ( max-width: 1279px ) {
+.breadcrumb {
+	font-size: 0.5em;
+	color: #999;
+}
+.breadcrumb:last-child {
+	color: #000;
+	font-size: 1em;
+	display: block;
+}
+
+@media ( max-width: 959px ) {
 	.sidebar {
 		float: none;
 	}
