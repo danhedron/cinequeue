@@ -4,7 +4,6 @@ var Player = require( '../components/player.js' );
 var i18n = require( 'i18n' );
 
 before( function () {
-	console.log('before');
 	i18n.configure( {
 		locales: [ 'en' ],
 		directory: __dirname + '/messages',
@@ -119,7 +118,7 @@ describe( 'Player', function () {
 			var p = new Playlist();
 			var player = new Player( p );
 			player.play( {
-				'uri': 'note.ogg'
+				'uri': __dirname + '/note.ogg'
 			} );
 
 			assert.equal( 0, player.status().position );
