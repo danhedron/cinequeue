@@ -52,7 +52,7 @@ app.get( '/fs/*', function ( req, res ) {
 			}
 			var mimetype = mime.lookup( path );
 			var contents = null;
-			if ( mimetype.substr( 0, 5 ) == 'text/' ) {
+			if ( mimetype.substr( 0, 5 ) === 'text/' ) {
 				contents = fs.readFileSync( path ).toString();
 			}
 			res.render( 'filelisting', {
