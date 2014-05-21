@@ -173,7 +173,8 @@ td {
 }
 .icon {
 	text-align:center;
-	font-size:80%;
+	font-size:1.2em;
+	padding:0.2em 0.6em;
 }
 form.addurl {
 	display:block;
