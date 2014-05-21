@@ -1,7 +1,15 @@
 extends listing
 block content
 	p= __( '%s is a directory with the following contents:', path )
-	ul.files
-		for file in files
-			li
-				a(href=file)= file
+	form(action="/playlist/add/", method="POST")
+		- count = 0
+		ul.files
+			for file in files
+				li
+					if !file.isDirectory
+						input(type="checkbox", id="uri_"+count, name="uri_"+count, value=file)
+						label(for="uri_"+count) #{file}
+					else
+						a(href=file)= file + '/'
+				- count++
+		button(type="submit") Queue Selected

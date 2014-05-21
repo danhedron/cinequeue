@@ -38,7 +38,7 @@ app.get( '/playlist/', function ( req, res ) {
 
 app.post( '/playlist/add/', function ( req, res ) {
 	var uri = req.body.uri;
-	if ( uri.length ) {
+	if ( uri && uri.length ) {
 		playlist.queue( {
 			'uri': uri,
 			'requester': req.ip
@@ -46,7 +46,14 @@ app.post( '/playlist/add/', function ( req, res ) {
 		req.flash( 'success', res.__( 'Successfully queued %s', decodeURI( uri ) ) );
 		log.success( i18n.__( 'Queued %s from %s', uri, req.ip ) );
 	} else {
-		req.flash( 'err', res.__( 'Unable to queue that!' ) );
+		Object.keys( req.body ).forEach( function ( k ) {
+			if( k.substring( 0, 4 ) == 'uri_' ) {
+				playlist.queue( {
+					'uri': req.body[k],
+					'requester': req.ip
+				} );
+			}
+		} );
 	}
 	res.redirect( '/playlist/' );
 } );

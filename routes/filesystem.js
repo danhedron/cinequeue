@@ -26,6 +26,13 @@ app.get( '/fs/*', function ( req, res ) {
 				if ( err ) {
 					throw err;
 				}
+				files = files.map( function ( f ) {
+					return {
+						isDirectory: fs.statSync( path+'/'+f ).isDirectory(),
+						name: f,
+						toString: function () { return f; }
+					};
+				} );
 				res.render( 'directorylisting', {
 					path: slug,
 					files: files,
