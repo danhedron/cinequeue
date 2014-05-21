@@ -1,6 +1,6 @@
 extends skeleton
 block top
-	- path = path.split('/');
+	- breadcrumbs = path.split('/');
 	h1
-		for dir in path
-			span.breadcrumb= dir + '/'
+		for breadcrumb in breadcrumbs
+			span.breadcrumb= breadcrumb + '/'

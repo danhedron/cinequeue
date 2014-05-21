@@ -1,7 +1,6 @@
 var app = require( '..' );
 var fs = require( 'fs' );
 var config = require( '../config' );
-var log = require( 'colog' );
 var mime = require( 'mime' );
 
 app.get( '/fs/*', function ( req, res ) {
