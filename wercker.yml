@@ -16,7 +16,6 @@ build:
                 mkdir ~/.mplayer
                 echo "vo=null" >> ~/.mplayer/config
                 echo "ao=null" >> ~/.mplayer/config
-                echo "nolirc=yes" >> ~/.mplayer/config
         - script:
             name: installing node.js dependencies
             code: |-
