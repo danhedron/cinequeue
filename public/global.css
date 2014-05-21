@@ -1,15 +1,17 @@
 @import url(http://fonts.googleapis.com/css?family=Open+Sans);
 body {
 	font-family: 'Open Sans',sans-serif;
-	background-color: #b6b6b6;
+	background-color: #ddd;
 	margin:0;padding:0;
-
+}
+a {
+	text-decoration: none;
+}
+a:hover {
+	text-decoration: underline;
 }
 .container {
-	background-color: white;
-	max-width:800px;
-	margin:1em auto;
-	border-radius:5px;
+	width: 100%;
 }
 .top {
 	background-color:black;
@@ -21,6 +23,39 @@ body {
 }
 .top h1 {
 	padding:inherit; margin:inherit;
+}
+.sidebar {
+	float: left;
+}
+.sidebar li:first-child {
+	border: 1px solid #444;
+}
+.sidebar h1 {
+	margin: 0;
+	background: #444;
+}
+.sidebar h1 a {
+	color: #FFF !important;
+}
+.sidebar ul {
+	width: 250px;
+	margin: 0;
+	list-style: none;
+	padding: 0;
+	background: #FAFAFA;
+}
+.sidebar li {
+	margin-bottom: -1px;
+	border: solid 1px #CCC;
+}
+.sidebar li a {
+	display: block;
+	padding: 10px;
+	color: #444;
+}
+.sidebar li a:hover {
+	background: #888;
+	color: #FFF;
 }
 .footer {
 	background-color: #c6c6c6;
@@ -53,6 +88,7 @@ pre {
 	padding:0.5em;
 	text-align:center;
 	border-bottom: 2px solid black;
+	border-radius: 0 0 15px 15px;
 }
 /* colors stolen from bootstrap */
 .success {
@@ -77,6 +113,8 @@ pre {
 }
 .content {
 	padding: 0.2em 1em;
+	margin-left: 250px;
+	background-color: #EEE;
 }
 .langselect {
 	-moz-column-count: 3;

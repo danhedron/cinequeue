@@ -13,21 +13,29 @@ html
 	body
 		block body
 			div.container
-				div.top
+				nav.sidebar
+					ul
+						li
+							h1
+								a(href="/")= __( 'Cinequeue' )
+						li
+							a(href="/playlist")= __( 'Playlist' )
+						li
+							a(href="/fs")= __( 'Filesystem' )
+				div.content
 					block top
 						h1= __( 'Cinequeue' )
-				block flash
-					if messages
-						div#messages
-							if messages.err
-								p.flash.err= messages.err
-							if messages.warn
-								p.flash.warn= messages.warn
-							if messages.success
-								p.flash.success= messages.success
-							if messages.info
-								p.flash.info= messages.info
-				div.content
+					block flash
+						if messages
+							div#messages
+								if messages.err
+									p.flash.err= messages.err
+								if messages.warn
+									p.flash.warn= messages.warn
+								if messages.success
+									p.flash.success= messages.success
+								if messages.info
+									p.flash.info= messages.info
 					block content
 				block footer
 					div.footer
