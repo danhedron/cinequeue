@@ -285,3 +285,10 @@ ul.files {
 		margin-left: 0;
 	}
 }
+label { /* color all files gray */
+	color:gray;
+}
+/* color the ones we can/want to watch */
+.extn-mkv, .extn-mp3, .extn-txt {
+	color:black;
+}
