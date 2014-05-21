@@ -16,7 +16,8 @@ app.get( '/playlist/queue/', function ( req, res ) {
 		history: playlist._history,
 		identify: player._stdout.IDENTIFY,
 		nowplaying: player.nowPlaying(),
-		host: os.hostname()
+		hostname: os.hostname(),
+		host: 'http://' + req.headers.host + '/raw/' // TODO: detect if https
 	} );
 } );
 
@@ -59,11 +60,11 @@ app.get( '/playlist/cmd/:command', function ( req, res ) {
 	var cmd = req.params.command;
 	switch ( cmd ) {
 		case 'pause':
-			player.setAutoPlaying(false);
+			player.setAutoPlaying( false );
 			req.flash( 'success', res.__( 'Player paused.' ) );
 			break;
 		case 'play':
-			player.setAutoPlaying(true);
+			player.setAutoPlaying( true );
 			req.flash( 'success', res.__( 'Player started.' ) );
 			break;
 		case 'skip':

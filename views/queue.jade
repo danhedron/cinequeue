@@ -14,13 +14,13 @@ else
 						form(action='add/', method="POST").repeat
 							button(type="submit", title= __( 'Replay' ) value=item.uri, name="uri") ↺
 					td
-						a(href=item.uri)= decodeURI( item.uri )
+						a(href=item.uri)= decodeURI( item.uri ).replace( host, '' )
 					td.requester= item.requester
 			if nowplaying
 				tr.nowplaying
 					td.icon(title=__( 'Now Playing' ) ) ▶
 					td
-						a(href=nowplaying.uri)= decodeURI( nowplaying.uri )
+						a(href=nowplaying.uri)= decodeURI( nowplaying.uri ).replace( host, '' )
 					td.requester= nowplaying.requester
 				if identify.count
 					tr.nowplaying
@@ -36,5 +36,5 @@ else
 				tr.queue
 					td.icon.number(title= __( 'Tracks to go' ) )= counter
 					td
-						a(href=item.uri)= decodeURI( item.uri )
+						a(href=item.uri)= decodeURI( item.uri ).replace( host, '' )
 					td.requester= item.requester
