@@ -8,7 +8,9 @@ block content
 				li
 					if !file.isDirectory
 						input(type="checkbox", id="uri_"+count, name="uri_"+count, value=file)
-						label(for="uri_"+count) #{file}
+						- pretty = file.toString().replace( /(\[.*?\]|[_])/g , '_' ).replace( /_+/g , ' ')
+						- extn = pretty.match( /\.[a-z]+/g ).toString().substring( 1 )
+						label(for="uri_"+count,title=file,class='extn-'+extn)= pretty
 					else
 						a(href=file)= file + '/'
 				- count++

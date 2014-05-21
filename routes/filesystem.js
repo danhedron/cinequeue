@@ -50,10 +50,16 @@ app.get( '/fs/*', function ( req, res ) {
 			} else {
 				url = config.get( 'fs.url' );
 			}
+			var mimetype = mime.lookup( path );
+			var contents = null;
+			if ( mimetype.substr( 0, 5 ) == 'text/' ) {
+				contents = fs.readFileSync( path ).toString();
+			}
 			res.render( 'filelisting', {
 				path: slug,
 				stats: stats,
 				mime: mime.lookup( path ),
+				contents: contents,
 				url: url + slug
 			} );
 		}

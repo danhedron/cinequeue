@@ -5,3 +5,6 @@ block content
 	form(action="/playlist/add/", method="post")
 		input(type="hidden", name="uri", value=url)
 		input(type="submit", value=__( 'Queue this file' ))
+
+	if contents
+		pre.filecontents= contents
