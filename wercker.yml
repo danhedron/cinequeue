@@ -12,7 +12,7 @@ build:
         - script:
             name: installing mplayer
             code: |-
-                sudo apt-get -q --install-suggests install mplayer
+                sudo apt-get -q install mplayer alsa-base
         - script:
             name: installing node.js dependencies
             code: |-
