@@ -21,3 +21,4 @@ build:
             name: running tests
             code: |-
                 npm test
+
