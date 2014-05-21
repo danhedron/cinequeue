@@ -2,7 +2,7 @@ var fs = require( 'fs' );
 var log = require( 'colog' );
 var git = require( './git' );
 var pass = true;
-var regex = /\(([^ ].*|[& ])\)/;
+var regex = /\([^ ]+\)/;
 
 git.getStaged( function ( error, files ) {
 	for ( var i = 0; i < files.length; i++ ) {
@@ -14,7 +14,6 @@ git.getStaged( function ( error, files ) {
 				contents = contents.split( '\n' );
 				for ( var j = 0; j < contents.length; j++ ) {
 					if ( contents[j].match( regex ) ) {
-						console.log('X' + contents[j].match( regex ) );
 						log.error( 'Badly formed parentheses in ' +  files[i] + ' on line ' + ( j + 1 ) );
 						log.warning( '\t' + contents[j] );
 					}
