@@ -14,7 +14,6 @@ app.get( '/fs/*', function ( req, res ) {
 	var slug = '/' + decodeURI( req.params[0] );
 	slug = slug.substr( 0, slug.length - 1 ); // rm trailing slash
 	var path = config.get( 'fs.path' ) + slug;
-	slug = slug.join( '/' );
 
 	fs.stat( path, function ( err, stats ) {
 		if ( err ) {
