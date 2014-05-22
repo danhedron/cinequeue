@@ -6,7 +6,7 @@ var i18n = require( 'i18n' );
 before( function () {
 	i18n.configure( {
 		locales: [ 'en' ],
-		directory: __dirname + '/messages',
+		directory: __dirname + '/../messages',
 		defaultLocale: 'en',
 		cookie: 'test',
 		updateFiles: false
@@ -37,7 +37,7 @@ describe( 'Player', function () {
 		} );
 		it( 'should stop the current item', function () {
 			var p = new Playlist();
-			var player = new Player(p);
+			var player = new Player( p );
 			p.queue( {'uri': 'test'} );
 			player.playNext();
 			assert.equal( 'test', player.nowPlaying().uri );
