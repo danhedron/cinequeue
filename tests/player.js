@@ -2,6 +2,7 @@ var assert = require( 'assert' );
 var Playlist = require( '../components/playlist.js' );
 var Player = require( '../components/player.js' );
 var i18n = require( 'i18n' );
+var colog = require( 'colog' );
 
 before( function () {
 	i18n.configure( {
@@ -11,6 +12,7 @@ before( function () {
 		cookie: 'test',
 		updateFiles: false
 	} );
+	colog.silent( true ); // disable non-mocha stdout
 } );
 
 /*
