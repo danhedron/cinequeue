@@ -29,6 +29,6 @@ build:
             server: irc.freenode.net
             port: 6697
             nickname: cinequeue
-            channel: ##zuzakistan
+            channel: "##zuzakistan"
             nojoin: true
 
