@@ -53,7 +53,7 @@ var Player = function ( playlist, remoteHost ) {
 				'mplayer',
 				'"' +  _nowplaying.uri + '"', // dirty hack
 				'-nomsgcolor',
-				'-quiet'
+				'-identify'
 			].join( ' ' );
 
 			_nowplaying.host = config.get( 'player.remotehost' );
@@ -89,7 +89,7 @@ var Player = function ( playlist, remoteHost ) {
 		} );
 		_process.stdout.on( 'data', function ( d ) {
 			var lines = d.toString().split( "\n" );
-			var modexp = /([^\s]*?):(.*)/;
+			var modexp = /([^\s]*?):\s*(.*)/;
 			lines.forEach( function ( l ) {
 				var match = modexp.exec( l );
 				if ( match ) {
@@ -140,6 +140,18 @@ var Player = function ( playlist, remoteHost ) {
 	this.autoPlaying = function () {
 		return _autoplaying;
 	};
+
+	this.metadata = function () {
+		var m = {};
+
+		this._stdout.IDENTIFY.forEach( function ( l ) {
+			if ( l.split( '=' )[0] == 'ID_LENGTH' ) {
+				m.length = parseFloat( l.split( '=' )[1] );
+			}
+		} );
+
+		return m;
+	}
 
 	this.status = function () {
 		var status = {

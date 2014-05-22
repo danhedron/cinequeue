@@ -101,14 +101,18 @@ describe( 'Player', function () {
 		} );
 	} );
 	describe( 'metadata()', function() {
-		// TODO write this test, and functionality
-		it.skip( 'should return correct data', function( done ) {
+		it( 'should return correct data', function( done ) {
 			var p = new Playlist();
 			var player = new Player( p );
 			player.play( {
-				'uri': 'test'
+				'uri': __dirname + '/note.ogg'
 			} );
 			setTimeout( function () {
+				var meta = player.metadata();
+				assert.notEqual( null, meta );
+
+				assert.equal( 2.0, meta.length );
+
 				done();
 			}, 500 );
 		} );
