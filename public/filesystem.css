@@ -1,0 +1,28 @@
+ul.files li {
+	margin-bottom: 1em;
+	font-size:1.2em;
+	list-style-type:none;
+	word-wrap:break-word;
+}
+ul.files {
+}
+
+.breadcrumb {
+	font-size: 0.5em;
+	color: #999;
+}
+.breadcrumb:last-child {
+	color: #000;
+	font-size: 1em;
+	display: block;
+}
+label { /* color all files gray */
+	color:gray;
+}
+/* color the ones we can/want to watch */
+.extn-mkv, .extn-mp3, .extn-txt {
+	color:black;
+}
+.directory {
+	padding-left: 1.4em;
+}

@@ -1,0 +1,81 @@
+.nowplaying {
+	background-color: #008700;
+	background-image: -moz-linear-gradient(top, #008700, #005c00);
+	background-image: -webkit- linear-gradient(top, #008700, #005c00);
+	background-image: linear-gradient(top, #008700, #005c00);
+	color: #fff;
+}
+.nowplaying a {
+	color: #fff;
+}
+.nowplaying:hover {
+	background-color: green;
+}
+.history {
+	opacity: 0.5;
+	padding:0.2em;
+}
+.repeat, .repeat button {
+	margin:0;
+	padding:0;
+}
+#queue {
+	padding: 1em;
+}
+.icon {
+	text-align:center;
+	font-size:1.2em;
+	padding:0.2em 0.6em;
+}
+form.addurl {
+	display:block;
+	text-align:center;
+	margin-top:1em;
+}
+.addurl input {
+	padding: 0.2em;
+	font-size: 1.4em;
+	border-style: solid;
+}
+.addurl input[name="uri"] {
+	width:60%;
+	border-radius: 15px 0 0 15px;
+	padding-left: 15px;
+}
+.addurl input[name="queue"] {
+	width:30%;
+	border-radius: 0 15px 15px 0;
+}
+p.addfs {
+	border-radius: 5px;
+}
+ul.controls {
+	display:inline;
+	font-size: 0.8em;
+	margin-top:0;
+}
+ul.controls li, p.addfs {
+	display:inline;
+	list-style: none;
+}
+.misc {
+	text-align:center;
+	padding:0.5em;
+}
+.requester {
+	font-family:monospace;
+}
+
+.empty {
+	color: gray;
+	text-align:center;
+	font-size:1.4em;
+	font-style: italic;
+	letter-spacing: 0.2em;
+}
+.empty::before {
+	content: '('
+}
+.empty::after {
+	content: ')'
+}
