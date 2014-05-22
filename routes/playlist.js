@@ -10,6 +10,10 @@ var Playlist = require( '../components/playlist' ),
 var playlist = new Playlist();
 var player = new Player( playlist );
 
+app.locals = {
+	'player': player
+};
+
 app.get( '/playlist/queue/', function ( req, res ) {
 	res.render( 'queue', {
 		queue: playlist._queue,
@@ -17,6 +21,12 @@ app.get( '/playlist/queue/', function ( req, res ) {
 		identify: player._stdout.IDENTIFY,
 		nowplaying: player.nowPlaying(),
 		hostname: os.hostname(),
+		host: 'http://' + req.headers.host + '/raw/' // TODO: detect if https
+	} );
+} );
+
+app.get( '/playlist/playing/', function ( req, res ) {
+	res.render( 'sidebarplaying', {
 		host: 'http://' + req.headers.host + '/raw/' // TODO: detect if https
 	} );
 } );

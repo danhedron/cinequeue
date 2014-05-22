@@ -6,6 +6,7 @@ html
 				title= title
 			else
 				title= __( 'Cinequeue' )
+			script(type="text/javascript", src="/global.js")
 			block scripts
 			block styles
 				link(rel="stylesheet",type="text/css",href="/global.css")
@@ -18,6 +19,14 @@ html
 						li
 							h1
 								a(href="/")= __( 'Cinequeue' )
+						include sidebarplaying
+						li
+							ul.controls
+								if player.autoPlaying()
+									li: a.button.muted(href="cmd/pause")= __( '▮▮' )
+								else
+									li: a.button.muted.good(href="cmd/play")= __( '▶' )
+								li: a.button.muted(href="cmd/skip")= __( '▶▶'   )
 						li
 							a(href="/playlist")= __( 'Playlist' )
 						li
@@ -44,3 +53,5 @@ html
 						p= __( 'Powered by node.js' )
 						p
 							a(href='/babel')= __( 'Language selection' )
+						p
+							a(href="cmd/die")= __( 'die' )

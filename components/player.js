@@ -67,7 +67,6 @@ var Player = function ( playlist, remoteHost ) {
 		} else {
 			_process = spawn( 'mplayer', [
 				_nowplaying.uri,
-				'-nomsgcolor',
 				'-identify',
 				'-msgmodule',
 				'-nomsgcolor'
@@ -159,8 +158,8 @@ var Player = function ( playlist, remoteHost ) {
 			'position': 0
 		};
 
-		var audioexp = /A:\s+(\d\.\d)/;
-		var videoexp = /V:\s+(\d\.\d)/;
+		var audioexp = /A:\s+(\d+\.\d+)/;
+		var videoexp = /V:\s+(\d+\.\d+)/;
 		
 		var audiomatch = audioexp.exec( this._statusline )
 		var videomatch = videoexp.exec( this._statusline )

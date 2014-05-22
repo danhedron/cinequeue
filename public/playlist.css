@@ -1,16 +1,3 @@
-.nowplaying {
-	background-color: #008700;
-	background-image: -moz-linear-gradient(top, #008700, #005c00);
-	background-image: -webkit- linear-gradient(top, #008700, #005c00);
-	background-image: linear-gradient(top, #008700, #005c00);
-	color: #fff;
-}
-.nowplaying a {
-	color: #fff;
-}
-.nowplaying:hover {
-	background-color: green;
-}
 .history {
 	opacity: 0.5;
 	padding:0.2em;
@@ -49,12 +36,7 @@ form.addurl {
 p.addfs {
 	border-radius: 5px;
 }
-ul.controls {
-	display:inline;
-	font-size: 0.8em;
-	margin-top:0;
-}
-ul.controls li, p.addfs {
+p.addfs {
 	display:inline;
 	list-style: none;
 }
