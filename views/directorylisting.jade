@@ -7,7 +7,7 @@ block content
 			for file in files
 				if !file.isDirectory
 					li.file
-						input(type="checkbox", id="uri_"+count, name="uri_"+count, value=file)
+						input(type="checkbox", id="uri_"+count, name="uri_"+count, value=host+path+"/"+file)
 						- pretty = file.toString().replace( /(\[.*?\]|[_])/g , '_' ).replace( /_+/g , ' ')
 						- extn = pretty.match( /\.[\w]+\s*$/g ).toString().substring( 1 )
 						label(for="uri_"+count,title=file,class='extn-'+extn)= pretty

@@ -32,8 +32,11 @@ app.get( '/fs/*', function ( req, res ) {
 						toString: function () { return f; }
 					};
 				} );
+				host = req.connection.encrypted ? 'https://' : 'http://';
+				host += req.headers.host + '/raw';
 				res.render( 'directorylisting', {
 					path: slug,
+					host: host,
 					files: files,
 					stats: stats
 				} );
