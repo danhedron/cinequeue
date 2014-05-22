@@ -84,8 +84,9 @@ var Player = function ( playlist, remoteHost ) {
 		}.bind( this ) );
 
 		_process.stderr.on( 'data', function ( d ) {
-			//this._stderr.push( d.toString() );
-			log.error( d.toString() );
+			if ( ! config.get( 'player.quiet' ) ) {
+				log.error( d.toString() );
+			}
 		} );
 		_process.stdout.on( 'data', function ( d ) {
 			var lines = d.toString().split( "\n" );

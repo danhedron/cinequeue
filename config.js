@@ -92,6 +92,12 @@ var conf = convict( {
 			format: String,
 			default: 'media@localhost',
 			env: 'REMOTEHOST'
+		},
+		quiet: {
+			doc: 'If enabled, output from mplayer stdout and stderr is not printed.',
+			format: Boolean,
+			default: false,
+			env: 'QUIETMPLAYER'
 		}
 	}
 } );
