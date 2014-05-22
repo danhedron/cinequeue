@@ -1,11 +1,19 @@
 /*
  * runs jshint on staged files
  */
-var exec = require( 'execSync' ).exec;
 var log = require( 'colog' );
 var buffer = [];
 var interactive = false;
 var git = require( './git');
+
+try {
+	var exec = require( 'execSync' ).exec; // TODO use fs.exec instea
+} catch ( e ) {
+	// execSync is not a dependency in package.json
+	// so most contributors won't have it
+	log.info( 'Unable to lint.' );
+	process.exit( 0 ); // although an error, we want to continue
+}
 
 git.getStaged( function ( error, files ) {
 	if ( !files ) {
