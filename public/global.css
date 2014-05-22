@@ -114,6 +114,19 @@ button.bad, .button.bad {
 	color: white;
 	border:0;
 }
+button.muted, .button.muted {
+	background: white;
+	color: #888;
+	border:1px solid #ccc;
+}
+button.muted.bad:hover, .button.muted.bad:hover {
+	color: #d2322d;
+	background-color: #f2dede;
+}
+button.muted.good:hover, .button.muted.good:hover {
+	background-color: #dff0db;
+	color: #468847;
+}
 
 /* flash messages */
 #messages {
@@ -135,9 +148,9 @@ button.bad, .button.bad {
 }
 
 .success {
-	background-color: #47A447;
-	color: #47A447;
-	border-color: #47A447;
+	background-color: #dff0db;
+	color: #468847;
+	border-color: #dff0db;
 }
 
 .err {
