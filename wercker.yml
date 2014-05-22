@@ -24,4 +24,12 @@ build:
             name: running tests
             code: |-
                 npm test
+    after-steps:
+        - zuzak/irc-notify-zuzak@0.0.12
+            server: irc.freenode.net
+            port: 6697
+            nickname: cinequeue
+            channel: ##zuzakistan
+            on: failed
+            nojoin: true
 
