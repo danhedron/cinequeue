@@ -114,6 +114,19 @@ button.bad, .button.bad {
 	color: white;
 	border:0;
 }
+button.muted, .button.muted {
+	background: white;
+	color: #888;
+	border:1px solid #ccc;
+}
+button.muted.bad:hover, .button.muted.bad:hover {
+	color: #d2322d;
+	background-color: #f2dede;
+}
+button.muted.good:hover, .button.muted.good:hover {
+	background-color: #dff0db;
+	color: #468847;
+}
 
 /* flash messages */
 #messages {
@@ -127,17 +140,17 @@ button.bad, .button.bad {
 	max-height: 0;
 }
 .flash {
-	margin-top:0;
+	margin-top:0.5em;
 	padding:0.5em;
 	text-align:center;
 	border-bottom: 2px solid black;
-	border-radius: 0 0 15px 15px;
+	border-radius: 5px;
 }
 
 .success {
-	background-color: #47A447;
-	color: #47A447;
-	border-color: #47A447;
+	background-color: #dff0db;
+	color: #468847;
+	border-color: #dff0db;
 }
 
 .err {
