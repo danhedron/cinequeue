@@ -105,7 +105,7 @@ button:hover, button:focus, .button:hover, .button:focus {
 	box-shadow: 0 1px rgba(0,0,0,.1), inset 0 -3px rgba(0, 0, 0, .2)
 }
 button.good, .button.good {
-	background: #DFF0D8;
+	background: #47A447;
 	color: white;
 	border:0;
 }
@@ -135,7 +135,7 @@ button.bad, .button.bad {
 }
 
 .success {
-	background-color: #DFF0D8;
+	background-color: #47A447;
 	color: #47A447;
 	border-color: #47A447;
 }
@@ -199,6 +199,8 @@ input:focus {
 	}
 	.sidebar ul {
 		width: auto;
+		/* give distinction between sidebar and content */
+		border-bottom: 2px solid #444;
 	}
 	.content {
 		margin-left: 0;
