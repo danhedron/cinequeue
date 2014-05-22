@@ -5,13 +5,14 @@ block content
 		- count = 0
 		ul.files
 			for file in files
-				li
-					if !file.isDirectory
+				if !file.isDirectory
+					li.file
 						input(type="checkbox", id="uri_"+count, name="uri_"+count, value=file)
 						- pretty = file.toString().replace( /(\[.*?\]|[_])/g , '_' ).replace( /_+/g , ' ')
 						- extn = pretty.match( /\.[a-z]+/g ).toString().substring( 1 )
 						label(for="uri_"+count,title=file,class='extn-'+extn)= pretty
-					else
+				else
+					li.directory
 						a(href=file)= file + '/'
 				- count++
 		button(type="submit") Queue Selected

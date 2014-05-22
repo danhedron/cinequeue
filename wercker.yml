@@ -16,7 +16,7 @@ build:
                 mkdir ~/.mplayer
                 echo "vo=null" >> ~/.mplayer/config
                 echo "ao=null" >> ~/.mplayer/config
-                echo "nolirc=yes" >> ~/.mplayer/config        - script:
+        - script:
             name: installing node.js dependencies
             code: |-
                 npm install
@@ -24,4 +24,12 @@ build:
             name: running tests
             code: |-
                 npm test
+    after-steps:
+        - zuzak/irc-notify-zuzak@0.0.12
+            server: irc.freenode.net
+            port: 6697
+            nickname: cinequeue
+            channel: ##zuzakistan
+            on: failed
+            nojoin: true
 

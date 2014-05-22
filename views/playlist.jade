@@ -1,17 +1,18 @@
 extends skeleton
+block append styles
+	link(rel="stylesheet",href="/playlist.css",type="text/css")
 block append scripts
 	script(src='/socket.io/socket.io.js')
 	script(src="/playlist.js")
 block content
 	form.addurl(action="add/", method="post")
 		input(type="url", name="uri", placeholder=__( 'URL' ) )
-		input(type="submit", name="queue", value=__( 'Queue' ))
+		input.button.good(type="submit", name="queue", value=__( 'Queue' ))
 	div.misc
 		ul.controls
 			- controls = [ 'play', 'pause', 'skip', 'die' ]
 			for control in controls
-				li
-					a(href="cmd/" + control)= __( control )
+				li: a.button(href="cmd/" + control)= __( control )
 	div#queue
 		include queue
 
