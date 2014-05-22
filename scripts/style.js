@@ -10,10 +10,11 @@ git.getStaged( function ( error, files ) {
 		if ( ( files[i].indexOf( '.js', files[i].length - 3 ) ) !== -1 ) {
 			var contents = fs.readFileSync( files[i] ).toString();
 			if ( contents.match( regex ) ) {
-				pass = false;
+				log.warning( 'Possibly badly formed code. Verifying.' );
 				contents = contents.split( '\n' );
 				for ( var j = 0; j < contents.length; j++ ) {
 					if ( contents[j].match( regex ) ) {
+						pass = false;
 						log.error( 'Badly formed parentheses in ' +  files[i] + ' on line ' + ( j + 1 ) );
 						log.warning( '\t' + contents[j] );
 					}
@@ -25,6 +26,7 @@ git.getStaged( function ( error, files ) {
 		log.success( 'No bad parentheses found.' );
 		process.exit( 0 );
 	} else {
+		log.warning( 'Bad parentheses.' );
 		process.exit( 1 );
 	}
 } );
