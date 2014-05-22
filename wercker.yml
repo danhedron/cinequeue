@@ -30,6 +30,5 @@ build:
             port: 6697
             nickname: cinequeue
             channel: ##zuzakistan
-            on: failed
             nojoin: true
 
