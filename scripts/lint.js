@@ -44,6 +44,7 @@ git.getStaged( function ( error, files ) {
 				}
 			} );
 		}
+		log.info( 'Use git commit -n to bypass this check.' );
 		process.exit( 1 );
 	} else {
 		log.success( 'Lint successful!' );
