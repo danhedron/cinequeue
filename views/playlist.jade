@@ -11,9 +11,9 @@ block content
 	div.misc
 		ul.controls
 			li: a.button.muted.good(href="cmd/play")= __( 'play' )
-			li: a.button.muted(href="cmd/" + pause)= __( 'pause' )
-			li: a.button.muted(href="cmd/" + skip)= __( 'skip' )
-			li: a.button.muted.bad(href="cmd/" + die)= __( 'die' )
+			li: a.button.muted(href="cmd/pause")= __( 'pause' )
+			li: a.button.muted(href="cmd/skip")= __( 'skip' )
+			li: a.button.muted.bad(href="cmd/die")= __( 'die' )
 	div#queue
 		include queue
 
