@@ -1,5 +1,5 @@
 var spawn = require( 'child_process').spawn;
-var config = require('../config');
+var config = require( '../config' );
 var i18n = require( 'i18n' );
 var log = require( 'colog' );
 var objectNester = require( 'object-nester' );

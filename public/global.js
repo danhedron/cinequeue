@@ -23,8 +23,8 @@ var progressBar = {
 			if ( typeof progressBar.info.uri !== 'undefined'  ) {
 				var title = document.createElement( 'a' );
 				title.setAttribute( 'href', progressBar.info.uri );
-				if ( progressBar.info.md['ID_VID_0_NAME'] ) {
-					title.innerHTML = progressBar.info.md['ID_VID_0_NAME'];
+				if ( progressBar.info.md.vid[0].name ) {
+					title.innerHTML =  progressBar.info.md.vid[0].name;
 				} else {
 					title.innerHTML =  progressBar.info.uri;
 				}
@@ -44,9 +44,9 @@ var progressBar = {
 				np.appendChild( bar );
 
 				var time = {
-					'elapsed': (secondsElapsed/1000).toFixed(1),
-					'remaining': (progressBar.info.md.length - (secondsElapsed/1000)).toFixed( 1 ),
-					'percentage': parseFloat( prog.style.width ).toFixed(1) + '%'
+					'elapsed': ( secondsElapsed / 1000 ).toFixed( 1 ),
+					'remaining': ( progressBar.info.md.length - ( secondsElapsed/1000 ) ).toFixed( 1 ),
+					'percentage': parseFloat( prog.style.width ).toFixed( 1 ) + '%'
 				};
 
 

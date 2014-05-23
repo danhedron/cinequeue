@@ -14,9 +14,14 @@ git.getStaged( function ( error, files ) {
 				contents = contents.split( '\n' );
 				for ( var j = 0; j < contents.length; j++ ) {
 					if ( contents[j].match( regex ) ) {
-						pass = false;
-						log.error( 'Badly formed parentheses in ' +  files[i] + ' on line ' + ( j + 1 ) );
-						log.warning( '\t' + contents[j] );
+						if ( contents[j].indexOf( '//') !== -1 ) {
+							pass = false;
+							log.question( 'Badly formed parentheses in ' +  files[i] + ' on line ' + ( j + 1 ) );
+							log.question( '\t' + contents[j] );
+						} else {
+							log.answer( 'Badly formed parentheses in ' + files[i] + ' on line ' + ( j + 1 ) );
+							log.answer( '\t' + contents[j] );
+						}
 					}
 				}
 			}

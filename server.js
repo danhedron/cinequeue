@@ -33,7 +33,7 @@ app.set( 'strict routing', true );
 // add trailing slashes
 // http://stackoverflow.com/a/13443359
 app.use( function ( req, res, next ) {
-	if( req.url.substr(-1) !== '/' ) {
+	if( req.url.substr( -1 ) !== '/' ) {
 	   res.redirect(301, req.url + '/' );
 	} else {
 		next();
