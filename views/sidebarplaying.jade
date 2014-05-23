@@ -1,8 +1,0 @@
-if player.nowPlaying()
-	li.nowplaying#playing
-		ul
-			li: a(href=player.nowPlaying().uri) #{player.nowPlaying().uri}
-			li.bar(title=player.status().position+" "+player.metadata().length)
-				div.progress(style="width: "+(player.status().position/player.metadata().length*100)+"%")
-else
-	li#playing: a(href="/playlist")= __( 'Nothing Playing' )

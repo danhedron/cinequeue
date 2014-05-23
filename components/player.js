@@ -148,6 +148,7 @@ var Player = function ( playlist, remoteHost ) {
 			if ( l.split( '=' )[0] == 'ID_LENGTH' ) {
 				m.length = parseFloat( l.split( '=' )[1] );
 			}
+			m[l.split( '=' )[0]] = l.split( '=' )[1];
 		} );
 
 		return m;

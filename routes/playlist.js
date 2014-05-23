@@ -26,9 +26,18 @@ app.get( '/playlist/queue/', function ( req, res ) {
 } );
 
 app.get( '/playlist/playing/', function ( req, res ) {
-	res.render( 'sidebarplaying', {
-		host: 'http://' + req.headers.host + '/raw/' // TODO: detect if https
-	} );
+	if ( player.nowPlaying() ) {
+		res.json( {
+			uri: player.nowPlaying().uri,
+			pos: player.status().position,
+			max: player.metadata().length,
+			md: player.metadata()
+		} );
+	} else {
+		res.json( {
+			error: res.__( 'Nothing playing' )
+		} );
+	}
 } );
 
 app.get( '/playlist/', function ( req, res ) {

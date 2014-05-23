@@ -83,21 +83,24 @@ ul.controls li {
 	background-image: linear-gradient(top, #008700, #005c00);
 	color: #fff;
 }
-.nowplaying li {
-	margin: 5px;
-}
 .nowplaying a {
 	color: #fff;
 }
 .nowplaying:hover {
 	background-color: green;
 }
-.nowplaying .bar {
-	border: 1px solid #FFF;
+.bar {
+	background-color: darkgray;
+	height: 5px;
 }
-.nowplaying .progress {
-	background: #FFF;
-	height: 20px;
+.progress {
+	height: 100%;
+	background-color: gray;
+}
+.elapsed, .remaining, .percentage {
+	font-size: 0.7em;
+	font-family: monospace;
+	padding-left:2em;
 }
 
 /* footer */

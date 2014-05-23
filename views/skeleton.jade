@@ -6,8 +6,8 @@ html
 				title= title
 			else
 				title= __( 'Cinequeue' )
-			script(type="text/javascript", src="/global.js")
 			block scripts
+				script(type="text/javascript", src="/global.js")
 			block styles
 				link(rel="stylesheet",type="text/css",href="/global.css")
 			meta(charset="utf-8")
@@ -17,20 +17,16 @@ html
 				nav.sidebar
 					ul
 						li
-							h1
-								a(href="/")= __( 'Cinequeue' )
-						include sidebarplaying
-						li
-							ul.controls
+							h1: a(href="/")= __( 'Cinequeue' )
+						li#playing
+						li: ul.controls
 								if player.autoPlaying()
 									li: a.button.muted(href="cmd/pause")= __( '▮▮' )
 								else
 									li: a.button.muted.good(href="cmd/play")= __( '▶' )
 								li: a.button.muted(href="cmd/skip")= __( '▶▶'   )
-						li
-							a(href="/playlist")= __( 'Playlist' )
-						li
-							a(href="/fs")= __( 'Filesystem' )
+						li: a(href="/playlist")= __( 'Playlist' )
+						li: a(href="/fs")= __( 'Filesystem' )
 				div.content
 					block top
 						h1= __( 'Cinequeue' )
