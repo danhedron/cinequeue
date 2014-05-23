@@ -1,8 +1,8 @@
 var progressBar = {
 	info: {},
 	interval: {
-		'get': -1,
-		'set': 1,
+		'get': 1000, /* time between syncs */
+		'set': 10, /* time between updates */
 	},
 	getProgress: function () {
 		var req = new XMLHttpRequest();
@@ -23,10 +23,11 @@ var progressBar = {
 			if ( typeof progressBar.info.uri !== 'undefined'  ) {
 				var title = document.createElement( 'a' );
 				title.setAttribute( 'href', progressBar.info.uri );
-				if ( progressBar.info.md.vid[0].name ) {
-					title.innerHTML =  progressBar.info.md.vid[0].name;
-				} else {
-					title.innerHTML =  progressBar.info.uri;
+				title.innerHTML =  progressBar.info.uri;
+				if ( progressBar.info.md.vid ) {
+					if ( progressBar.info.md.vid[0].name ) {
+						title.innerHTML =  progressBar.info.md.vid[0].name;
+					}
 				}
 
 				var bar = document.createElement( 'div' );
@@ -38,15 +39,20 @@ var progressBar = {
 				var secondsElapsed = ( Date.now() - then.getTime() );
 
 				secondsElapsed += progressBar.info.pos * 1000;
-				prog.style.width = ( ( secondsElapsed / ( progressBar.info.md.length * 1000 ) ) * 100 ) + '%';
+				var perc = ( ( secondsElapsed / ( progressBar.info.md.length * 1000 ) ) * 100 );
+				if ( perc > 100 ) {
+					perc = 100;
+				}
+				prog.style.width = perc + '%';
+				prog.style.opacity = perc;
 
 				bar.appendChild( prog );
 				np.appendChild( bar );
 
 				var time = {
-					'elapsed': ( secondsElapsed / 1000 ).toFixed( 1 ),
-					'remaining': ( progressBar.info.md.length - ( secondsElapsed/1000 ) ).toFixed( 1 ),
-					'percentage': parseFloat( prog.style.width ).toFixed( 1 ) + '%'
+					'elapsed': progressBar.toHms( secondsElapsed / 1000 ),
+					'remaining': progressBar.toHms( progressBar.info.md.length - ( secondsElapsed/1000 ) ),
+					'percentage': perc ? perc.toFixed( 1 ) + '%' : '—'
 				};
 
 
@@ -67,6 +73,19 @@ var progressBar = {
 		progressBar.getProgress();
 		window.setTimeout( progressBar.getProgress, progressBar.interval.get);
 		window.setTimeout( progressBar.updateBar, progressBar.interval.set);
+	},
+	toHms: function ( ts ) {
+		if ( ts < 0 ) {
+			return '—';
+		}
+		var h = parseInt( ts / 3600 ) % 24;
+		h = h ? h : '';
+		var m = parseInt( ts / 60 ) % 60;
+		m = m < 10 ? '0' + m : m;
+		var s = ts % 60;
+		s = s.toFixed( 1 );
+		s = parseInt( s ) < 10 ? ':0' + s : ':' + s;
+		return h + m + s;
 	}
 };
 progressBar.fire();
