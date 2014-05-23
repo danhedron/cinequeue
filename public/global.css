@@ -109,7 +109,7 @@ ul.controls li {
 }
 .progress {
 	height: 100%;
-	background-color: black;
+	background-color: red;
 }
 .elapsed, .remaining, .percentage {
 	font-size: 0.7em;

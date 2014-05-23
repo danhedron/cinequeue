@@ -44,7 +44,7 @@ var progressBar = {
 					perc = 100;
 				}
 				prog.style.width = perc + '%';
-				prog.style.opacity = perc;
+				prog.style.opacity = 0.75+(perc/400);
 
 				bar.appendChild( prog );
 				np.appendChild( bar );
@@ -52,7 +52,7 @@ var progressBar = {
 				var time = {
 					'elapsed': progressBar.toHms( secondsElapsed / 1000 ),
 					'remaining': progressBar.toHms( progressBar.info.md.length - ( secondsElapsed/1000 ) ),
-					'percentage': perc ? perc.toFixed( 1 ) + '%' : '—'
+					'percentage': perc ? perc.toFixed( 1 ) + '%' : ''
 				};
 
 
@@ -75,8 +75,8 @@ var progressBar = {
 		window.setTimeout( progressBar.updateBar, progressBar.interval.set);
 	},
 	toHms: function ( ts ) {
-		if ( ts < 0 ) {
-			return '—';
+		if ( ts < 0 || !ts ) {
+			return '';
 		}
 		var h = parseInt( ts / 3600 ) % 24;
 		h = h ? h : '';
