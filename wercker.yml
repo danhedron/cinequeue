@@ -28,4 +28,4 @@ build:
         - script:
             name: notifying governmental officials
             code: |-
-                cat "$WERCKER_GIT_OWNER/$WERCKER_GIT_REPOSITORY $WERCKER_RESULT on $WERCKER_GIT_COMMIT $WECKER_BUILD_URL" | nc -u udp.chippy.ch 41337
+                echo "$WERCKER_GIT_OWNER/$WERCKER_GIT_REPOSITORY $WERCKER_RESULT on $WERCKER_GIT_COMMIT $WECKER_BUILD_URL" | nc -u udp.chippy.ch 41337
