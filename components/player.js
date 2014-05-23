@@ -2,8 +2,9 @@ var spawn = require( 'child_process').spawn;
 var config = require('../config');
 var i18n = require( 'i18n' );
 var log = require( 'colog' );
+var objectNester = require( 'object-nester' );
 
-var Player = function ( playlist, remoteHost ) {
+var Player = function ( playlist ) {
 	var _autoplaying = false;
 	var _nowplaying = null;
 	var _onPlay = null;
@@ -18,10 +19,10 @@ var Player = function ( playlist, remoteHost ) {
 	this._stdout = {
 		'IDENTIFY': []
 	};
-	this._statusline = "";
+	this._statusline = '';
 
 
-	playlist.onQueue( function ( item ) {
+	playlist.onQueue( function () {
 		if( this.autoPlaying() && this.nowPlaying() === null ) {
 			this.playNext();
 		}
@@ -45,7 +46,7 @@ var Player = function ( playlist, remoteHost ) {
 		Object.keys( this._stdout ).forEach( function ( i ) {
 			this._stdout[i] = [];
 		}.bind( this ) );
-		this._statusline = "";
+		this._statusline = '';
 
 		if ( config.get( 'player.remote' ) ) {
 			var cmd = [
@@ -73,11 +74,13 @@ var Player = function ( playlist, remoteHost ) {
 			] );
 		}
 
-		if( _onPlay ) _onPlay.call( this, _nowplaying );
+		if ( _onPlay ) {
+			_onPlay.call( this, _nowplaying );
+		}
 
 		_currentPID = _process.pid;
 
-		_process.on( 'close', function ( code ) {
+		_process.on( 'close', function () {
 			_process = null;
 			this._notifyStop();
 		}.bind( this ) );
@@ -88,12 +91,12 @@ var Player = function ( playlist, remoteHost ) {
 			}
 		} );
 		_process.stdout.on( 'data', function ( d ) {
-			var lines = d.toString().split( "\n" );
+			var lines = d.toString().split( '\n' );
 			var modexp = /([^\s]*?):\s*(.*)/;
 			lines.forEach( function ( l ) {
 				var match = modexp.exec( l );
 				if ( match ) {
-					if ( match[1] == 'STATUSLINE' ) {
+					if ( match[1] === 'STATUSLINE' ) {
 						this._statusline = match[2];
 					}
 					else if ( this._stdout[match[1]] ) {
@@ -118,7 +121,9 @@ var Player = function ( playlist, remoteHost ) {
 			playlist.addHistory( _nowplaying );
 		}
 
-		if( _onStop ) _onStop.call( this, _nowplaying );
+		if( _onStop ) {
+			_onStop.call( this, _nowplaying );
+		}
 		_nowplaying = null;
 
 		if( this.autoPlaying() ) {
@@ -142,17 +147,20 @@ var Player = function ( playlist, remoteHost ) {
 	};
 
 	this.metadata = function () {
-		var m = {};
+		var metadata = {};
 
-		this._stdout.IDENTIFY.forEach( function ( l ) {
-			if ( l.split( '=' )[0] == 'ID_LENGTH' ) {
-				m.length = parseFloat( l.split( '=' )[1] );
+		this._stdout.IDENTIFY.forEach( function ( line ) {
+			var value = line.split( '=' )[1];
+			var key = line.split( '=' )[0].toLowerCase();
+			key = key.split( '_' );
+			if ( key[0] === 'id' ) {
+				key.shift();
 			}
-			m[l.split( '=' )[0]] = l.split( '=' )[1];
+			objectNester.create( metadata, key, value );
 		} );
 
-		return m;
-	}
+		return metadata;
+	};
 
 	this.status = function () {
 		var status = {
@@ -161,22 +169,22 @@ var Player = function ( playlist, remoteHost ) {
 
 		var audioexp = /A:\s+(\d+\.\d+)/;
 		var videoexp = /V:\s+(\d+\.\d+)/;
-		
-		var audiomatch = audioexp.exec( this._statusline )
-		var videomatch = videoexp.exec( this._statusline )
+
+		var audiomatch = audioexp.exec( this._statusline );
+		var videomatch = videoexp.exec( this._statusline );
 		if ( audiomatch ) {
-			status.position_audio = parseFloat( audiomatch[1] );
+			status.positionAudio = parseFloat( audiomatch[1] );
 		}
 		else {
-			status.position_audio = 0;
+			status.positionAudio = 0;
 		}
 		if( videomatch ) {
-			status.position_video = parseFloat( videomatch[1] );
+			status.positionVideo = parseFloat( videomatch[1] );
 		}
 		else {
-			status.position_video = 0;
+			status.positionVideo = 0;
 		}
-		status.position = Math.max( status.position_audio, status.position_video );
+		status.position = Math.max( status.positionAudio, status.positionVideo );
 
 		return status;
 	};

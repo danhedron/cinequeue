@@ -30,7 +30,7 @@ app.get( '/playlist/playing/', function ( req, res ) {
 		res.json( {
 			uri: player.nowPlaying().uri,
 			pos: player.status().position,
-			max: player.metadata().length,
+		//	max: player.metadata().length,
 			md: player.metadata()
 		} );
 	} else {
@@ -67,7 +67,7 @@ app.post( '/playlist/add/', function ( req, res ) {
 		log.success( i18n.__( 'Queued %s from %s', uri, req.ip ) );
 	} else {
 		Object.keys( req.body ).forEach( function ( k ) {
-			if( k.substring( 0, 4 ) == 'uri_' ) {
+			if( k.substring( 0, 4 ) === 'uri_' ) {
 				playlist.queue( {
 					'uri': req.body[k],
 					'requester': req.ip

@@ -76,7 +76,7 @@ ul.controls li {
 	display:inline;
 	margin: 0.5em;
 }
-.nowplaying {
+.nowplaying, .progress {
 	background-color: #008700;
 	background-image: -moz-linear-gradient(top, #008700, #005c00);
 	background-image: -webkit- linear-gradient(top, #008700, #005c00);
@@ -111,6 +111,7 @@ ul.controls li {
 	font-size:70%;
 	text-align:center;
 	color: #666;
+	clear:both;
 }
 .footer p {
 	display:inline-block;

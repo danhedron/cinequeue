@@ -5,13 +5,13 @@
   "main": "server.js",
   "scripts": {
     "test": "mocha tests/",
-	"lint": "nodejs scripts/lint.js",
-	"style": "nodejs scripts/style.js"
+    "lint": "nodejs scripts/lint.js",
+    "style": "nodejs scripts/style.js"
   },
   "precommit": [
     "lint",
-	"style",
-	"test"
+    "style",
+    "test"
   ],
   "license": "BSD-2-Clause",
   "private": true,
@@ -28,7 +28,8 @@
     "express-session": "~1.1.0",
     "express-slash": "~1.0.0",
     "mime": "~1.2.11",
-    "body-parser": "~1.2.0"
+    "body-parser": "~1.2.0",
+    "object-nester": "0.0.1"
   },
   "devDependencies": {
     "mocha": "~1.19.0",

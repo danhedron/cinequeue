@@ -14,6 +14,9 @@ app.use( express.static( __dirname + '/public' ) );
 app.set( 'views', __dirname + '/views' );
 app.set( 'view engine', 'jade' );
 
+// pretty print jade
+app.locals.pretty = true;
+
 app.use( flash() );
 
 app.use( cookieParser( config.get( 'web.secret' ) ) );
@@ -37,8 +40,6 @@ app.use( function ( req, res, next ) {
 	}
 });
 
-// pretty print jade
-app.locals.pretty = true;
 
 require( './messages' ); // load i18n
 require( './routes' );
