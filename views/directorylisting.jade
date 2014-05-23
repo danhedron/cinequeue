@@ -6,6 +6,7 @@ block content
 		ul.files
 			for file in files
 				if !file.isDirectory
+					- drawButton = true
 					li.file
 						input(type="checkbox", id="uri_"+count, name="uri_"+count, value=host+path+"/"+file)
 						- pretty = file.toString().replace( /(\[.*?\]|[_])/g , '_' ).replace( /_+/g , ' ')
@@ -15,4 +16,5 @@ block content
 					li.directory
 						a(href=file)= file + '/'
 				- count++
-		button(type="submit") Queue Selected
+		if drawButton
+			button.button(type="submit") Queue Selected
