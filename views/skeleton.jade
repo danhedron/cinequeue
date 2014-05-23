@@ -15,33 +15,11 @@ html
 	body
 		block body
 			div.container
-				nav.sidebar
-					ul
-						li
-							h1: a(href="/")= __( 'Cinequeue' )
-						li#playing
-						li: ul.controls
-								if player.autoPlaying()
-									li: a.button.muted(href="cmd/pause")= __( '▮▮' )
-								else
-									li: a.button.muted.good(href="cmd/play")= __( '▶' )
-								li: a.button.muted(href="cmd/skip")= __( '▶▶'   )
-						li: a(href="/playlist")= __( 'Playlist' )
-						li: a(href="/fs")= __( 'Filesystem' )
+				include sidebar
 				div.content
 					block top
 						h2= __( 'Cinequeue' )
-					block flash
-						if messages
-							div#messages
-								if messages.err
-									p.flash.err= messages.err
-								if messages.warn
-									p.flash.warn= messages.warn
-								if messages.success
-									p.flash.success= messages.success
-								if messages.info
-									p.flash.info= messages.info
+					include flash
 					block content
 				block footer
 					div.footer

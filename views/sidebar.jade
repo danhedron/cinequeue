@@ -1,0 +1,13 @@
+nav.sidebar
+	ul
+		li
+			h1: a(href="/")= __( 'Cinequeue' )
+		li#playing
+		li: ul.controls
+				if player.autoPlaying()
+					li: a.button.muted(href="cmd/pause",title=__( 'Pause auto-play' ))= __( '▮▮' )
+				else
+					li: a.button.muted.good(href="cmd/play",title=__( 'Enable auto-play' ))= __( '▶' )
+				li: a.button.muted(href="cmd/skip",title=__( 'Skip to next track' ))= __( '▶▶'   )
+		li: a(href="/playlist")= __( 'Playlist' )
+		li: a(href="/fs")= __( 'Filesystem' )

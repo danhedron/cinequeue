@@ -1,0 +1,11 @@
+block flash
+	if messages
+		div#messages
+			if messages.err
+				p.flash.err= messages.err
+			if messages.warn
+				p.flash.warn= messages.warn
+			if messages.success
+				p.flash.success= messages.success
+			if messages.info
+				p.flash.info= messages.info
