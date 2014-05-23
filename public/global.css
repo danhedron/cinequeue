@@ -53,7 +53,7 @@ h1 a {
 	border: solid 1px #CCC;
 	border-left: 0;
 }
-.sidebar > ul > li > a {
+.sidebar > ul > li > * {
 	display: block;
 	padding: 10px;
 	color: #444;
