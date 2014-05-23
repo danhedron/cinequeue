@@ -1,10 +1,8 @@
-ul.files li {
+.files li {
 	margin-bottom: 1em;
 	font-size:1.2em;
 	list-style-type:none;
 	word-wrap:break-word;
-}
-ul.files {
 }
 
 .breadcrumb {

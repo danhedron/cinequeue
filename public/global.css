@@ -1,4 +1,3 @@
-@import url(http://fonts.googleapis.com/css?family=Open+Sans);
 body {
 	font-family: 'Open Sans',sans-serif;
 	background-color: #ddd;
@@ -22,22 +21,20 @@ a:hover {
 	padding:0.2em;
 }
 h1 {
+	background: #444;
+	color: #fff;
 	margin:0;
 }
 
-/* sidebar */
 .sidebar {
 	float: left;
 }
 .sidebar > ul > li:first-child {
 	border: 1px solid #444;
 }
-.sidebar h1 {
-	margin: 0;
-	background: #444;
-}
-.sidebar h1 a {
-	color: #FFF !important;
+h1 a {
+	color: #FFF;
+	display:block;
 }
 .sidebar a:hover {
 	text-decoration: none;
@@ -55,7 +52,7 @@ h1 {
 	margin-bottom: -1px;
 	border: solid 1px #CCC;
 }
-.sidebar > ul > li > a, .sidebar h1 a {
+.sidebar > ul > li > a {
 	display: block;
 	padding: 10px;
 	color: #444;
@@ -74,12 +71,11 @@ ul.controls {
 }
 ul.controls li {
 	display:inline;
-	margin: 0.5em;
 }
 .nowplaying, .progress {
 	background-color: #008700;
 	background-image: -moz-linear-gradient(top, #008700, #005c00);
-	background-image: -webkit- linear-gradient(top, #008700, #005c00);
+	background-image: -webkit-linear-gradient(top, #008700, #005c00);
 	background-image: linear-gradient(top, #008700, #005c00);
 	color: #fff;
 }
@@ -139,7 +135,7 @@ pre {
 	border:1px solid #ccc;
 	border-radius:3px;
 	text-align:center;
-	vertical-align:center;
+	vertical-align:middle;
 	cursor:pointer;
 }
 button:hover, button:focus, .button:hover, .button:focus {
@@ -215,6 +211,7 @@ button.muted.good:hover, .button.muted.good:hover {
 	background-color: #EEE;
 }
 .langselect {
+	-ms-column-count: 3;
 	-moz-column-count: 3;
 	-webkit-column-count: 3;
 	column-count: 3;
@@ -225,7 +222,7 @@ button.muted.good:hover, .button.muted.good:hover {
 table {
 	width: 100%;
 	border-collapse: collapse;
-	border-spacing: 0px;
+	border-spacing: 0;
 	border-bottom: 1px solid #aaa;
 }
 th {
@@ -247,7 +244,7 @@ td {
 input:focus {
 	border-color: orange;
 }
-@media ( max-width: 959px ) {
+@media (max-width: 959px) {
 	.sidebar {
 		float: none;
 	}

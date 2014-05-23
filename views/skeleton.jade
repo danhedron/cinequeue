@@ -9,6 +9,7 @@ html
 			block scripts
 				script(type="text/javascript", src="/global.js")
 			block styles
+				link(href="http://fonts.googleapis.com/css?family=Open+Sans",rel="stylesheet",type="text/css")
 				link(rel="stylesheet",type="text/css",href="/global.css")
 			meta(charset="utf-8")
 	body
@@ -29,7 +30,7 @@ html
 						li: a(href="/fs")= __( 'Filesystem' )
 				div.content
 					block top
-						h1= __( 'Cinequeue' )
+						h2= __( 'Cinequeue' )
 					block flash
 						if messages
 							div#messages
