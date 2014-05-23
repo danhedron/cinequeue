@@ -24,9 +24,9 @@ html
 				block footer
 					div.footer
 						p
-							a(href='/')= __( 'Homepage' )
+							a.hauptseite(href='/')= __( 'Homepage' )
 						p= __( 'Powered by node.js' )
 						p
-							a(href='/babel')= __( 'Language selection' )
+							a.langselect(href='/babel')= __( 'Language selection' )
 						p
-							a.button.bad(href="cmd/die")= __( 'Kill process' )
+							a.killproc.button.bad(href="cmd/die")= __( 'Kill process' )

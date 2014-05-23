@@ -1,6 +1,6 @@
 .history {
-	opacity: 0.5;
 	padding:0.2em;
+	font-size:70%;
 }
 .repeat, .repeat button {
 	margin:0;
@@ -60,4 +60,7 @@ p.addfs {
 }
 .empty::after {
 	content: ')'
+}
+.langselect {
+	text-decoration: line-through;
 }
