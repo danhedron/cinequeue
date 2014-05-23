@@ -23,7 +23,7 @@ var progressBar = {
 			if ( typeof progressBar.info.uri !== 'undefined'  ) {
 				var title = document.createElement( 'a' );
 				title.setAttribute( 'href', progressBar.info.uri );
-				title.innerHTML =  progressBar.info.uri;
+				title.innerHTML = decodeURI( progressBar.info.uri ).split( '/' ).pop();
 				if ( progressBar.info.md.vid ) {
 					if ( progressBar.info.md.vid[0].name ) {
 						title.innerHTML =  progressBar.info.md.vid[0].name;

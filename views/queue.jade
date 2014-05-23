@@ -12,7 +12,7 @@ else
 				tr.history
 					td.icon
 						form(action='add/', method="POST").repeat
-							button(type="submit", title= __( 'Replay' ) value=item.uri, name="uri") ↺
+							button.button(type="submit", title= __( 'Replay' ) value=item.uri, name="uri") ↺
 					td
 						a(href=item.uri)= decodeURI( item.uri ).replace( host, '' )
 					td.requester= item.requester

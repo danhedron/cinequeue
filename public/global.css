@@ -70,6 +70,20 @@ ul.controls {
 	margin: 0;
 	font-size: 0.8em;
 }
+.controls li .button {
+	border-right-width: 0;
+	border-radius:0;
+	min-width:2em;
+}
+.controls li:first-child .button {
+	border-top-left-radius:5px;
+	border-bottom-left-radius:5px;
+}
+.controls li:last-child .button {
+	border-top-right-radius:5px;
+	border-bottom-right-radius:5px;
+	border-right-width:1px;
+}
 ul.controls li {
 	display:inline;
 }
@@ -80,7 +94,7 @@ ul.controls li {
 	background-image: linear-gradient(top, #008700, #005c00);
 	color: #fff;
 }
-#playing a {
+.playing a {
 	clear:both;
 }
 .nowplaying a {
@@ -104,6 +118,9 @@ ul.controls li {
 .percentage {
 	color:darkgray;
 	text-align:center;
+	display:none;
+}
+.playing:hover .percentage {
 	display:block;
 }
 .elapsed {
@@ -140,7 +157,7 @@ pre {
 	font-size:80%;
 }
 
-.button, button {
+.button {
 	display:inline-block;
 	padding:0.5em;
 	background:white;
@@ -151,29 +168,29 @@ pre {
 	vertical-align:middle;
 	cursor:pointer;
 }
-button:hover, button:focus, .button:hover, .button:focus {
+.button:hover, .button:focus {
 	box-shadow: 0 1px rgba(0,0,0,.1), inset 0 -3px rgba(0, 0, 0, .2)
 }
-button.good, .button.good {
+.button.good {
 	background: #47A447;
 	color: white;
 	border:0;
 }
-button.bad, .button.bad {
+.button.bad {
 	background: #D2322D;
 	color: white;
 	border:0;
 }
-button.muted, .button.muted {
+.button.muted {
 	background: white;
 	color: #888;
 	border:1px solid #ccc;
 }
-button.muted.bad:hover, .button.muted.bad:hover {
+.button.muted.bad:hover {
 	color: #d2322d;
 	background-color: #f2dede;
 }
-button.muted.good:hover, .button.muted.good:hover {
+.button.muted.good:hover {
 	background-color: #dff0db;
 	color: #468847;
 }
