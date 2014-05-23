@@ -25,10 +25,6 @@ build:
             code: |-
                 npm test
     after-steps:
-        - zuzak/irc-notify-zuzak@0.2.0:
-            server: irc.freenode.net
-            port: 6697
-            nickname: cinequeue
-            channel: "##zuzakistan"
-            nojoin: true
-
+        - zuzak/udp@0.0.1
+            host: udp.chippy.ch
+            port: 41337
