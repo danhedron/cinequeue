@@ -17,7 +17,8 @@ app.get( '/fs/*', function ( req, res ) {
 
 	fs.stat( path, function ( err, stats ) {
 		if ( err ) {
-			res.status(404).send( err );
+			res.status(404);
+			res.render( 'notfound' );
 			return;
 		}
 
