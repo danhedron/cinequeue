@@ -54,6 +54,7 @@ var Player = function ( playlist ) {
 				'mplayer',
 				'"' +  _nowplaying.uri + '"', // dirty hack
 				'-nomsgcolor',
+				'-msgmodule',
 				'-identify'
 			].join( ' ' );
 

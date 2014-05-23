@@ -109,6 +109,7 @@ describe( 'Player', function () {
 			player.play( {
 				'uri': __dirname + '/note.ogg'
 			} );
+
 			setTimeout( function () {
 				var meta = player.metadata();
 				assert.notEqual( null, meta );
@@ -116,7 +117,7 @@ describe( 'Player', function () {
 				assert.equal( 2.0, meta.length );
 
 				done();
-			}, 500 );
+			}, 1500 );
 		} );
 	} );
 	describe( 'status()', function() {
@@ -132,7 +133,7 @@ describe( 'Player', function () {
 			setTimeout( function () {
 				assert.ok( player.status().position >= 1.0 );
 				done();
-			}, 1100 );
+			}, 1500 );
 		} );
 	} );
 } );
