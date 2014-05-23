@@ -76,12 +76,15 @@ ul.controls li {
 	display:inline;
 	margin: 0.5em;
 }
-.nowplaying, .progress {
+.nowplaying  {
 	background-color: #008700;
 	background-image: -moz-linear-gradient(top, #008700, #005c00);
 	background-image: -webkit- linear-gradient(top, #008700, #005c00);
 	background-image: linear-gradient(top, #008700, #005c00);
 	color: #fff;
+}
+#playing a {
+	clear:both;
 }
 .nowplaying a {
 	color: #fff;
@@ -95,14 +98,23 @@ ul.controls li {
 }
 .progress {
 	height: 100%;
-	background-color: gray;
+	background-color: black;
 }
 .elapsed, .remaining, .percentage {
 	font-size: 0.7em;
-	font-family: monospace;
-	padding-left:2em;
+	padding:0.2em;
 }
-
+.percentage {
+	color:darkgray;
+	text-align:center;
+	display:block;
+}
+.elapsed {
+	float:left;
+}
+.remaining {
+	float:right;
+}
 /* footer */
 .footer {
 	background-color: #c6c6c6;
