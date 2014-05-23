@@ -17,7 +17,8 @@ app.get( '/fs/*', function ( req, res ) {
 
 	fs.stat( path, function ( err, stats ) {
 		if ( err ) {
-			throw err;
+			res.status(404).send( err );
+			return;
 		}
 
 		if ( stats.isDirectory() ) {
