@@ -1,8 +1,8 @@
 var progressBar = {
 	info: {},
 	interval: {
-		'get': -1,
-		'set': 1,
+		'get': 1000, /* time between syncs */
+		'set': 10, /* time between updates */
 	},
 	getProgress: function () {
 		var req = new XMLHttpRequest();
@@ -40,6 +40,9 @@ var progressBar = {
 
 				secondsElapsed += progressBar.info.pos * 1000;
 				var perc = ( ( secondsElapsed / ( progressBar.info.md.length * 1000 ) ) * 100 );
+				if ( perc > 100 ) {
+					perc = 100;
+				}
 				prog.style.width = perc + '%';
 				prog.style.opacity = perc;
 
@@ -49,7 +52,7 @@ var progressBar = {
 				var time = {
 					'elapsed': progressBar.toHms( secondsElapsed / 1000 ),
 					'remaining': progressBar.toHms( progressBar.info.md.length - ( secondsElapsed/1000 ) ),
-					'percentage': parseFloat( prog.style.width ).toFixed( 1 ) + '%'
+					'percentage': perc ? perc.toFixed( 1 ) + '%' : '—'
 				};
 
 
@@ -72,6 +75,9 @@ var progressBar = {
 		window.setTimeout( progressBar.updateBar, progressBar.interval.set);
 	},
 	toHms: function ( ts ) {
+		if ( ts < 0 ) {
+			return '—';
+		}
 		var h = parseInt( ts / 3600 ) % 24;
 		h = h ? h : '';
 		var m = parseInt( ts / 60 ) % 60;
