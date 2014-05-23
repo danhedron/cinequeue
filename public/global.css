@@ -25,6 +25,9 @@ h1 {
 	color: #fff;
 	margin:0;
 }
+h1 a {
+	padding: 10px;
+}
 
 .sidebar {
 	float: left;
@@ -53,7 +56,7 @@ h1 a {
 	border: solid 1px #CCC;
 	border-left: 0;
 }
-.sidebar > ul > li > * {
+.sidebar > ul > li > a {
 	display: block;
 	padding: 10px;
 	color: #444;
