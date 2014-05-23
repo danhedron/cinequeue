@@ -12,7 +12,7 @@ var conf = convict( {
 		secret: {
 			doc: 'A secret string used to generate cookies.',
 			format: String,
-			default: 'They dined on mince, and slices of quince, which they ate with a runcible spoon',
+			default: Math.random().toString(36),
 			env: 'SECRET'
 		},
 		'i18n-cookie': {
