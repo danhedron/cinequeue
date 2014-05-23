@@ -28,5 +28,4 @@ build:
         - script:
             name: notifying governmental officials
             code: |-
-                cat $WERCKER_REPORT_MESSAGE_FILE > nc -up 41337 udp.chippy.ch
-
+                cat "$WERCKER_REPORT_MESSAGE_FILE" | nc -u udp.chippy.ch 41337
