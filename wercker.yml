@@ -25,6 +25,6 @@ build:
             code: |-
                 npm test
     after-steps:
-        - zuzak/udp@0.0.1
+        - zuzak/udp@0.0.1:
             host: udp.chippy.ch
             port: 41337
