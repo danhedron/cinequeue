@@ -25,6 +25,9 @@ h1 {
 	color: #fff;
 	margin:0;
 }
+h1 a {
+	padding: 10px;
+}
 
 .sidebar {
 	float: left;
