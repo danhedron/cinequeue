@@ -3,6 +3,8 @@ block append styles
 	link(rel="stylesheet",href="/filesystem.css",type="text/css")
 block top
 	- breadcrumbs = path.split('/');
+	- link = '/fs'
 	h2
 		for breadcrumb in breadcrumbs
-			span.breadcrumb= breadcrumb + '/'
+			- link = link + '/' + breadcrumb
+			a(href=link).breadcrumb= breadcrumb + '/'
