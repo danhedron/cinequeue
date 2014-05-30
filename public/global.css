@@ -281,6 +281,7 @@ input:focus {
 @media (max-width: 959px) {
 	.sidebar {
 		float: none;
+		position: static;
 	}
 	.sidebar > ul {
 		width: auto;
