@@ -2,9 +2,10 @@ extends skeleton
 block append styles
 	link(rel="stylesheet",href="/filesystem.css",type="text/css")
 block top
-	- breadcrumbs = path.split('/');
+	- breadcrumbs = path.split('/').splice(1);
 	- link = '/fs'
 	h2
+		a(href=link+'/').breadcrumb /
 		for breadcrumb in breadcrumbs
 			- link = link + '/' + breadcrumb
 			a(href=link).breadcrumb= breadcrumb + '/'
