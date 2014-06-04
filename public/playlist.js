@@ -16,4 +16,4 @@ function start() {
 	updateQueue();
 	setTimeout( toggleFlash, 2000 );
 }
-window.onload = start;
+addOnloadHook( start );

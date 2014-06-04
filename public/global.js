@@ -88,4 +88,4 @@ var progressBar = {
 		return h + m + s;
 	}
 };
-progressBar.fire();
+addOnloadHook( progressBar.fire );

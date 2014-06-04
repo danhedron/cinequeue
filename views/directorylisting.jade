@@ -1,7 +1,7 @@
 extends listing
 block content
 	p= __( '%s is a directory with the following contents:', path )
-	form(action="/playlist/add/", method="POST")
+	form(action="/playlist/add/", method="POST")#directory
 		- count = 0
 		ul.files
 			for file in files
@@ -17,4 +17,4 @@ block content
 						a(href=file)= file + '/'
 				- count++
 		if drawButton
-			button.button(type="submit") Queue Selected
+			button#queuebtn.button(type="submit")= __('Queue Selected')

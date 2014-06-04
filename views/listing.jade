@@ -1,6 +1,7 @@
 extends skeleton
 block append styles
 	link(rel="stylesheet",href="/filesystem.css",type="text/css")
+	script(src="/filesystem.js")
 block top
 	- breadcrumbs = path.split('/').splice(1);
 	- link = '/fs'
