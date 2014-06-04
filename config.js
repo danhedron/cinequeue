@@ -99,16 +99,24 @@ var conf = convict( {
 			default: false,
 			env: 'QUIETMPLAYER'
 		}
+	},
+	config: {
+		json: {
+			doc: 'The path to the (optional) configuration JSON file.',
+			format: String,
+			default: 'config.json',
+			env: 'CONFIGFILE'
+		}
 	}
 } );
 
 try {
-	conf.loadFile( 'config.json' );
-	colog.success( 'Loaded configuration from config.json' );
+	conf.loadFile( conf.get( 'config.json' ) );
+	colog.success( 'Loaded configuration from ' + conf.get( 'config.json' ) );
 } catch ( e ) {
 	colog.warning( 'Unable to load configuration file.' );
 	colog.info( 'Using default configuration settings.' );
-	colog.info( 'Create config.json to change from the defaults.' );
+	colog.info( 'Create ' + conf.get( 'config.json' ) + ' to change from the defaults.' );
 }
 
 try {
