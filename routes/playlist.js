@@ -25,11 +25,24 @@ app.get( '/playlist/queue/', function ( req, res ) {
 
 app.get( '/playlist/playing/', function ( req, res ) {
 	if ( player.nowPlaying() ) {
+		var md = player.metadata();
+		if ( md && md.clip && md.clip.info ) {
+			md.clip.data = md.clip.info;
+			md.clip.info = {};
+			for ( var key in md.clip.data ) {
+				if ( key.substr( 0, 4 ) === 'name' ) {
+					var id = key.substr( 4 );
+					if ( md.clip.data['value'+id] ) {
+						md.clip.info[md.clip.data[key]] = md.clip.data['value' + id];
+					}
+				}
+			}
+		}
 		res.json( {
 			uri: player.nowPlaying().uri,
 			pos: player.status().position,
 		//	max: player.metadata().length,
-			md: player.metadata()
+			md: md
 		} );
 	} else {
 		res.json( {

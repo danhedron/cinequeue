@@ -115,17 +115,25 @@ ul.controls li {
 	height: 100%;
 	background-color: red;
 }
-.elapsed, .remaining, .percentage {
+.elapsed, .remaining, .percentage, .title {
 	font-size: 0.7em;
 	padding:0.2em;
 }
-.percentage {
+.percentage, .title {
 	color:darkgray;
 	text-align:center;
+}
+.title { 
+	display:block;
+}
+.percentage {
 	display:none;
 }
 .playing:hover .percentage {
 	display:block;
+}
+.playing:hover .title {
+	display:none;
 }
 .elapsed {
 	float:left;
@@ -291,4 +299,7 @@ input:focus {
 	.content {
 		margin-left: 0;
 	}
+}
+#metadata {
+	display:none;
 }

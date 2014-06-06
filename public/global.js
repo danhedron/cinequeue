@@ -21,15 +21,6 @@ var progressBar = {
 			np.innerHTML = '';
 
 			if ( typeof progressBar.info.uri !== 'undefined'  ) {
-				var title = document.createElement( 'a' );
-				title.setAttribute( 'href', progressBar.info.uri );
-				title.innerHTML = decodeURI( progressBar.info.uri ).split( '/' ).pop();
-				if ( progressBar.info.md.vid ) {
-					if ( progressBar.info.md.vid[0].name ) {
-						title.innerHTML =  progressBar.info.md.vid[0].name;
-					}
-				}
-
 				var bar = document.createElement( 'div' );
 				bar.className = 'bar';
 
@@ -52,9 +43,12 @@ var progressBar = {
 				var time = {
 					'elapsed': progressBar.toHms( secondsElapsed / 1000 ),
 					'remaining': progressBar.toHms( progressBar.info.md.length - ( secondsElapsed/1000 ) ),
-					'percentage': perc ? perc.toFixed( 1 ) + '%' : ''
+					'percentage': perc ? perc.toFixed( 1 ) + '%' : '',
+					'title': progressBar.parseTitle()
 				};
-
+				if ( !time.title ) {
+					time.title = '&nbsp;';
+				}
 
 				for ( var t in time ) {
 					var element = document.createElement( 'span' );
@@ -63,8 +57,7 @@ var progressBar = {
 					np.appendChild( element );
 				}
 
-
-				np.appendChild( title );
+				np.appendChild( progressBar.parseMetadata() );
 			}
 		}
 		window.setTimeout( progressBar.updateBar, progressBar.interval.set );
@@ -86,6 +79,38 @@ var progressBar = {
 		s = s.toFixed( 1 );
 		s = parseInt( s ) < 10 ? ':0' + s : ':' + s;
 		return h + m + s;
+	},
+	parseMetadata: function ( data ) {
+		if ( !data && progressBar.info.md.clip ) {
+			data = progressBar.info.md.clip.info;
+		}
+		var tbl = document.createElement( 'table' );
+		tbl.id = 'metadata';
+		for ( var key in data ) {
+			var row = document.createElement( 'tr' );
+
+			var cell = document.createElement( 'td' );
+			cell.innerHTML = key;
+			row.appendChild( cell );
+
+			cell = document.createElement( 'td' );
+			cell.innerHTML = data[key];
+			row.appendChild( cell );
+
+			tbl.appendChild( row );
+		}
+		return tbl;
+	},
+	parseTitle: function () {
+		var md = progressBar.info.md;
+		if ( md.clip && md.clip.info ) {
+			if ( md.clip.info.Title ) {
+				return md.clip.info.Title;
+			}
+		} else if ( md.vid && md.vid[0] && md.vid[0].name ) {
+			return md.vid[0].name;
+		}
+		return '&nbsp;';
 	}
 };
 addOnloadHook( progressBar.fire );
