@@ -284,9 +284,6 @@ input:focus {
 	border-color: orange;
 }
 @media (max-width: 900px) {
-	body {
-		border-top:6px solid red !important;
-	}
 	.addurl {
 		font-size:0.8em;
 		margin-top:1em !important;
