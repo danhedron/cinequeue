@@ -15,18 +15,18 @@ build:
             name: running tests
             code: |-
                 npm test
-    after-steps:
+deploy:
+    steps:
         - script:
-            name: pushing to github
+            name: initializing git
             code: |-
                 git init
                 git config user.email "cinequeue:github.com"
                 git config user.name "cinequeue"
                 git add
                 git commit -m "deploy from $WERCKER_STARTED_BY"
+        - script:
+            name: pushing repo
+            code: |-
                 git remote add origin git@github.com:zuzakistan/cinequeue.git
                 git push -u origin master
-        - script:
-            name: notifying governmental officials
-            code: |-
-                echo "$WERCKER_GIT_OWNER/$WERCKER_GIT_REPOSITORY $WERCKER_RESULT on ${WERCKER_GIT_COMMIT:0:7} $WERCKER_BUILD_URL" | nc -u udp.chippy.ch 41337
