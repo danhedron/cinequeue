@@ -64,6 +64,8 @@ var progressBar = {
 
 				np.appendChild( progressBar.parseMetadata() );
 			}
+		} else {
+			window.document.title = '■ Cinequeue';
 		}
 		window.setTimeout( progressBar.updateBar, progressBar.interval.set );
 	},
