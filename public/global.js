@@ -119,7 +119,7 @@ var progressBar = {
 		} else if ( md.vid && md.vid[0] && md.vid[0].name ) {
 			return md.vid[0].name;
 		} else if ( md.filename ) {
-			return md.filename.split('/').pop().replace(/\.[^/.]+$/, '');
+			return md.filename.split('/').pop().replace(/\.[^/.]+$/, '').replace(/\d+ */g,'');
 		}
 		return null;
 	}
