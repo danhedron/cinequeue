@@ -2,7 +2,7 @@ var progressBar = {
 	info: {},
 	interval: {
 		'get': 1000, /* time between syncs */
-		'set': 10, /* time between updates */
+		'set': 1, /* time between updates */
 	},
 	getProgress: function () {
 		var req = new XMLHttpRequest();
