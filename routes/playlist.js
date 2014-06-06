@@ -10,9 +10,7 @@ var Playlist = require( '../components/playlist' ),
 var playlist = new Playlist();
 var player = new Player( playlist );
 
-app.locals = {
-	'player': player
-};
+app.locals.player = player;
 
 app.get( '/playlist/queue/', function ( req, res ) {
 	res.render( 'queue', {
