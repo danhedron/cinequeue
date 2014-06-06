@@ -28,6 +28,6 @@ deploy:
         - script:
             name: pushing repo
             code: |-
-                git remote add stable git@github.com:zuzakistan/cinequeue.git
+                git remote add stable "https://$WERCKER_GH_TOKEN@github.com/zuzakistan/cinequeue.git"
                 git pull -u stable master
                 git push -u stable master
