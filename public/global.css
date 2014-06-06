@@ -220,11 +220,9 @@ pre {
 	max-height: 0;
 }
 .flash {
-	margin-top:0.5em;
 	padding:0.5em;
-	text-align:center;
 	border-bottom: 2px solid black;
-	border-radius: 5px;
+	border-top: 2px solid black;
 }
 
 .success {
