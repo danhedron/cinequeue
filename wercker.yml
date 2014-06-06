@@ -19,6 +19,11 @@ build:
         - script:
             name: pushing to github
             code: |-
+                git init
+                git config user.email "cinequeue:github.com"
+                git config user.name "cinequeue"
+                git add
+                git commit -m "deploy from $WERCKER_STARTED_BY"
                 git remote add origin git@github.com:zuzakistan/cinequeue.git
                 git push -u origin master
         - script:
