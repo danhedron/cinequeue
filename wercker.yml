@@ -1,4 +1,4 @@
-box: zuzak/ubuntu14.04mplayer@1.0.2
+box: zuzak/ubuntu14.04mplayer@1.1.0
 build:
     steps:
         - script:
@@ -29,4 +29,5 @@ deploy:
             name: pushing repo
             code: |-
                 git remote add origin git@github.com:zuzakistan/cinequeue.git
+                git pull -u origin master
                 git push -u origin master
