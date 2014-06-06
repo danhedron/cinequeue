@@ -114,13 +114,7 @@ ul.controls li {
 .progress {
 	height: 100%;
 	background: #c90000; /* Old browsers */
-	background: -moz-linear-gradient(left, #c90000 75%, #ff0000 90%); /* FF3.6+ */
-	background: -webkit-gradient(linear, left top, right top, color-stop(75%,#c90000), color-stop(90%,#ff0000)); /* Chrome,Safari4+ */
-	background: -webkit-linear-gradient(left, #c90000 75%,#ff0000 90%); /* Chrome10+,Safari5.1+ */
-	background: -o-linear-gradient(left, #c90000 75%,#ff0000 90%); /* Opera 11.10+ */
-	background: -ms-linear-gradient(left, #c90000 75%,#ff0000 90%); /* IE10+ */
-	background: linear-gradient(to right, #c90000 75%,#ff0000 90%); /* W3C */
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#c90000', endColorstr='#ff0000',GradientType=1 ); /* IE6-9 */
+	background: linear-gradient(to left, red, #a00 2em);
 }
 .elapsed, .remaining, .percentage, .title {
 	font-size: 0.7em;
