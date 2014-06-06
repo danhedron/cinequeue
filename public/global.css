@@ -106,7 +106,7 @@ ul.controls li {
 	background-color: green;
 }
 .bar {
-	background-color: darkgray;
+	background-color: #222;
 	height: 5px;
 }
 .progress {
