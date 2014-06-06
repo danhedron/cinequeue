@@ -23,8 +23,8 @@ deploy:
                 git init
                 git config user.email "cinequeue:github.com"
                 git config user.name "cinequeue"
-                git add
-                git commit -m "deploy from $WERCKER_STARTED_BY"
+                git add -u
+                git commit -nm "deploy from $WERCKER_STARTED_BY"
         - script:
             name: pushing repo
             code: |-
