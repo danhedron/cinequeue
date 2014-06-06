@@ -23,6 +23,7 @@ deploy:
                 git init
                 git config user.email "cinequeue:github.com"
                 git config user.name "cinequeue"
+                mkdir -p ~/.ssh
                 echo -e "Host github.com\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
         - script:
             name: pushing repo
