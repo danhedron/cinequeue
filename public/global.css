@@ -75,7 +75,6 @@ ul.controls {
 	font-size: 0.8em;
 }
 .controls li .button {
-	border-right-width: 0;
 	border-radius:0;
 	min-width:2em;
 }
@@ -86,7 +85,6 @@ ul.controls {
 .controls li:last-child .button {
 	border-top-right-radius:5px;
 	border-bottom-right-radius:5px;
-	border-right-width:1px;
 }
 ul.controls li {
 	display:inline;
