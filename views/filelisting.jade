@@ -1,6 +1,8 @@
 extends listing
 block content
-	p= __( '%s is a file of MIME type %s.', path, mime )
+	p
+		span.filename= path
+		span= __( 'is a file of MIME type %s.', mime );
 
 	form(action="/playlist/add/", method="post")
 		input(type="hidden", name="uri", value=url)

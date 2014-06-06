@@ -283,7 +283,36 @@ td {
 input:focus {
 	border-color: orange;
 }
-@media (max-width: 959px) {
+@media (max-width: 900px) {
+	body {
+		border-top:6px solid red !important;
+	}
+	.addurl {
+		font-size:0.8em;
+		margin-top:1em !important;
+	}
+	.addurl .button {
+		display:none;
+	}
+	.addurl input {
+		margin:0;
+		border-radius:5px !important;
+	}
+	h2 {
+		float:left;
+		margin-right:1em;
+	}
+	#directory {
+		clear:both;
+	}
+	.breadcrumb {
+		display:inline !important;
+	}
+	.filename {
+		display:none;
+	}
+}
+@media (max-width: 700px) {
 	.sidebar {
 		float: none;
 		position: static;
