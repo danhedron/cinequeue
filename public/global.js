@@ -46,6 +46,11 @@ var progressBar = {
 					'percentage': perc ? perc.toFixed( 1 ) + '%' : '',
 					'title': progressBar.parseTitle()
 				};
+				if ( progressBar.info.pos ) {
+					window.document.title = time.title ? '▶ ' + time.title : '▷ Cinequeue'; // TODO: i18n
+				} else {
+					window.document.title = 'Cinequeue';
+				}
 				if ( !time.title ) {
 					time.title = '&nbsp;';
 				}
@@ -105,12 +110,18 @@ var progressBar = {
 		var md = progressBar.info.md;
 		if ( md.clip && md.clip.info ) {
 			if ( md.clip.info.Title ) {
-				return md.clip.info.Title;
+				if ( md.clip.info.Title.length > 20 ) {
+					return md.clip.info.Title;
+				} else if ( md.clip.info.Artist ) {
+					return md.clip.info.Title + ' · ' + md.clip.info.Artist;
+				}
 			}
 		} else if ( md.vid && md.vid[0] && md.vid[0].name ) {
 			return md.vid[0].name;
+		} else if ( md.filename ) {
+			return md.filename.split('/').pop().replace(/\.[^/.]+$/, '');
 		}
-		return '&nbsp;';
+		return null;
 	}
 };
 addOnloadHook( progressBar.fire );
