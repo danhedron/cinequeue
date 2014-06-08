@@ -1,8 +1,7 @@
 var progressBar = {
 	info: {},
 	interval: {
-		'get': 1000, /* time between syncs */
-		'set': 1, /* time between updates */
+		'get': 10, /* time between syncs */
 	},
 	getProgress: function () {
 		var req = new XMLHttpRequest();
@@ -31,14 +30,25 @@ var progressBar = {
 				var secondsElapsed = ( Date.now() - then.getTime() );
 
 				secondsElapsed += Math.max( info.status.position.audio, info.status.position.video ) * 1000;
-				if ( info.status.position.audio && info.status.position.video ) {
-					if ( info.status.position.audio !== info.status.position.video ) {
-						var slow = document.createElement( 'div' );
-						var offset = Math.abs( info.status.position.audio - info.status.position.video );
-						slow.className = 'slow';
-						offset = Math.round( offset ) ? Math.round( offset ) + ' seconds' : '';
-						slow.innerHTML = 'Warning: Audio is ' + offset + ' out of sync with video'; // TODO i18n
-						np.appendChild( slow );
+				progressBar.interval.get = 1000;
+				if ( info.status.position.audio ) {
+					prog.className += ' audio';
+					if ( info.status.position.video ) {
+						prog.className += '-video';
+						if ( info.status.position.audio !== info.status.position.video ) {
+							var slow = document.createElement( 'div' );
+							var offset = Math.abs( info.status.position.audio - info.status.position.video );
+							slow.className = 'slow';
+							offset = Math.round( offset ) ? Math.round( offset ) + ' seconds' : '';
+							slow.innerHTML = 'Warning: Audio is ' + offset + ' out of sync with video'; // TODO i18n
+							np.appendChild( slow );
+						}
+					}
+				} else {
+					if ( info.status.position.video ) {
+						prog.className += ' video';
+					} else {
+						progressBar.interval.get = 100;
 					}
 				}
 				var perc = ( ( secondsElapsed / ( info.md.length * 1000 ) ) * 100 );
@@ -47,7 +57,6 @@ var progressBar = {
 				}
 				prog.style.width = perc + '%';
 				prog.style.opacity = 0.75+(perc/400);
-
 				bar.appendChild( prog );
 				np.appendChild( bar );
 
@@ -74,7 +83,10 @@ var progressBar = {
 					np.appendChild( element );
 				}
 
-				np.appendChild( progressBar.parseMetadata() );
+				var md = progressBar.parseMetadata();
+				if ( md ) {
+					np.appendChild( progressBar.parseMetadata() );
+				}
 			}
 		} else {
 			window.document.title = '■ Cinequeue'; // TODO: i18n
@@ -85,6 +97,14 @@ var progressBar = {
 		progressBar.getProgress();
 		window.setTimeout( progressBar.getProgress, progressBar.interval.get);
 		window.setTimeout( progressBar.updateBar, progressBar.interval.set);
+
+		var np = document.getElementById( 'playing' );
+		np.addEventListener( 'mouseover', function () {
+			var md = document.getElementById( 'metadata' );
+			if ( md ) {
+				md.className = '';
+			}
+		} );
 	},
 	toHms: function ( ts ) {
 		if ( ts < 0 || !ts ) {
@@ -103,18 +123,24 @@ var progressBar = {
 		if ( !data && progressBar.info.md.clip ) {
 			data = progressBar.info.md.clip.info;
 		}
+		if ( !data ) {
+			return null;
+		}
 		var tbl = document.createElement( 'table' );
 		tbl.id = 'metadata';
+		tbl.className = 'closed';
 		for ( var key in data ) {
-			var row = document.createElement( 'tr' );
+			if ( data[key].trim() ) {
+				var row = document.createElement( 'tr' );
 
-			var cell = document.createElement( 'td' );
-			cell.innerHTML = key;
-			row.appendChild( cell );
+				var cell = document.createElement( 'td' );
+				cell.innerHTML = key;
+				row.appendChild( cell );
 
-			cell = document.createElement( 'td' );
-			cell.innerHTML = data[key];
-			row.appendChild( cell );
+				cell = document.createElement( 'td' );
+				cell.innerHTML = data[key];
+				row.appendChild( cell );
+			}
 
 			tbl.appendChild( row );
 		}

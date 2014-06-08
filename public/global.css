@@ -111,8 +111,19 @@ ul.controls li {
 }
 .progress {
 	height: 100%;
-	background: #c90000; /* Old browsers */
-	background: linear-gradient(to left, red 1em, #a00 4em);
+	background: #555;
+}
+.audio {
+	background: #0a0; /* green */
+	background: linear-gradient(to left, #0f0 1em, #0a0 4em);
+}
+.video {
+	background: #00a; /* blue */
+	background: linear-gradient(to left, #00f 1em, #00a 4em);
+}
+.audio-video {
+	background: #a00; /* red */
+	background: linear-gradient(to left, #f00 1em, #a00 4em);
 }
 .elapsed, .remaining, .percentage, .title {
 	font-size: 0.7em;
@@ -206,7 +217,6 @@ pre {
 	color: #468847;
 }
 
-/* flash messages */
 #messages {
 	overflow-y: hidden;
 	max-height: 20em;
@@ -329,6 +339,17 @@ input:focus {
 	}
 }
 #metadata {
+	display:block;
+	font-size:0.7em;
+	margin:1em;
+	border-bottom:0;
+}
+#metadata td:first-child {
+	text-align:right;
+	font-weight:bold;
+	padding-right:0.5em;
+}
+#metadata.closed {
 	display:none;
 }
 .slow {
