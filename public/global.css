@@ -107,7 +107,10 @@ ul.controls li {
 }
 .bar {
 	background-color: #222;
-	height: 5px;
+	height: 0.3em;
+}
+.bar:hover {
+	height: 1em;
 }
 .progress {
 	height: 100%;
