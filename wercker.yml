@@ -26,8 +26,12 @@ deploy:
                 mkdir -p ~/.ssh
                 echo -e "Host github.com\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
                 git remote add stable git@github.com:zuzakistan/cinequeue.git
-                echo "$WERCKER_KEY_PUBLIC" > ~/.ssh/id_rsa.pub
-                echo "$WERCKER_KEY_PRIVATE" > ~/.ssh/id_rsa
+        - williamli/add-deploy-ssh-key@0.0.7:
+            keyname: GITHUB
+        - script:
+            name: pulling repo
+            code: |-
+                git pull git@$WERCKER_GIT_DOMAIN:$WERCKER_GIT_OWNER/$WERCKER_GIT_REPOSITORY
         - script:
             name: pushing repo
             code: |-

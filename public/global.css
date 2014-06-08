@@ -112,7 +112,7 @@ ul.controls li {
 .progress {
 	height: 100%;
 	background: #c90000; /* Old browsers */
-	background: linear-gradient(to left, red, #a00 2em);
+	background: linear-gradient(to left, red 1em, #a00 4em);
 }
 .elapsed, .remaining, .percentage, .title {
 	font-size: 0.7em;
@@ -122,7 +122,7 @@ ul.controls li {
 	color:darkgray;
 	text-align:center;
 }
-.title { 
+.title {
 	display:block;
 }
 .percentage {
@@ -321,6 +321,11 @@ input:focus {
 	}
 	.content {
 		margin-left: 0;
+	}
+}
+@media (max-width: 400px) {
+	.requester {
+		display:none;
 	}
 }
 #metadata {

@@ -57,10 +57,11 @@ var progressBar = {
 					'percentage': perc ? perc.toFixed( 1 ) + '%' : '',
 					'title': progressBar.parseTitle()
 				};
-				if ( info.status.video + info.status.audio ) {
+				if ( info.status.position.video + info.status.position.audio ) {
 					window.document.title = time.title ? '▶ ' + time.title : '▷ Cinequeue'; // TODO: i18n
 				} else {
-					window.document.title = 'Cinequeue';
+					// something is playing but no position, so probably loading
+					window.document.title = '○ Cinequeue'; // TODO: i18n
 				}
 				if ( !time.title ) {
 					time.title = '&nbsp;';
@@ -76,7 +77,7 @@ var progressBar = {
 				np.appendChild( progressBar.parseMetadata() );
 			}
 		} else {
-			window.document.title = '■ Cinequeue';
+			window.document.title = '■ Cinequeue'; // TODO: i18n
 		}
 		window.setTimeout( progressBar.updateBar, progressBar.interval.set );
 	},
@@ -94,7 +95,7 @@ var progressBar = {
 		var m = parseInt( ts / 60 ) % 60;
 		m = m < 10 ? '0' + m : m;
 		var s = ts % 60;
-		s = Math.round( s );
+		s = Math.floor( s );
 		s = parseInt( s ) < 10 ? ':0' + s : ':' + s;
 		return h + m + s;
 	},
