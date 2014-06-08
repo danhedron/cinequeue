@@ -94,7 +94,7 @@ var progressBar = {
 		var m = parseInt( ts / 60 ) % 60;
 		m = m < 10 ? '0' + m : m;
 		var s = ts % 60;
-		s = Math.round( s );
+		s = Math.floor( s );
 		s = parseInt( s ) < 10 ? ':0' + s : ':' + s;
 		return h + m + s;
 	},
