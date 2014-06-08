@@ -134,7 +134,7 @@ var progressBar = {
 			return md.vid[0].name;
 		} else if ( md.filename ) {
 			var fn = decodeURI( md.filename );
-			return fn.split('/').pop().replace(/\.[^/.]+$/, '').replace(/\d+ */g,'');
+			return fn.split('/').pop().replace(/\.[^/.]+$/, '').replace(/[\d\-]+ */g,'');
 		}
 		return null;
 	}
