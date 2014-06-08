@@ -21,16 +21,27 @@ var progressBar = {
 			np.innerHTML = '';
 
 			if ( typeof progressBar.info.uri !== 'undefined'  ) {
+				var info = progressBar.info;
 				var bar = document.createElement( 'div' );
 				bar.className = 'bar';
 
 				var prog = document.createElement( 'div' );
 				prog.className = 'progress';
-				var then = new Date( progressBar.info.timestamp );
+				var then = new Date( info.timestamp );
 				var secondsElapsed = ( Date.now() - then.getTime() );
 
-				secondsElapsed += progressBar.info.pos * 1000;
-				var perc = ( ( secondsElapsed / ( progressBar.info.md.length * 1000 ) ) * 100 );
+				secondsElapsed += Math.max( info.status.position.audio, info.status.position.video ) * 1000;
+				if ( info.status.position.audio && info.status.position.video ) {
+					if ( info.status.position.audio !== info.status.position.video ) {
+						var slow = document.createElement( 'div' );
+						var offset = Math.abs( info.status.position.audio - info.status.position.video );
+						slow.className = 'slow';
+						offset = Math.round( offset ) ? Math.round( offset ) + ' seconds' : '';
+						slow.innerHTML = 'Warning: Audio is ' + offset + ' out of sync with video'; // TODO i18n
+						np.appendChild( slow );
+					}
+				}
+				var perc = ( ( secondsElapsed / ( info.md.length * 1000 ) ) * 100 );
 				if ( perc > 100 ) {
 					perc = 100;
 				}
@@ -42,11 +53,11 @@ var progressBar = {
 
 				var time = {
 					'elapsed': progressBar.toHms( secondsElapsed / 1000 ),
-					'remaining': progressBar.toHms( progressBar.info.md.length - ( secondsElapsed/1000 ) ),
+					'remaining': progressBar.toHms( info.md.length - ( secondsElapsed/1000 ) ),
 					'percentage': perc ? perc.toFixed( 1 ) + '%' : '',
 					'title': progressBar.parseTitle()
 				};
-				if ( progressBar.info.pos ) {
+				if ( info.status.video + info.status.audio ) {
 					window.document.title = time.title ? '▶ ' + time.title : '▷ Cinequeue'; // TODO: i18n
 				} else {
 					window.document.title = 'Cinequeue';
@@ -83,7 +94,7 @@ var progressBar = {
 		var m = parseInt( ts / 60 ) % 60;
 		m = m < 10 ? '0' + m : m;
 		var s = ts % 60;
-		s = s.toFixed( 1 );
+		s = Math.round( s );
 		s = parseInt( s ) < 10 ? ':0' + s : ':' + s;
 		return h + m + s;
 	},
@@ -121,7 +132,8 @@ var progressBar = {
 		} else if ( md.vid && md.vid[0] && md.vid[0].name ) {
 			return md.vid[0].name;
 		} else if ( md.filename ) {
-			return md.filename.split('/').pop().replace(/\.[^/.]+$/, '').replace(/\d+ */g,'');
+			var fn = decodeURI( md.filename );
+			return fn.split('/').pop().replace(/\.[^/.]+$/, '').replace(/\d+ */g,'');
 		}
 		return null;
 	}

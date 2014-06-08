@@ -165,7 +165,7 @@ var Player = function ( playlist ) {
 
 	this.status = function () {
 		var status = {
-			'position': 0
+			'position': {}
 		};
 
 		var audioexp = /A:\s+(\d+\.\d+)/;
@@ -174,18 +174,17 @@ var Player = function ( playlist ) {
 		var audiomatch = audioexp.exec( this._statusline );
 		var videomatch = videoexp.exec( this._statusline );
 		if ( audiomatch ) {
-			status.positionAudio = parseFloat( audiomatch[1] );
+			status.position.audio = parseFloat( audiomatch[1] );
 		}
 		else {
-			status.positionAudio = 0;
+			status.position.audio = null;
 		}
 		if( videomatch ) {
-			status.positionVideo = parseFloat( videomatch[1] );
+			status.position.video = parseFloat( videomatch[1] );
 		}
 		else {
-			status.positionVideo = 0;
+			status.position.video = null;
 		}
-		status.position = Math.max( status.positionAudio, status.positionVideo );
 
 		return status;
 	};

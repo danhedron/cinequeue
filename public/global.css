@@ -326,3 +326,11 @@ input:focus {
 #metadata {
 	display:none;
 }
+.slow {
+	background-color: #d2322d;
+	font-variant:small-caps;
+	color:white;
+	font-size:0.7em;
+	text-align:center;
+	text-transform:lowercase;
+}

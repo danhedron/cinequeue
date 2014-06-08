@@ -40,7 +40,7 @@ app.get( '/playlist/playing/', function ( req, res ) {
 		}
 		res.json( {
 			uri: player.nowPlaying().uri,
-			pos: player.status().position,
+			status: player.status(),
 		//	max: player.metadata().length,
 			md: md
 		} );
