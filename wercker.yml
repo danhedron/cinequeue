@@ -28,6 +28,7 @@ deploy:
                 git remote add stable git@github.com:zuzakistan/cinequeue.git
                 echo "$WERCKER_KEY_PUBLIC" > ~/.ssh/id_rsa.pub
                 echo "$WERCKER_KEY_PRIVATE" > ~/.ssh/id_rsa
+                chmod 600 ~/.id_rsa
         - script:
             name: pushing repo
             code: |-
