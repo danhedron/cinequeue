@@ -185,6 +185,7 @@ pre {
 .button {
 	display:inline-block;
 	padding:0.5em;
+	font-size:inherit;
 	background:white;
 	color:#888;
 	border:1px solid #ccc;
