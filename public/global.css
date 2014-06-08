@@ -323,6 +323,11 @@ input:focus {
 		margin-left: 0;
 	}
 }
+@media (max-width: 400px) {
+	.requester {
+		display:none;
+	}
+}
 #metadata {
 	display:none;
 }
