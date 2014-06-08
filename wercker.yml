@@ -29,6 +29,10 @@ deploy:
         - williamli/add-deploy-ssh-key@0.0.7:
             keyname: GITHUB
         - script:
+            name: pulling repo
+            code: |-
+                git pull "git@github.com:$WERCKER_GIT_REPOSITORY/$WERCKER_GIT_BRANCH"
+        - script:
             name: pushing repo
             code: |-
                 #git remote add stable "https://cinequeue:$WERCKER_GH_TOKEN@github.com/zuzakistan/cinequeue.git"
