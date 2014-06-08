@@ -10,8 +10,7 @@
   },
   "precommit": [
     "lint",
-    "style",
-    "test"
+    "style"
   ],
   "license": "BSD-2-Clause",
   "private": true,
