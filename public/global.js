@@ -21,16 +21,10 @@ var progressBar = {
 
 			if ( typeof progressBar.info.uri !== 'undefined'  ) {
 				var info = progressBar.info;
-				var bar = document.createElement( 'div' );
-				bar.className = 'bar';
 
 				var prog = document.createElement( 'div' );
 				prog.className = 'progress';
-				var then = new Date( info.timestamp );
-				var secondsElapsed = ( Date.now() - then.getTime() );
 
-				secondsElapsed += Math.max( info.status.position.audio, info.status.position.video ) * 1000;
-				progressBar.interval.get = 1000;
 				if ( info.status.position.audio ) {
 					prog.className += ' audio';
 					if ( info.status.position.video ) {
@@ -49,15 +43,27 @@ var progressBar = {
 						prog.className += ' video';
 					} else {
 						progressBar.interval.get = 100;
+						window.setTimeout( progressBar.updateBar, progressBar.interval.set );
+						return;
 					}
 				}
+
+				var then = new Date( info.timestamp );
+				var secondsElapsed = ( Date.now() - then.getTime() );
+
+				secondsElapsed += Math.max( info.status.position.audio, info.status.position.video ) * 1000;
+
 				var perc = ( ( secondsElapsed / ( info.md.length * 1000 ) ) * 100 );
 				if ( perc > 100 ) {
 					perc = 100;
 				}
 				prog.style.width = perc + '%';
 				prog.style.opacity = 0.75+(perc/400);
+
+				var bar = document.createElement( 'div' );
+				bar.className = 'bar';
 				bar.appendChild( prog );
+
 				np.appendChild( bar );
 
 				var time = {
