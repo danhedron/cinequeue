@@ -13,6 +13,8 @@ var app = module.exports = express();
 app.use( express.static( __dirname + '/public' ) );
 app.set( 'views', __dirname + '/views' );
 app.set( 'view engine', 'jade' );
+app.set( 'strict routing', true );
+app.set( 'json spaces', 4 );
 
 // pretty print jade
 app.locals.pretty = true;
@@ -28,7 +30,6 @@ app.use( session( {
 	}
 } ) );
 
-app.set( 'strict routing', true );
 
 // add trailing slashes
 // http://stackoverflow.com/a/13443359
