@@ -128,10 +128,10 @@ describe( 'Player', function () {
 				'uri': __dirname + '/note.ogg'
 			} );
 
-			assert.equal( 0, player.status().position );
+			assert.equal( 0, player.status().position.audio );
 
 			setTimeout( function () {
-				assert.ok( player.status().position >= 1.0 );
+				assert.ok( player.status().position.audio >= 1.0 );
 				done();
 			}, 1500 );
 		} );
