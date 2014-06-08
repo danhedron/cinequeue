@@ -8,7 +8,11 @@ nav.sidebar
 					li: a.button.muted(href="/playlist/cmd/pause",title=__( 'Pause auto-play' ))= __( '▮▮' )
 				else
 					li: a.button.muted.good(href="/playlist/cmd/play",title=__( 'Enable auto-play' ))= __( '▶' )
-				li: a.button.muted(href="/playlist/cmd/skip",title=__( 'Skip to next track' ))= __( '▶▶'   )
-		li: a(href="/playlist")= __( 'Playlist' )
+				if player.nowPlaying()
+					li: a.button.muted(href="/playlist/cmd/skip",title=__( 'Skip to next track' ))= __( '▶▶'   )
+		if player.nowPlaying()
+			li: a(href="/playlist#nowplaying")= __( 'Playlist' )
+		else
+			li: a(href="/playlist")= __( 'Playlist' )
 		li: a(href="/fs")= __( 'Filesystem' )
 		include flash

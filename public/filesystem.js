@@ -42,12 +42,12 @@ var fs = {
 		}
 		if ( cont ) {
 			var a = document.createElement( 'a' );
-			a.href = '#';
+			a.href = '#queuebtn';
 			a.innerHTML = 'Invert selection'; // TODO i18n
 			a.className = 'button';
 			a.addEventListener( 'click', fs.selectAll );
 			form.appendChild( a );
-			fs.countBoxes()
+			fs.countBoxes();
 		}
 	}
 };

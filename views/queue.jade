@@ -17,7 +17,7 @@ else
 						a(href=item.uri)= decodeURI( item.uri ).replace( host, '' )
 					td.requester= item.requester
 			if nowplaying
-				tr.nowplaying
+				tr.nowplaying#nowplaying
 					td.icon(title=__( 'Now Playing' ) ) ▶
 					td
 						a(href=nowplaying.uri)= decodeURI( nowplaying.uri ).replace( host, '' )
