@@ -31,7 +31,7 @@ deploy:
         - script:
             name: pulling repo
             code: |-
-                git pull git@github.com:$WERCKER_GIT_REPOSITORY/$WERCKER_GIT_BRANCH
+                git pull git@$WERCKER_GIT_DOMAIN:$WERCKER_GIT_OWNER/$WERCKER_GIT_REPOSITORY
         - script:
             name: pushing repo
             code: |-
