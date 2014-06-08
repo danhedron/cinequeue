@@ -13,11 +13,21 @@ var fs = {
 		if ( !form ) {
 			return;
 		}
-		var a = document.createElement( 'a' );
-		a.href = '#';
-		a.innerHTML = 'Select all'; // TODO i18n
-		a.addEventListener( 'click', fs.selectAll );
-		form.appendChild( a );
+		var cb = document.getElementsByTagName( 'input' );
+		var cont = false;
+		for ( var i = 0; i < cb.length; i++ ) {
+			if ( cb[i].type === 'checkbox' ) {
+				cont = true;
+				break;
+			}
+		}
+		if ( cont ) {
+			var a = document.createElement( 'a' );
+			a.href = '#';
+			a.innerHTML = 'Invert selection'; // TODO i18n
+			a.addEventListener( 'click', fs.selectAll );
+			form.appendChild( a );
+		}
 	}
 };
 
