@@ -67,3 +67,6 @@ p.addfs {
 .highlighted {
 	background-color:#ffa;
 }
+#queue-1 {
+	border-top:1px solid green;
+}
