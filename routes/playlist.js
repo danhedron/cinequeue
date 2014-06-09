@@ -69,11 +69,13 @@ app.get( '/playlist/', function ( req, res ) {
 
 app.post( '/playlist/add/', function ( req, res ) {
 	var uri = req.body.uri;
+	var count = 0;
 	if ( uri && uri.length ) {
 		playlist.queue( {
 			'uri': uri,
 			'requester': req.ip
 		} );
+		count++;
 		req.flash( 'success', res.__( 'Successfully queued %s', decodeURI( uri ) ) );
 		log.success( i18n.__( 'Queued %s from %s', uri, req.ip ) );
 	} else {
@@ -83,10 +85,16 @@ app.post( '/playlist/add/', function ( req, res ) {
 					'uri': req.body[k],
 					'requester': req.ip
 				} );
+				count++;
 			}
 		} );
+		if ( count ) {
+			req.flash( 'success', res.__( 'Successfully queued %s files', count ) );
+		} else {
+			req.flash( 'error', res.__( 'Unable to find any files to queue' ) );
+		}
 	}
-	res.redirect( '/playlist/' );
+	res.redirect( '/playlist/#' + res.__( 'queue' ) + '-' + ( playlist._queue.length - count + 1) );
 } );
 app.get( '/playlist/add/', function ( req, res ) {
 	req.flash( 'warn', res.__( 'That command must be sent as a POST request.' ) );
