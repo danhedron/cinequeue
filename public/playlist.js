@@ -17,8 +17,9 @@ var playlist = {
 				console.log('d');
 				var element = document.getElementById( id );
 				element.className += ' highlighted';
+				playlist.scrollToId( id );
+				playlist.highlight.now = false;
 
-			playlist.highlight.now = false;
 			} catch ( e ) {
 				if ( e.name !== 'TypeError' ) {
 					console.error(e);
@@ -43,7 +44,21 @@ var playlist = {
 	start: function () {
 		playlist.updateQueue();
 		setTimeout( playlist.toggleFlash, 2000 );
+		if ( !location.hash ) {
+			playlist.scrollToId();
+		}
+	},
+	scrollToId: function ( id ) {
+		if ( !id ) {
+			id = 'nowplaying';
+		}
+		var el = document.getElementById( 'nowplaying' );
+		if ( el ) {
+			document.documentElement.scrollTop = el.offsetTop - window.innerHeight / 2;
+			document.body.scrollTop = document.documentElement.scrollTop;
+		}
 	}
+
 };
 addOnloadHook( playlist.start );
 
