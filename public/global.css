@@ -109,9 +109,6 @@ ul.controls li {
 	background-color: #222;
 	height: 0.3em;
 }
-.bar:hover {
-	height: 1em;
-}
 .progress {
 	height: 100%;
 	background: #555;
@@ -342,7 +339,7 @@ input:focus {
 		display:none;
 	}
 }
-#metadata {
+#playing:hover #metadata {
 	display:block;
 	font-size:0.7em;
 	margin:1em;
@@ -352,9 +349,6 @@ input:focus {
 	text-align:right;
 	font-weight:bold;
 	padding-right:0.5em;
-}
-.hidden{
-	display:none;
 }
 .slow {
 	background-color: #d2322d;
@@ -366,4 +360,7 @@ input:focus {
 }
 #queuebuttons {
 	padding:0.5em 0.2em;
+}
+.hidden {
+	display:none;
 }
