@@ -12,11 +12,11 @@ block content
 					li.file
 						input(type="checkbox", id="uri_"+count, name="uri_"+count, value=host+path+"/"+file)
 						- pretty = file.toString().replace( /(\[.*?\]|[_])/g , '_' ).replace( /_+/g , ' ')
-						- extn = pretty.match( /\.[\w]+\s*$/g ).toString().substring( 1 )
+						- extn = (pretty.match( /\.[\w]+\s*$/g )+"").substring( 1 )
 						label(for="uri_"+count,title=file,class='extn-'+extn)= pretty
 				else
 					li.directory
 						a(href=file)= file + '/'
 				- count++
-		if drawButton
-			button#queuebtn.button.good(type="submit")= __('Queue Selected')
+block append sidebar
+	li.controls#queuebuttons: button#queuebtn.button.good(form="directory",type="submit")= __('Queue Selected')

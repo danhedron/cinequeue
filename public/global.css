@@ -353,7 +353,7 @@ input:focus {
 	font-weight:bold;
 	padding-right:0.5em;
 }
-#metadata.closed {
+.hidden{
 	display:none;
 }
 .slow {
@@ -363,4 +363,7 @@ input:focus {
 	font-size:0.7em;
 	text-align:center;
 	text-transform:lowercase;
+}
+#queuebuttons {
+	padding:0.5em 0.2em;
 }

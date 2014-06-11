@@ -37,17 +37,22 @@ var fs = {
 		for ( var i = 0; i < cb.length; i++ ) {
 			if ( cb[i].type === 'checkbox' ) {
 				cont = true;
+				console.log( cont );
 				cb[i].addEventListener('CheckboxStateChange', fs.countBoxes );
+				cb[i].addEventListener('onfocus', fs.countBoxes );
 			}
 		}
+		var btns = document.getElementById( 'queuebuttons' );
 		if ( cont ) {
-			var a = document.createElement( 'a' );
+			var a = document.createElement( 'button' );
 			a.href = '#queuebtn';
 			a.innerHTML = 'Invert selection'; // TODO i18n
 			a.className = 'button';
 			a.addEventListener( 'click', fs.selectAll );
-			form.appendChild( a );
+			btns.appendChild( a );
 			fs.countBoxes();
+		} else {
+			btns.className += ' hidden';
 		}
 	}
 };

@@ -134,7 +134,7 @@ var progressBar = {
 		}
 		var tbl = document.createElement( 'table' );
 		tbl.id = 'metadata';
-		tbl.className = 'closed';
+		tbl.className = 'hidden';
 		for ( var key in data ) {
 			if ( data[key].trim() ) {
 				var row = document.createElement( 'tr' );
@@ -146,9 +146,8 @@ var progressBar = {
 				cell = document.createElement( 'td' );
 				cell.innerHTML = data[key];
 				row.appendChild( cell );
+				tbl.appendChild( row );
 			}
-
-			tbl.appendChild( row );
 		}
 		return tbl;
 	},
