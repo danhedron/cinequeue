@@ -38,7 +38,7 @@ var fs = {
 			if ( cb[i].type === 'checkbox' ) {
 				cont = true;
 				console.log( cont );
-				cb[i].addEventListener('CheckboxStateChange', fs.countBoxes );
+				cb[i].addEventListener('change', fs.countBoxes );
 				cb[i].addEventListener('onfocus', fs.countBoxes );
 			}
 		}
