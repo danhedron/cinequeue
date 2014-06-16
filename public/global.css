@@ -73,6 +73,11 @@ ul.controls {
 	padding: 1em;
 	margin: 0;
 	font-size: 0.8em;
+	/* css 3 flexible content */
+	justify-content: center;
+	display: -webkit-flex;
+	display: -moz-box;
+	display: flex;
 }
 .controls li .button {
 	border-radius:0;
