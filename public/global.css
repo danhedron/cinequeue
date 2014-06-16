@@ -264,6 +264,7 @@ pre {
 	padding: 0.2em 1em;
 	margin-left: 300px;
 	background-color: #EEE;
+	min-height: 90vh;
 }
 .langselect {
 	-ms-column-count: 3;
