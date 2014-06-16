@@ -7,16 +7,18 @@ block content
 		- count = 0
 		ul.files
 			for file in files
-				if !file.isDirectory
+				if !file.isDirectory && !file.isError
 					- drawButton = true
 					li.file
 						input(type="checkbox", id="uri_"+count, name="uri_"+count, value=host+path+"/"+file)
 						- pretty = file.toString().replace( /(\[.*?\]|[_])/g , '_' ).replace( /_+/g , ' ')
 						- extn = (pretty.match( /\.[\w]+\s*$/g )+"").substring( 1 )
 						label(for="uri_"+count,title=file,class='extn-'+extn)= pretty
-				else
+				else if file.isDirectory
 					li.directory
 						a(href=file)= file + '/'
+				else if file.isError
+					li.error= file
 				- count++
 block append sidebar
 	li.controls#queuebuttons: button#queuebtn.button.good(form="directory",type="submit")= __('Queue Selected')

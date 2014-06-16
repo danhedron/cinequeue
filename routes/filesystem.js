@@ -28,11 +28,22 @@ app.get( '/fs/*', function ( req, res ) {
 					throw err;
 				}
 				files = files.map( function ( f ) {
-					return {
-						isDirectory: fs.statSync( path+'/'+f ).isDirectory(),
-						name: f,
-						toString: function () { return f; }
-					};
+					try {
+						var stat = fs.statSync( path+'/'+f );
+						return {
+							isDirectory: stat.isDirectory(),
+							name: f,
+							toString: function () { return f; }
+						};
+					}
+					catch( e ) {
+						return {
+							isDirectory: false,
+							isError: true,
+							name: e,
+							toString: function () { return e.toString(); }
+						};
+					}
 				} );
 				host = req.connection.encrypted ? 'https://' : 'http://';
 				host += req.headers.host + '/raw';

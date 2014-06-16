@@ -22,6 +22,9 @@ label { /* color all files gray */
 .extn-flac {
 	color:black;
 }
-.directory {
+.directory, .error {
 	padding-left: 1.4em;
+}
+.error {
+	color: #D2322D;
 }
