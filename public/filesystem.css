@@ -19,7 +19,7 @@ label { /* color all files gray */
 }
 /* color the ones we can/want to watch */
 .extn-mkv, .extn-mp3, .extn-txt,
-.extn-flac {
+.extn-flac, .extn-ogg {
 	color:black;
 }
 .directory, .error {
