@@ -54,6 +54,7 @@ var Player = function ( playlist ) {
 				'mplayer',
 				'"' +  _nowplaying.uri + '"', // dirty hack
 				'-nomsgcolor',
+				'-slave',
 				'-msgmodule',
 				'-identify'
 			].join( ' ' );
@@ -70,6 +71,7 @@ var Player = function ( playlist ) {
 			_process = spawn( 'mplayer', [
 				_nowplaying.uri,
 				'-identify',
+				'-slave',
 				'-msgmodule',
 				'-nomsgcolor'
 			] );
@@ -106,6 +108,12 @@ var Player = function ( playlist ) {
 				}
 			}.bind( this ) );
 		}.bind( this ) );
+	};
+
+	this.writeCMD = function( cmd ) {
+		if( _process ) {
+			_process.stdin.write( cmd + '\n' );
+		}
 	};
 
 	this.stop = function () {

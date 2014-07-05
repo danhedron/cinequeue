@@ -116,6 +116,12 @@ app.get( '/playlist/cmd/:command', function ( req, res ) {
 			player.stop();
 			req.flash( 'success', res.__( 'Skipped to next file.' ) );
 			break;
+		case 'switch_audio':
+			player.writeCMD('switch_audio');
+			break;
+		case 'switch_subs':
+			player.writeCMD('sub_select');
+			break;
 		case 'die':
 			if ( config.get( 'player.kill') ) {
 				req.flash( 'info', res.__( 'Killing process.' ) );

@@ -15,5 +15,7 @@ nav.sidebar
 		else
 			li: a(href="/playlist")= __( 'Playlist' )
 		li: a(href="/fs")= __( 'Filesystem' )
+		li: a(href="/playlist/cmd/switch_audio",title=__( 'Cycle audio tracks' ))= __( 'Next audio track'   )
+		li: a(href="/playlist/cmd/switch_subs",title=__( 'Cycle subtitle tracks' ))= __( 'Next subtitle track'   )
 		include flash
 		block sidebar
