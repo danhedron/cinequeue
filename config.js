@@ -53,6 +53,11 @@ var conf = convict( {
 			default: true,
 			env: 'ALLOWSERV'
 		},
+		link: {
+			doc: 'Link to file URLs in the file system browser',
+			format: Boolean,
+			default: false,
+		},
 	},
 	playlist: {
 		allow: {

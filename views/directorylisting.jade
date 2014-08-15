@@ -10,6 +10,8 @@ block content
 				if !file.isDirectory && !file.isError
 					- drawButton = true
 					li.file
+						if show_link
+							a(href=host+path+"/"+file).download-link &#x25BE;
 						input(type="checkbox", id="uri_"+count, name="uri_"+count, value=host+path+"/"+file)
 						- pretty = file.toString().replace( /(\[.*?\]|[_])/g , '_' ).replace( /_+/g , ' ')
 						- extn = (pretty.match( /\.[\w]+\s*$/g )+"").substring( 1 )

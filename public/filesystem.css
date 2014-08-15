@@ -28,3 +28,6 @@ label { /* color all files gray */
 .error {
 	color: #D2322D;
 }
+.download-link {
+	color: #000;
+}
