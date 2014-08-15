@@ -1,7 +1,6 @@
 extends listing
 block content
 	p
-		span.filename= path
 		span= __( 'is a directory with the following contents' )
 	form(action="/playlist/add/", method="POST")#directory
 		- count = 0
